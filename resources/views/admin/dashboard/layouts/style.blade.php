@@ -46,7 +46,7 @@
         background: rgb(230, 230, 230);
     }
 
-    /* .image-upload-wrapper {
+    .image-upload-wrapper {
         display: flex;
         gap: 20px;
         align-items: center;
@@ -119,5 +119,5 @@
     .toggle-password svg {
         width: 20px;
         height: 20px;
-    } */
+    }
 </style>

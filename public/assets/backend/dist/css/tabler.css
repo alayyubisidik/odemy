@@ -25811,3 +25811,15 @@ Antialiasing
   -webkit-font-smoothing: auto;
   -moz-osx-font-smoothing: auto;
 }
+
+.ti {
+    font-size: 22px;
+}
+
+
+.icon-dashboard {
+    font-size: 25px;
+    color: white;
+    padding: 8px;
+    border-radius: 5px;
+}

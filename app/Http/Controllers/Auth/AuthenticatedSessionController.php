@@ -30,13 +30,32 @@ class AuthenticatedSessionController extends Controller
 
         $user = Auth::user();
 
-        if ($user->role == 'admin') {
-            return redirect(route('admin.dashboard.index', absolute: false));
-        } elseif ($user->role == 'student') {
-            return redirect(route('student.dashboard.index', absolute: false));
-        } elseif ($user->role == 'instructor') {
-            return redirect(route('instructor.dashboard.index', absolute: false));
+        // Cek apakah user diblokir
+        if ($user->is_blocked) {
+
+            Auth::logout();
+
+            $request->session()->invalidate();
+
+            $request->session()->regenerateToken();
+
+            return redirect()->back();
         }
+
+        // Redirect berdasarkan role
+        if ($user->role == 'admin') {
+
+            return redirect()->route('admin.dashboard.index');
+        } elseif ($user->role == 'student') {
+
+            return redirect()->route('student.dashboard.index');
+        } elseif ($user->role == 'instructor') {
+
+            return redirect()->route('instructor.dashboard.index');
+        }
+
+        // Default redirect
+        return redirect('/');
     }
 
     /**
