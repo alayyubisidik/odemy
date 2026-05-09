@@ -48,5 +48,6 @@ class User extends Authenticatable
         'website',
         'github',
         'login_as',
+        'is_blocked'
     ];
 }

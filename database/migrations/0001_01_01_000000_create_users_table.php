@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->enum('role', ['instructor', 'student', 'admin'])->default('student');
-            $table->string('avatar')->default('/uploads/default/avat-ar.png');
+            $table->string('image')->default('/uploads/default/avatar.png')->nullable();
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('headline')->nullable();
             $table->text('bio')->nullable();
             $table->string('document')->nullable();
+            $table->boolean('is_blocked')->default(0);
             $table->enum('approve_status', ['approved', 'pending', 'rejected'])->default('pending');
             $table->enum('gender', ['male', 'female'])->nullable();
             $table->string('facebook')->nullable();
