@@ -25,3 +25,5 @@ _ide_helper.php
 Homestead.json
 Homestead.yaml
 Thumbs.db
+/resources/views/1_admin-template
+/resources/views/1_edu-core-frontend
