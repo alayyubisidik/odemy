@@ -28,7 +28,7 @@ class RegisteredUserController extends Controller
      *
      * @throws ValidationException
      */
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request)
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
@@ -46,6 +46,13 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect(route('dashboard', absolute: false));
+        if ($user->role == 'admin') {
+            return redirect(route('admin.dashboard.index', absolute: false));
+        } elseif ($user->role == 'student') {
+            return redirect(route('student.dashboard.index', absolute: false));
+        } elseif ($user->role == 'instructor') {
+            return redirect(route('instructor.dashboard.index', absolute: false));
+        }
+
     }
 }
