@@ -29,4 +29,24 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    protected $fillable = [
+        'role',
+        'image',
+        'name',
+        'headline',
+        'email',
+        'bio',
+        'document',
+        'approve_status',
+        'gender',
+        'email_verified_at',
+        'password',
+        'facebook',
+        'x',
+        'linkedin',
+        'website',
+        'github',
+        'login_as',
+    ];
 }
