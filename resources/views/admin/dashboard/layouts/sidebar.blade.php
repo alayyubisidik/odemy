@@ -5,7 +5,9 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="d-flex gap-3 pt-3 px-3 pb-3 pb-lg-0" style="justify-content: center">
-            <img src="{{ asset('assets/images/logo-dark.png') }}" alt="" width="125">
+            <a href="{{ route('index') }}">
+                <img src="{{ asset('assets/images/logo-dark.png') }}" alt="" width="125">
+            </a>
         </div>
 
         <div class="navbar-nav flex-row d-lg-none">
