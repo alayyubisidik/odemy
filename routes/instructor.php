@@ -7,6 +7,7 @@ Route::group(["prefix" => "instructor", "as" => "instructor.", "middleware" => [
 
     Route::get('dashboard', [InstructorDashboardController::class, 'index'])->name('dashboard.index');
 
+    Route::get('switch-to-student', [InstructorDashboardController::class, 'switchToStudent'])->name('switch-to-student.index');
 
 });
 

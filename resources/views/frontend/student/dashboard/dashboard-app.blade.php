@@ -74,16 +74,18 @@
                                     </div>
                                     My Reviews
                                 </a>
-                            </li>
-                            <li>
-                                <a href="{{ route('student.switch-to-instructor.index') }}">
-                                    <div class="img">
-                                        <img src="{{ asset('assets/frontend/dist/images/dash_icon_8.png') }}" alt="icon"
-                                            class="img-fluid w-100">
-                                    </div>
-                                    Switch to Instructor
-                                </a>
-                            </li>
+                            </li> --}}
+                            @if (user()->approve_status == 'approved')
+                                <li>
+                                    <a href="{{ route('student.switch-to-instructor.index') }}">
+                                        <div class="img">
+                                            <img src="{{ asset('assets/frontend/dist/images/dash_icon_8.png') }}" alt="icon"
+                                                class="img-fluid w-100">
+                                        </div>
+                                        Switch to Instructor
+                                    </a>
+                                </li>
+                            @endif
                             @if (!user()->document)
                                 <li>
                                     <a href="{{ route('student.become-instructor.index') }}"
@@ -95,7 +97,7 @@
                                         Become Instructor
                                     </a>
                                 </li>
-                            @endif --}}
+                            @endif
                             <li style="cursor: pointer" onclick="event.preventDefault(); $('.form-logout').submit()">
                                 <a href="#" style="cursor: pointer">
                                     <div class="img">

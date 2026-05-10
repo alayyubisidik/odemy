@@ -11,4 +11,13 @@ class InstructorDashboardController extends Controller
     {
         return view('frontend.instructor.dashboard.main.index');
     }
+
+    function switchToStudent()
+    {
+        $user = user();
+        $user->role = 'student';
+        $user->save();
+
+        return redirect()->route('student.dashboard.index');
+    }
 }
