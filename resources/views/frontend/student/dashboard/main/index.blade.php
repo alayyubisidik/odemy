@@ -1,51 +1,7 @@
 @extends('frontend.student.dashboard.dashboard-app')
 
 @section('dashboard-content')
-    {{-- @if (user()->approve_status == 'pending')
-        <div class="alert alert-important alert-warning alert-dismissible" style="display: flex; gap: 15px;" role="alert">
-            <div class="alert-icon">
-                <!-- Download SVG icon from http://tabler.io/icons/icon/alert-triangle -->
-                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="icon alert-icon icon-2">
-                    <path d="M12 9v4"></path>
-                    <path
-                        d="M10.363 3.591l-8.106 13.534a1.914 1.914 0 0 0 1.636 2.871h16.214a1.914 1.914 0 0 0 1.636 -2.87l-8.106 -13.536a1.914 1.914 0 0 0 -3.274 0z">
-                    </path>
-                    <path d="M12 16h.01"></path>
-                </svg>
-            </div>
-            <div>
-                <h5 class="alert-heading" style="margin-bottom: 2px">Your Instructor Request is Pending</h5>
-                <p class="alert-description">Please wait for the admin to approve your Request.</p>
-            </div>
-            <a class="btn-close" data-bs-dismiss="alert" aria-label="close"></a>
-        </div>
-    @endif
-
-    @if (user()->approve_status == 'rejected')
-        <div class="alert alert-important alert-danger alert-dismissible" style="display: flex; gap: 15px;" role="alert">
-            <div class="alert-icon">
-                <!-- Download SVG icon from http://tabler.io/icons/icon/alert-circle -->
-                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="icon alert-icon icon-2">
-                    <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0"></path>
-                    <path d="M12 8v4"></path>
-                    <path d="M12 16h.01"></path>
-                </svg>
-            </div>
-            <div>
-                <h5 style="margin-bottom: 2px" class="alert-heading">Instructor Request Rejected</h5>
-                <p class="alert-description">
-                    Unfortunately, your request to become an instructor has been rejected.
-                    <br>If you need further assistance, you may contact our customer service through the
-                    <a href="" class="text-primary text-decoration-underline">Contact</a> page.
-                </p>
-            </div>
-            <a class="btn-close" data-bs-dismiss="alert" aria-label="close"></a>
-        </div>
-    @endif --}}
+   
 
     <div class="row">
         <div class="col-xl-4 col-sm-6 wow fadeInUp">

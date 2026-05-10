@@ -85,7 +85,7 @@
                                     </div>
                                     Orders
                                 </a>
-                            </li>
+                            </li> --}}
                             <li>
                                 <a href="{{ route('instructor.switch-to-student.index') }}">
                                     <div class="img">
@@ -94,7 +94,7 @@
                                     </div>
                                     Switch to Student
                                 </a>
-                            </li> --}}
+                            </li>
                             <li style="cursor: pointer" onclick="event.preventDefault(); $('.form-logout').submit()">
                                 <a href="#" style="cursor: pointer">
                                     <div class="img">
