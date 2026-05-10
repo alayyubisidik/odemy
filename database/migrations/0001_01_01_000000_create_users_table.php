@@ -31,6 +31,9 @@ return new class extends Migration
             $table->string('website')->nullable();
             $table->string('github')->nullable();
             $table->enum('login_as', ['student', 'instructor', 'admin'])->nullable();
+            $table->text('google_id')->nullable();
+            $table->text('google_token')->nullable();
+            $table->text('google_refresh_token')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

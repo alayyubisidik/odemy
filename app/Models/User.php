@@ -48,6 +48,11 @@ class User extends Authenticatable
         'website',
         'github',
         'login_as',
-        'is_blocked'
+        'is_blocked',
+        'google_id',
+        'google_token',
+        'google_refresh_token'
     ];
+
+
 }

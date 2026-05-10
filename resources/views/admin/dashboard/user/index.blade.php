@@ -3,6 +3,10 @@
 @section('content')
     <div class="container-xl" style="min-height: 72vh; ">
 
+        <h2 class="page-title" style="margin-bottom: 30px">
+            User Management
+        </h2>
+
         <div class="card" style="margin-bottom: 10px">
             <div class="card-body">
                 <form action="{{ route('admin.users.index') }}" method="GET">
@@ -108,7 +112,7 @@
 
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">User Management</h3>
+                <h3 class="card-title">User List</h3>
                 <div class="card-actions">
                     <a href="{{ route('admin.users.create') }}" class="btn btn-primary">Create</a>
                 </div>
@@ -138,7 +142,7 @@
                                     </td>
                                     <td>{{ $user->name }}</td>
                                     <td>{{ $user->email }}</td>
-                                    <td>{{ $user->gender ?? "-" }}</td>
+                                    <td>{{ $user->gender ?? '-' }}</td>
                                     <td>
                                         @if ($user->is_blocked)
                                             <span class="badge bg-danger-lt">blocked</span>
