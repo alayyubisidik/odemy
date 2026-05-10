@@ -35,7 +35,7 @@
 
         <div class="collapse navbar-collapse" id="sidebar-menu">
             <ul class="navbar-nav pt-lg-3 sidebar-menu">
-                <li class="nav-item  {{ setActive(['admin.dashboard.index*'], 'active') }}" >
+                <li class="nav-item  {{ setActive(['admin.dashboard.index*'], 'active') }}">
                     <a class="nav-link" href="{{ route('admin.dashboard.index') }}">
                         <span
                             class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
@@ -54,7 +54,7 @@
                     </a>
                 </li>
 
-                <li class="nav-item {{ setActive(['admin.users.*'], 'active') }}" >
+                <li class="nav-item {{ setActive(['admin.users.*'], 'active') }}">
                     <a class="nav-link" href="{{ route('admin.users.index') }}">
                         <span
                             class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
@@ -73,7 +73,7 @@
                     </a>
                 </li>
 
-                <li class="nav-item {{ setActive(['admin.instructor-requests.*'], 'active') }}" >
+                <li class="nav-item {{ setActive(['admin.instructor-requests.*'], 'active') }}">
                     <a class="nav-link" href="{{ route('admin.instructor-requests.index') }}">
                         <span
                             class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
@@ -92,33 +92,77 @@
                     </a>
                 </li>
 
-                {{-- <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#navbar-extra" data-bs-toggle="dropdown"
+                <li
+                    class="nav-item dropdown {{ setActive(['admin.course-languages.*', 'admin.course-levels.*', 'admin.course-categories.*', 'admin.course-sub-categories.*', 'admin.courses.*', 'admin.reviews.*'], 'active') }}">
+
+                    <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown"
                         data-bs-auto-close="false" role="button" aria-expanded="false">
-                        <span
-                            class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/star -->
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
-                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                                stroke-linecap="round" stroke-linejoin="round">
+                        <span class="nav-link-icon d-md-none d-lg-inline-block">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round"
+                                class="icon icon-tabler icons-tabler-outline icon-tabler-layout-dashboard">
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path d="M5 4h4a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1v-6a1 1 0 0 1 1 -1" />
+                                <path d="M5 16h4a1 1 0 0 1 1 1v2a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1v-2a1 1 0 0 1 1 -1" />
                                 <path
-                                    d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z" />
+                                    d="M15 12h4a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1v-6a1 1 0 0 1 1 -1" />
+                                <path d="M15 4h4a1 1 0 0 1 1 1v2a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1v-2a1 1 0 0 1 1 -1" />
                             </svg>
                         </span>
-                        <span class="nav-link-title">
-                            Extra
-                        </span>
+                        <span class="nav-link-title">Course Management</span>
                     </a>
-                    <div class="dropdown-menu">
+                    <div
+                        class="dropdown-menu {{ setActive(['admin.course-languages.*', 'admin.course-levels.*', 'admin.course-categories.*', 'admin.course-sub-categories.*', 'admin.courses.*', 'admin.reviews.*'], 'show') }}">
+
+                        {{-- <div class="dropdown-menu-columns">
+                            <div class="dropdown-menu-column">
+                                <a class="dropdown-item {{ setActive(['admin.courses.*']) }}"
+                                    href="{{ route('admin.courses.index') }}">
+                                    Courses
+                                </a>
+                            </div>
+                        </div> --}}
+{{--
                         <div class="dropdown-menu-columns">
                             <div class="dropdown-menu-column">
-                                <a class="dropdown-item" href="./empty.html">
-                                    Empty page
+                                <a class="dropdown-item {{ setActive(['admin.course-categories.*']) }}"
+                                    href="{{ route('admin.course-categories.index') }}">
+                                    Course Category
+                                </a>
+                            </div>
+                        </div> --}}
+
+                        <div class="dropdown-menu-columns">
+                            <div class="dropdown-menu-column">
+                                <a class="dropdown-item {{ setActive(['admin.course-languages.*']) }}"
+                                    href="{{ route('admin.course-languages.index') }}">
+                                    Course Language
                                 </a>
                             </div>
                         </div>
+
+                        {{-- <div class="dropdown-menu-columns">
+                            <div class="dropdown-menu-column">
+                                <a class="dropdown-item {{ setActive(['admin.course-levels.*']) }}"
+                                    href="{{ route('admin.course-levels.index') }}">
+                                    Course Level
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="dropdown-menu-columns">
+                            <div class="dropdown-menu-column">
+                                <a class="dropdown-item {{ setActive(['admin.reviews.*']) }}"
+                                    href="{{ route('admin.reviews.index') }}">
+                                    Course Review
+                                </a>
+                            </div>
+                        </div> --}}
+
                     </div>
-                </li> --}}
+
+                </li>
 
             </ul>
         </div>

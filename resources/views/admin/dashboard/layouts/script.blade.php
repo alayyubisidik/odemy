@@ -77,5 +77,23 @@
                 }
             });
         });
+
+        // slug auto-generate
+        $('#name').on('input', function() {
+            $('#slug').val(slugify($(this).val()));
+        });
+
+        // slug auto-generate
+        $('#title').on('input', function() {
+            $('#slug').val(slugify($(this).val()));
+        });
+
+        function slugify(text) {
+            return text.toString().toLowerCase()
+                .replace(/\s+/g, '-') // Replace spaces with -
+                .replace(/[^a-z0-9\-\.]/g, '') // Remove all non-alphanumeric chars except hyphens and dots
+                .replace(/\-\-+/g, '-') // Replace multiple hyphens with a single one
+                .replace(/^\-+|\-$/g, ''); // Trim hyphens from start and end
+        }
     })
 </script>
