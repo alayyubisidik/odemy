@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminDashboardController;
+use App\Http\Controllers\Admin\CourseLanguageController;
 use App\Http\Controllers\Admin\InstructorRequestController;
 use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
@@ -20,4 +21,7 @@ Route::middleware(['auth', 'role:admin'])
             ->name('instructor-requests.update-status');
         Route::get('instructor-requests/{user}/download', [InstructorRequestController::class, 'download'])
             ->name('instructor-requests.download');
+
+        Route::resource('course-languages', CourseLanguageController::class);
+
     });
