@@ -7,6 +7,11 @@ Route::group(["prefix" => "instructor", "as" => "instructor.", "middleware" => [
 
     Route::get('dashboard', [InstructorDashboardController::class, 'index'])->name('dashboard.index');
 
+    Route::get('profile', [InstructorDashboardController::class, 'profile'])->name('profile.index');
+    Route::get('profile/edit', [InstructorDashboardController::class, 'profileEdit'])->name('profile.edit');
+    Route::put('profile/update', [InstructorDashboardController::class, 'profileUpdate'])->name('profile.update');
+    Route::put('profile/password/update', [InstructorDashboardController::class, 'passwordUpdate'])->name('profile.password.update');
+
     Route::get('switch-to-student', [InstructorDashboardController::class, 'switchToStudent'])->name('switch-to-student.index');
 
 });
