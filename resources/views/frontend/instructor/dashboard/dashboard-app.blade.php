@@ -46,7 +46,7 @@
                                     Dashboard
                                 </a>
                             </li>
-                            {{-- <li>
+                            <li>
                                 <a href="{{ route('instructor.profile.index') }}"
                                     class="{{ setActive(['instructor.profile.*']) }}">
                                     <div class="img">
@@ -56,7 +56,7 @@
                                     Profile
                                 </a>
                             </li>
-                            <li>
+                            {{-- <li>
                                 <a href="{{ route('instructor.courses.index') }}"
                                     class="{{ setActive(['instructor.courses.*']) }}">
                                     <div class="img">

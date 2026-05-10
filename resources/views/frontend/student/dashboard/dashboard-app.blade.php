@@ -45,7 +45,7 @@
                                     Dashboard
                                 </a>
                             </li>
-                            {{-- <li>
+                            <li>
                                 <a href="{{ route('student.profile.index') }}"
                                     class="{{ setActive(['student.profile.*']) }}">
                                     <div class="img">
@@ -55,7 +55,7 @@
                                     Profile
                                 </a>
                             </li>
-                            <li>
+                            {{-- <li>
                                 <a href="{{ route('student.my-learning.index') }}"
                                     class="{{ setActive(['student.my-learning.*']) }}">
                                     <div class="img">
