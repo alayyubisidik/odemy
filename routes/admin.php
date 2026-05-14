@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\CourseLanguageController;
+use App\Http\Controllers\Admin\CourseLevelController;
 use App\Http\Controllers\Admin\InstructorRequestController;
 use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
@@ -23,5 +24,8 @@ Route::middleware(['auth', 'role:admin'])
             ->name('instructor-requests.download');
 
         Route::resource('course-languages', CourseLanguageController::class);
+
+        Route::resource('course-levels', CourseLevelController::class);
+
 
     });
