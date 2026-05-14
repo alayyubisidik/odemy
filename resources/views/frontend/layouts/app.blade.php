@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="{{ asset('assets/frontend/dist/css/venobox.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/frontend/dist/css/scroll_button.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/frontend/dist/css/nice-select.css') }}">
-    {{-- <link rel="stylesheet" href="{{ asset('assets/frontend/dist/css/pointer.css') }}"> --}}
+    <link rel="stylesheet" href="{{ asset('assets/frontend/dist/css/pointer.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/frontend/dist/css/jquery.calendar.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/frontend/dist/css/range_slider.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/frontend/dist/css/startRating.css') }}">
@@ -38,6 +38,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.35.0/dist/tabler-icons.min.css" />
 
     @stack('style')
+
+    <style>
+        
+    </style>
 
 
 </head>
@@ -66,7 +70,7 @@
     <script src="{{ asset('assets/frontend/dist/js/venobox.min.js') }}"></script>
     <script src="{{ asset('assets/frontend/dist/js/jquery.nice-select.min.js') }}"></script>
     <script src="{{ asset('assets/frontend/dist/js/scroll_button.js') }}"></script>
-    {{-- <script src="{{ asset('assets/frontend/dist/js/pointer.js') }}"></script> --}}
+    <script src="{{ asset('assets/frontend/dist/js/pointer.js') }}"></script>
     <script src="{{ asset('assets/frontend/dist/js/range_slider.js') }}"></script>
     <script src="{{ asset('assets/frontend/dist/js/animated_barfiller.js') }}"></script>
     <script src="{{ asset('assets/frontend/dist/js/jquery.calendar.js') }}"></script>

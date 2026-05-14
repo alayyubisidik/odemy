@@ -19,6 +19,7 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->alias([
             'role' => \App\Http\Middleware\CheckRoleMiddleware::class,
+            'filemanager.access' => \App\Http\Middleware\FilemanagerAccess::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
