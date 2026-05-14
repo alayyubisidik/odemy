@@ -151,6 +151,15 @@
                             </div>
                         </div>
 
+                        <div class="dropdown-menu-columns">
+                            <div class="dropdown-menu-column">
+                                <a class="dropdown-item {{ setActive(['admin.course-categories.*']) }}"
+                                    href="{{ route('admin.course-categories.index') }}">
+                                    Course Category
+                                </a>
+                            </div>
+                        </div>
+
                         {{-- <div class="dropdown-menu-columns">
                             <div class="dropdown-menu-column">
                                 <a class="dropdown-item {{ setActive(['admin.reviews.*']) }}"
