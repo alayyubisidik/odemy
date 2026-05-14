@@ -142,7 +142,7 @@
                             </div>
                         </div>
 
-                        {{-- <div class="dropdown-menu-columns">
+                        <div class="dropdown-menu-columns">
                             <div class="dropdown-menu-column">
                                 <a class="dropdown-item {{ setActive(['admin.course-levels.*']) }}"
                                     href="{{ route('admin.course-levels.index') }}">
@@ -151,7 +151,7 @@
                             </div>
                         </div>
 
-                        <div class="dropdown-menu-columns">
+                        {{-- <div class="dropdown-menu-columns">
                             <div class="dropdown-menu-column">
                                 <a class="dropdown-item {{ setActive(['admin.reviews.*']) }}"
                                     href="{{ route('admin.reviews.index') }}">
