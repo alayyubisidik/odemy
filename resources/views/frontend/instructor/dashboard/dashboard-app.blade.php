@@ -56,7 +56,7 @@
                                     Profile
                                 </a>
                             </li>
-                            {{-- <li>
+                            <li>
                                 <a href="{{ route('instructor.courses.index') }}"
                                     class="{{ setActive(['instructor.courses.*']) }}">
                                     <div class="img">
@@ -66,7 +66,7 @@
                                     Courses
                                 </a>
                             </li>
-                            <li>
+                            {{-- <li>
                                 <a href="{{ route('instructor.withdraws.index') }}"
                                     class="{{ setActive(['instructor.withdraws.*']) }}">
                                     <div class="img">
@@ -118,3 +118,15 @@
         </div>
     </section>
 @endsection
+
+{{-- @push('script')
+    <script>
+        window.addEventListener("load", function() {
+            // kasih sedikit delay agar layout fix dulu (bootstrap, select2, thumbnail image height)
+            window.scrollTo({
+                top: 300,
+                behavior: "smooth"
+            });
+        });
+    </script>
+@endpush --}}

@@ -10,7 +10,10 @@ if (!function_exists('setActive')) {
 }
 
 if (!function_exists('user')) {
-    function user(string $guard = 'web')
+    /**
+     * @return \App\Models\User|null
+     */
+    function user()
     {
         return Auth::user();
     }

@@ -14,4 +14,11 @@ Route::get('/auth/redirect', [SocialiteController::class, 'redirect'])->name('lo
 
 Route::get('/auth/google/callback', [SocialiteController::class, 'callback']);
 
+Route::group([
+    'prefix' => 'filemanager'
+], function () {
+    \UniSharp\LaravelFilemanager\Lfm::routes();
+});
+
+
 require __DIR__.'/auth.php';

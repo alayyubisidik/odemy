@@ -13,7 +13,8 @@
         "laravel/framework": "^13.7",
         "laravel/socialite": "^5.27",
         "laravel/tinker": "^3.0",
-        "php-flasher/flasher-notyf-laravel": "^2.6"
+        "php-flasher/flasher-notyf-laravel": "^2.6",
+        "unisharp/laravel-filemanager": "^2.14"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
