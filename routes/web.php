@@ -8,7 +8,6 @@ Route::get('/', [FrontendController::class, 'index'])->name('index');
 
 Route::middleware('auth')->group(function () {
 
-
 });
 
 Route::get('/auth/redirect', [SocialiteController::class, 'redirect'])->name('login.google');

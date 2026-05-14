@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('course_categories', function (Blueprint $table) {
             $table->id();
+            $table->string('icon')->nullable();
+            $table->string('name')->unique();
+            $table->string('slug')->unique();
+            $table->foreignId('parent_id')->nullable();
+            $table->boolean('is_trending')->default(0);
+            $table->boolean('is_active')->default(1);
             $table->timestamps();
         });
     }
