@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\CourseCategoryController;
+use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\CourseLanguageController;
 use App\Http\Controllers\Admin\CourseLevelController;
 use App\Http\Controllers\Admin\CourseSubCategoryController;
@@ -39,5 +40,25 @@ Route::middleware(['auth', 'role:admin'])
         Route::put('{courseCategory}/course-sub-categories/update/{courseSubCategory}', [CourseSubCategoryController::class, 'update'])->name('course-sub-categories.update');
         Route::delete('course-sub-categories/destroy/{courseSubCategory}', [CourseSubCategoryController::class, 'destroy'])->name('course-sub-categories.destroy');
 
+        Route::get('courses', [CourseController::class, 'index'])->name('courses.index');
+        Route::put('courses/{course}/update-approve-status', [CourseController::class, 'updateApproveStatus'])->name('courses.update-approve-status');
+        Route::get('courses/create', [CourseController::class, 'create'])->name('courses.create');
+        Route::post('courses/store', [CourseController::class, 'store'])->name('courses.store');
+        Route::get('courses/{course}/edit', [CourseController::class, 'edit'])->name('courses.edit');
+        Route::put('courses/{course}/update', [CourseController::class, 'update'])->name('courses.update');
+        Route::delete('courses/{course}/destroy', [CourseController::class, 'destroy'])->name('courses.destroy');
 
+        Route::get('courses/{course}/chapters', [CourseController::class, 'chapterIndex'])->name('courses.chapters.index');
+        Route::get('courses/{course}/chapters/create', [CourseController::class, 'chapterCreate'])->name('courses.chapters.create');
+        Route::post('courses/{course}/chapters/store', [CourseController::class, 'chapterStore'])->name('courses.chapters.store');
+        Route::get('courses/{course}/chapters/{chapter}/edit', [CourseController::class, 'chapterEdit'])->name('courses.chapters.edit');
+        Route::put('courses/{course}/chapters/{chapter}/update', [CourseController::class, 'chapterUpdate'])->name('courses.chapters.update');
+        Route::delete('courses/{course}/chapters/{chapter}/destroy', [CourseController::class, 'chapterDestroy'])->name('courses.chapters.destroy');
+
+        Route::get('courses/{course}/chapters/{chapter}/lessons', [CourseController::class, 'lessonIndex'])->name('courses.lessons.index');
+        Route::get('courses/{course}/chapters/{chapter}/lessons/create', [CourseController::class, 'lessonCreate'])->name('courses.lessons.create');
+        Route::post('courses/{course}/chapters/{chapter}/lessons/store', [CourseController::class, 'lessonStore'])->name('courses.lessons.store');
+        Route::delete('courses/{course}/chapters/{chapter}/lessons/{lesson}/destroy', [CourseController::class, 'lessonDestroy'])->name('courses.lessons.destroy');
+        Route::get('courses/{course}/chapters/{chapter}/lessons/{lesson}/edit', [CourseController::class, 'lessonEdit'])->name('courses.lessons.edit');
+        Route::put('courses/{course}/chapters/{chapter}/lessons/{lesson}/update', [CourseController::class, 'lessonUpdate'])->name('courses.lessons.update');
     });
