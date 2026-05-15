@@ -53,9 +53,8 @@
                             <x-input-error :messages="$errors->get('thumbnail')" />
                             <input type="file" id="image-upload-one" name="thumbnail">
 
-                            <img id="image-preview-one" class="img-preview" alt="Logo Preview"
-                                src="{{ asset($course?->thumbnail) }}"
-                                style=" border-radius: 5px; margin-top: 20px; {{ $course?->thumbnail ? '' : 'display: none;' }}" />
+                            <img id="image-preview-one" alt="Logo Preview" src="{{ asset($course?->thumbnail) }}"
+                                style="width: 300px !important; height: auto; border-radius: 5px; margin-top: 20px; {{ $course?->thumbnail ? '' : 'display: none;' }}" />
                         </div>
                     </div>
 
@@ -130,20 +129,30 @@
                     <!-- Price -->
                     <div class="col-xl-6">
                         <div class="add_course_basic_info_imput">
-                            <label>Price *</label>
+
+                            <label>Price (RP)*</label>
+
                             <x-input-error :messages="$errors->get('price')" />
-                            <input type="text" name="price" placeholder="Price"
-                                value="{{ old('price', $course->price ?? '') }}">
+
+                            <input type="text" name="price" class="rupiah-input" placeholder="Price"
+                                value="{{ old('price', isset($course) ? number_format($course->price, 0, ',', '.') : '') }}">
+
                             <p>Put 0 for free</p>
+
                         </div>
                     </div>
+
                     <!-- Discount -->
                     <div class="col-xl-6">
                         <div class="add_course_basic_info_imput">
-                            <label>Discount Price</label>
+
+                            <label>Discount Price (RP)</label>
+
                             <x-input-error :messages="$errors->get('discount')" />
-                            <input type="number" name="discount" placeholder="Discount Price"
-                                value="{{ old('discount', $course->discount ?? '') }}">
+
+                            <input type="text" name="discount" class="rupiah-input" placeholder="Discount Price"
+                                value="{{ old('discount', isset($course) ? number_format($course->discount, 0, ',', '.') : '') }}">
+
                         </div>
                     </div>
 
@@ -190,6 +199,17 @@
 
             // saat halaman pertama kali dibuka (edit page)
             toggleDemoSource($('.demo_video_storage').val());
+        });
+
+        $('.rupiah-input').on('input', function() {
+
+            let value = $(this).val();
+
+            value = value.replace(/[^0-9]/g, '');
+
+            value = new Intl.NumberFormat('id-ID').format(value);
+
+            $(this).val(value);
         });
     </script>
 @endpush

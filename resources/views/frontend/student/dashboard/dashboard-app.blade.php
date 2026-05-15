@@ -26,7 +26,8 @@
                     <div class="wsus__dashboard_sidebar">
                         <div class="wsus__dashboard_sidebar_top">
                             <div class="dashboard_banner">
-                                <img src="{{ asset('assets/frontend/dist/images/single_topic_sidebar_banner.jpg') }}" alt="img" class="img-fluid">
+                                <img src="{{ asset('assets/frontend/dist/images/single_topic_sidebar_banner.jpg') }}"
+                                    alt="img" class="img-fluid">
                             </div>
                             <div class="img">
                                 <img src="{{ asset(user()->image) }}" alt="profile" class="img-fluid w-100">
@@ -76,17 +77,18 @@
                                 </a>
                             </li> --}}
                             @if (user()->approve_status == 'approved')
+                            @endif
+                            @if (user()->document)
                                 <li>
                                     <a href="{{ route('student.switch-to-instructor.index') }}">
                                         <div class="img">
-                                            <img src="{{ asset('assets/frontend/dist/images/dash_icon_8.png') }}" alt="icon"
-                                                class="img-fluid w-100">
+                                            <img src="{{ asset('assets/frontend/dist/images/dash_icon_8.png') }}"
+                                                alt="icon" class="img-fluid w-100">
                                         </div>
                                         Switch to Instructor
                                     </a>
                                 </li>
-                            @endif
-                            @if (!user()->document)
+                            @else
                                 <li>
                                     <a href="{{ route('student.become-instructor.index') }}"
                                         class="{{ setActive(['student.become-instructor.*']) }}">
@@ -98,16 +100,21 @@
                                     </a>
                                 </li>
                             @endif
-                            <li style="cursor: pointer" onclick="event.preventDefault(); $('.form-logout').submit()">
-                                <a href="#" style="cursor: pointer">
-                                    <div class="img">
-                                        <img src="{{ asset('assets/frontend/dist/images/dash_icon_16.png') }}"
-                                            alt="icon" class="img-fluid w-100">
-                                    </div>
-                                    Sign Out
-                                </a>
-                                <form action="{{ route('logout') }}" class="form-logout" method="POST">
+                            <li>
+                                <form action="{{ route('logout') }}" method="POST">
+
                                     @csrf
+
+                                    <a href="#" style="cursor:pointer" onclick="confirmLogout(event)">
+
+                                        <div class="img">
+                                            <img src="{{ asset('assets/frontend/dist/images/dash_icon_16.png') }}"
+                                                alt="icon" class="img-fluid w-100">
+                                        </div>
+
+                                        Sign Out
+                                    </a>
+
                                 </form>
                             </li>
                         </ul>

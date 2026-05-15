@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\CourseLanguageController;
 use App\Http\Controllers\Admin\CourseLevelController;
 use App\Http\Controllers\Admin\CourseSubCategoryController;
 use App\Http\Controllers\Admin\InstructorRequestController;
+use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\UserController;
 use App\Models\CourseCategory;
 use Illuminate\Support\Facades\Route;
@@ -61,4 +62,10 @@ Route::middleware(['auth', 'role:admin'])
         Route::delete('courses/{course}/chapters/{chapter}/lessons/{lesson}/destroy', [CourseController::class, 'lessonDestroy'])->name('courses.lessons.destroy');
         Route::get('courses/{course}/chapters/{chapter}/lessons/{lesson}/edit', [CourseController::class, 'lessonEdit'])->name('courses.lessons.edit');
         Route::put('courses/{course}/chapters/{chapter}/lessons/{lesson}/update', [CourseController::class, 'lessonUpdate'])->name('courses.lessons.update');
+
+        Route::get('settings', [SettingController::class, 'index'])->name('settings.index');
+        Route::post('settings', [SettingController::class, 'store'])->name('settings.store');
+
+        Route::get('settings/commission', [SettingController::class, 'commissionSettingIndex'])->name('settings.commission.index');
+        Route::post('settings/commission', [SettingController::class, 'commissionSettingStore'])->name('settings.commission.store');
     });

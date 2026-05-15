@@ -259,7 +259,7 @@
                                 <div class="mb-3">
                                     <label for="duration" class="form-label">Duration</label>
                                     <input type="text" class="form-control" id="duration" name="duration"
-                                        placeholder="Enter duration">
+                                        placeholder="1h 30m">
                                 </div>
                             </div>
 

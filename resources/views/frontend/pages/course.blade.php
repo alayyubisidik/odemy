@@ -4,13 +4,13 @@
     <x-breadcrumb title="Course" />
 
     <!--===========================
-                                        BREADCRUMB END
-                                    ============================-->
+                                            BREADCRUMB END
+                                        ============================-->
 
 
     <!--===========================
-                                        COURSES PAGE START
-                                    ============================-->
+                                            COURSES PAGE START
+                                        ============================-->
     <section class="wsus__courses mt_120 xs_mt_100 pb_120 xs_pb_100">
         <div class="container">
             <div class="row">
@@ -196,17 +196,18 @@
                                         </a>
                                     </div>
                                     <div class="wsus__single_courses_3_footer">
-                                        <a class="common_btn add_to_cart" data-course-id="{{ $course->id }}"
-                                            href="#">Add To Cart <i class="far fa-arrow-right"></i></a>
-                                        <p class="text-warning">
+
+                                        <p class="text-warning" >
                                             @if ($course->price == 0)
                                                 FREE
                                             @elseif($course->discount > 0)
-                                                <del>${{ $course->price }}</del> ${{ $course->discount }}
+                                                <del>{{ rupiah($course->price) }}</del> {{ rupiah($course->discount) }}
                                             @else
-                                                ${{ $course->price }}
+                                                {{ rupiah($course->price) }}
                                             @endif
                                         </p>
+                                        <a class="common_btn add_to_cart" style="margin-top: 10px" data-course-id="{{ $course->id }}"
+                                            href="#">Add To Cart <i class="far fa-arrow-right"></i></a>
                                     </div>
                                 </div>
                             </div>

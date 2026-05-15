@@ -390,9 +390,9 @@
                             @if ($course->price == 0)
                                 FREE
                             @elseif($course->discount > 0)
-                                <del>${{ $course->price }}</del>${{ $course->discount }}
+                                <del>{{ rupiah($course->price) }}</del>{{ rupiah($course->discount) }}
                             @else
-                                ${{ $course->price }}
+                                {{ rupiah($course->price) }}
                             @endif
                         </h3>
                         <div class="wsus__courses_sidebar_list_info">

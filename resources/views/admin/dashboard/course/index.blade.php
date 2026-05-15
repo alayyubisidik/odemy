@@ -35,7 +35,7 @@
                                     <td>{{ $course->title }}</td>
                                     <td>{{ $course->category->name }}</td>
                                     <td>{{ $course->Instructor->name }}</td>
-                                    <td>{{ $course->price }}</td>
+                                    <td>Rp.{{ $course->price }}</td>
                                     <td>
                                         <form action="{{ route('admin.courses.update-approve-status', $course->id) }}"
                                             method="POST">
