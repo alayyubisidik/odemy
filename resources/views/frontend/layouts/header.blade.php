@@ -165,53 +165,38 @@
             </div>
             <ul class="navbar-nav m-auto">
                 <li class="nav-item">
-                    <a class="nav-link active" href="index.html">Home</a>
+                    <a class="nav-link {{ request()->routeIs('index') ? 'active' : '' }}" href="/">Home</a>
                 </li>
+                {{-- <li class="nav-item">
+                    <a class="nav-link {{ request()->routeIs('about.index') ? 'active' : '' }}"
+                        href="{{ route('about.index') }}">About Us</a>
+                </li> --}}
                 <li class="nav-item">
-                    <a class="nav-link" href="about.html">About Us</a>
+                    <a class="nav-link {{ request()->routeIs('courses.*') ? 'active' : '' }}"
+                        href="{{ route('courses.index') }}">Courses</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Courses <i class="far fa-angle-down"></i></a>
-                    <ul class="droap_menu">
-                        <li><a href="courses.html">Courses</a></li>
-                        <li><a href="courses_details.html">Course details</a></li>
-                        <li><a href="course_video.html">Course video</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item">
+                {{-- <li class="nav-item">
+                    <a class="nav-link {{ request()->routeIs('contact.*') ? 'active' : '' }}"
+                        href="{{ route('contact.index') }}">Contact Us</a>
+                </li> --}}
+                {{-- <li class="nav-item">
                     <a class="nav-link" href="#">pages <i class="far fa-angle-down"></i></a>
                     <ul class="droap_menu">
-                        <li><a href="category.html">Categories</a></li>
-                        <li><a href="cart_view.html">cart view</a></li>
-                        <li><a href="checkout.html">checkout</a></li>
-                        <li><a href="payment.html">payment</a></li>
-                        <li><a href="pricing.html">pricing</a></li>
-                        <li><a href="student_reviews.html">student review</a></li>
-                        <li><a href="instructor.html">Instructor</a></li>
-                        <li><a href="instructor_details.html">Instructor details</a></li>
-                        <li><a href="instructor_finder.html">Instructor finder</a></li>
-                        <li><a href="error.html">error</a></li>
-                        <li><a href="faq.html">faq</a></li>
-                        <li><a href="sign_in.html">sign in</a></li>
-                        <li><a href="sign_up.html">sign up</a></li>
-                        <li><a href="forum.html">forum</a></li>
-                        <li><a href="forum_categories.html">forum Categories</a></li>
-                        <li><a href="forum_create_topic.html">forum create topic</a></li>
-                        <li><a href="forum_single_topic.html">forum single topic</a></li>
-                        <li><a href="dashboard.html">Dashboard</a></li>
+                        <li>
+                            <a class="" href="{{ route('blogs.index') }}">
+                                Blog
+                            </a>
+                        </li>
+                        @foreach ($custom_pages as $page)
+                            <li>
+                                <a class="" href="{{ route('custom-pages', $page->slug) }}">
+                                    {{ $page->title }}
+                                </a>
+                            </li>
+                        @endforeach
                     </ul>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">blog <i class="far fa-angle-down"></i></a>
-                    <ul class="droap_menu">
-                        <li><a href="blogs.html">blog grid view</a></li>
-                        <li><a href="blog_list.html">blog list view</a></li>
-                        <li><a href="blog_details.html">blog details</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="contact.html">contact us</a>
-                </li>
+                </li> --}}
+
             </ul>
 
             <div class="right_menu">
@@ -292,8 +277,8 @@
                                 data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home"
                                 aria-selected="true">menu</button>
                             <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab"
-                                data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile"
-                                aria-selected="false">Categories</button>
+                                data-bs-target="#nav-profile" type="button" role="tab"
+                                aria-controls="nav-profile" aria-selected="false">Categories</button>
                         </div>
                     </nav>
                     <div class="tab-content" id="nav-tabContent">
@@ -361,13 +346,14 @@
                                 </li>
                             </ul>
                         </div>
-                        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab"
-                            tabindex="0">
+                        <div class="tab-pane fade" id="nav-profile" role="tabpanel"
+                            aria-labelledby="nav-profile-tab" tabindex="0">
                             <ul class="main_mobile_menu">
                                 <li class="mobile_dropdown">
                                     <a href="#">
                                         <span>
-                                            <img src="images/menu_category_icon_1.png" alt="Category" class="img-fluid">
+                                            <img src="images/menu_category_icon_1.png" alt="Category"
+                                                class="img-fluid">
                                         </span>
                                         Development
                                     </a>
@@ -381,7 +367,8 @@
                                 <li class="mobile_dropdown">
                                     <a href="#">
                                         <span>
-                                            <img src="images/menu_category_icon_2.png" alt="Category" class="img-fluid">
+                                            <img src="images/menu_category_icon_2.png" alt="Category"
+                                                class="img-fluid">
                                         </span>
                                         Business
                                     </a>
@@ -395,7 +382,8 @@
                                 <li class="mobile_dropdown">
                                     <a href="#">
                                         <span>
-                                            <img src="images/menu_category_icon_3.png" alt="Category" class="img-fluid">
+                                            <img src="images/menu_category_icon_3.png" alt="Category"
+                                                class="img-fluid">
                                         </span>
                                         Marketing
                                     </a>
@@ -409,7 +397,8 @@
                                 <li class="mobile_dropdown">
                                     <a href="#">
                                         <span>
-                                            <img src="images/menu_category_icon_4.png" alt="Category" class="img-fluid">
+                                            <img src="images/menu_category_icon_4.png" alt="Category"
+                                                class="img-fluid">
                                         </span>
                                         Lifestyle
                                     </a>
@@ -423,7 +412,8 @@
                                 <li class="mobile_dropdown">
                                     <a href="#">
                                         <span>
-                                            <img src="images/menu_category_icon_5.png" alt="Category" class="img-fluid">
+                                            <img src="images/menu_category_icon_5.png" alt="Category"
+                                                class="img-fluid">
                                         </span>
                                         Health & Fitness
                                     </a>
@@ -437,7 +427,8 @@
                                 <li class="mobile_dropdown">
                                     <a href="#">
                                         <span>
-                                            <img src="images/menu_category_icon_6.png" alt="Category" class="img-fluid">
+                                            <img src="images/menu_category_icon_6.png" alt="Category"
+                                                class="img-fluid">
                                         </span>
                                         Design
                                     </a>
@@ -451,7 +442,8 @@
                                 <li class="mobile_dropdown">
                                     <a href="#">
                                         <span>
-                                            <img src="images/menu_category_icon_7.png" alt="Category" class="img-fluid">
+                                            <img src="images/menu_category_icon_7.png" alt="Category"
+                                                class="img-fluid">
                                         </span>
                                         Academics
                                     </a>

@@ -8,7 +8,7 @@
     <meta name="csrf_token" content="{{ csrf_token() }}">
     <meta name="base_url" content="{{ url('/') }}">
     @stack('meta')
-    <title>Odemy - Online Courses & Education HTML Template</title>
+    <title>EduCore - Online Courses & Education HTML Template</title>
     <link rel="icon" type="image/png" href="{{ asset(config('settings.site_favicon')) }}">
 
 
@@ -37,11 +37,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.35.0/dist/tabler-icons.min.css" />
 
-    @stack('style')
 
-    <style>
-        
-    </style>
+
+
+    @stack('style')
 
 
 </head>
@@ -59,6 +58,7 @@
             <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
         </svg>
     </div>
+
 
     <script src="{{ asset('assets/frontend/dist/js/jquery-3.7.1.min.js') }}"></script>
     <script src="{{ asset('assets/frontend/dist/js/bootstrap.bundle.min.js') }}"></script>
@@ -85,6 +85,7 @@
     <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
     <script src="/vendor/laravel-filemanager/js/stand-alone-button.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
     @include('frontend.layouts.script')
     @stack('script')
