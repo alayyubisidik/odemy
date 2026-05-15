@@ -250,7 +250,7 @@
                                     </div>
                                 </div>
                             </div>
-                      
+
 
                             <div class="tab-pane fade" id="pills-disabled2" role="tabpanel"
                                 aria-labelledby="pills-disabled-tab2" tabindex="0">
@@ -510,7 +510,6 @@
 @endsection
 
 @push('script')
-    <script src="https://cdn.jsdelivr.net/gh/shakilahmed0369/ez-share/dist/ez-share.min.js"></script>
 
     <script>
         $(function() {

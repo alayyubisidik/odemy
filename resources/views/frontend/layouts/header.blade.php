@@ -205,11 +205,13 @@
                 </div>
                 <ul>
                     <li>
-                        <a class="menu_signin" href="#">
+                        <a class="menu_signin" href="{{ route('cart.index') }}">
                             <span>
-                                <img src="images/cart_icon_black.png" alt="user" class="img-fluid">
+                                <img src="{{ asset('assets/frontend/dist/images/cart_icon_black.png') }}"
+                                    alt="user" class="img-fluid">
                             </span>
-                            <b>06</b>
+
+                            <b id="cart-count">{{ cartCount() }}</b>
                         </a>
                     </li>
                     <li>

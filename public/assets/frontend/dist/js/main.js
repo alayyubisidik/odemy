@@ -1,65 +1,58 @@
 $(function () {
-
     "use strict";
 
-
     // Preloader js
-    $(window).on('load', function() {
+    $(window).on("load", function () {
         // Hide preloader once the page is fully loaded
-        $('#preloader').fadeOut('slow', function() {
-            $('#main-content').fadeIn('slow');
+        $("#preloader").fadeOut("slow", function () {
+            $("#main-content").fadeIn("slow");
         });
     });
-    
+
     // Fallback in case the load event doesn't trigger (after 10 seconds)
-    setTimeout(function() {
-        $('#preloader').fadeOut('slow', function() {
-            $('#main-content').fadeIn('slow');
+    setTimeout(function () {
+        $("#preloader").fadeOut("slow", function () {
+            $("#main-content").fadeIn("slow");
         });
     }, 3000); // 3 seconds timeout
-    
-
 
     // Menu fix js
     if ($(window).scrollTop() > 1) {
-        if ($('.main_menu').offset() != undefined) {
-            $('.main_menu').addClass('menu_fix');
+        if ($(".main_menu").offset() != undefined) {
+            $(".main_menu").addClass("menu_fix");
         }
     } else {
-        if ($('.main_menu').offset() != undefined) {
-            $('.main_menu').removeClass('menu_fix');
+        if ($(".main_menu").offset() != undefined) {
+            $(".main_menu").removeClass("menu_fix");
         }
-    };
+    }
 
     $(window).scroll(function () {
         if ($(this).scrollTop() > 1) {
-            if ($('.main_menu').offset() != undefined) {
-                if (!$('.main_menu').hasClass("menu_fix")) {
-                    $('.main_menu').addClass("menu_fix");
+            if ($(".main_menu").offset() != undefined) {
+                if (!$(".main_menu").hasClass("menu_fix")) {
+                    $(".main_menu").addClass("menu_fix");
                 }
             }
-        }
-        else {
-            if ($('.main_menu').offset() != undefined) {
-                $('.main_menu').removeClass("menu_fix");
+        } else {
+            if ($(".main_menu").offset() != undefined) {
+                $(".main_menu").removeClass("menu_fix");
             }
         }
     });
 
-
     // Marquee animation
-    $('.marquee_animi').marquee({
+    $(".marquee_animi").marquee({
         speed: 50,
         gap: 120,
         delayBeforeStart: 0,
-        direction: 'left',
+        direction: "left",
         duplicated: true,
-        pauseOnHover: true
+        pauseOnHover: true,
     });
 
-
     // Category Slider
-    $('.category_slider').slick({
+    $(".category_slider").slick({
         slidesToShow: 4,
         slidesToScroll: 1,
         autoplay: true,
@@ -72,37 +65,39 @@ $(function () {
                 breakpoint: 1200,
                 settings: {
                     slidesToShow: 3,
-                }
+                },
             },
             {
                 breakpoint: 992,
                 settings: {
                     slidesToShow: 2,
-                }
+                },
             },
             {
                 breakpoint: 768,
                 settings: {
                     slidesToShow: 2,
-                }
+                },
             },
             {
                 breakpoint: 576,
                 settings: {
                     slidesToShow: 1,
-                }
-            }
-        ]
+                },
+            },
+        ],
     });
 
-
     // Badge Tooltips
-    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
-    const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
-
+    const tooltipTriggerList = document.querySelectorAll(
+        '[data-bs-toggle="tooltip"]',
+    );
+    const tooltipList = [...tooltipTriggerList].map(
+        (tooltipTriggerEl) => new bootstrap.Tooltip(tooltipTriggerEl),
+    );
 
     // Category Slider
-    $('.instructor_slider').slick({
+    $(".instructor_slider").slick({
         slidesToShow: 3,
         slidesToScroll: 1,
         autoplay: true,
@@ -115,36 +110,34 @@ $(function () {
                 breakpoint: 1200,
                 settings: {
                     slidesToShow: 3,
-                }
+                },
             },
             {
                 breakpoint: 992,
                 settings: {
                     slidesToShow: 2,
-                }
+                },
             },
             {
                 breakpoint: 768,
                 settings: {
                     slidesToShow: 1,
-                }
+                },
             },
             {
                 breakpoint: 576,
                 settings: {
                     slidesToShow: 1,
-                }
-            }
-        ]
+                },
+            },
+        ],
     });
 
-
     // Counter js
-    $('.counter').countUp();
-
+    $(".counter").countUp();
 
     // Testimonial Slider
-    $('.testimonial_slider').slick({
+    $(".testimonial_slider").slick({
         slidesToShow: 3,
         slidesToScroll: 1,
         autoplay: true,
@@ -157,32 +150,31 @@ $(function () {
                 breakpoint: 1200,
                 settings: {
                     slidesToShow: 2,
-                }
+                },
             },
             {
                 breakpoint: 992,
                 settings: {
                     slidesToShow: 1,
-                }
+                },
             },
             {
                 breakpoint: 768,
                 settings: {
                     slidesToShow: 1,
-                }
+                },
             },
             {
                 breakpoint: 576,
                 settings: {
                     slidesToShow: 1,
-                }
-            }
-        ]
+                },
+            },
+        ],
     });
 
-
     // Blog Slider
-    $('.blog_slider').slick({
+    $(".blog_slider").slick({
         slidesToShow: 3,
         slidesToScroll: 1,
         autoplay: true,
@@ -197,38 +189,36 @@ $(function () {
                 breakpoint: 1200,
                 settings: {
                     slidesToShow: 3,
-                }
+                },
             },
             {
                 breakpoint: 992,
                 settings: {
                     slidesToShow: 2,
-                }
+                },
             },
             {
                 breakpoint: 768,
                 settings: {
                     slidesToShow: 1,
                     arrows: false,
-                }
+                },
             },
             {
                 breakpoint: 576,
                 settings: {
                     slidesToShow: 1,
                     arrows: false,
-                }
-            }
-        ]
+                },
+            },
+        ],
     });
 
-
     // Vanobox js
-    $('.venobox').venobox();
-
+    $(".venobox").venobox();
 
     // instructor 2 Slider
-    $('.instructor_2_slider').slick({
+    $(".instructor_2_slider").slick({
         slidesToShow: 4,
         slidesToScroll: 1,
         autoplay: true,
@@ -241,43 +231,42 @@ $(function () {
                 breakpoint: 1200,
                 settings: {
                     slidesToShow: 3,
-                }
+                },
             },
             {
                 breakpoint: 992,
                 settings: {
                     slidesToShow: 2,
-                }
+                },
             },
             {
                 breakpoint: 768,
                 settings: {
                     slidesToShow: 2,
-                }
+                },
             },
             {
                 breakpoint: 576,
                 settings: {
                     slidesToShow: 1,
-                }
-            }
-        ]
+                },
+            },
+        ],
     });
 
-
     // Testimonial 2 Slider
-    $('.testimonial_slider_2_large').slick({
+    $(".testimonial_slider_2_large").slick({
         slidesToShow: 1,
         slidesToScroll: 1,
         arrows: false,
         fade: false,
-        asNavFor: '.testimonial_slider_2_small'
+        asNavFor: ".testimonial_slider_2_small",
     });
 
-    $('.testimonial_slider_2_small').slick({
+    $(".testimonial_slider_2_small").slick({
         slidesToShow: 1,
         slidesToScroll: 1,
-        asNavFor: '.testimonial_slider_2_large',
+        asNavFor: ".testimonial_slider_2_large",
         dots: false,
         arrows: true,
         nextArrow: '<i class="far fa-arrow-right nextArrow"></i>',
@@ -288,15 +277,13 @@ $(function () {
                 breakpoint: 576,
                 settings: {
                     arrows: false,
-                }
-            }
-        ]
+                },
+            },
+        ],
     });
 
-
     // Select js
-    $('.select_js').niceSelect();
-
+    $(".select_js").niceSelect();
 
     // Menu search
     $(".menu_search_btn").on("click", function () {
@@ -306,9 +293,8 @@ $(function () {
         $(".wsus__menu_3_search_area").removeClass("show_search");
     });
 
-
     //  related course Slider
-    $('.related_course_slider').slick({
+    $(".related_course_slider").slick({
         slidesToShow: 4,
         slidesToScroll: 1,
         autoplay: true,
@@ -321,32 +307,31 @@ $(function () {
                 breakpoint: 1200,
                 settings: {
                     slidesToShow: 3,
-                }
+                },
             },
             {
                 breakpoint: 992,
                 settings: {
                     slidesToShow: 2,
-                }
+                },
             },
             {
                 breakpoint: 768,
                 settings: {
                     slidesToShow: 1,
-                }
+                },
             },
             {
                 breakpoint: 576,
                 settings: {
                     slidesToShow: 1,
-                }
-            }
-        ]
+                },
+            },
+        ],
     });
 
-
     // team slider
-    $('.team_slider_large').slick({
+    $(".team_slider_large").slick({
         slidesToShow: 1,
         slidesToScroll: 1,
         autoplay: true,
@@ -360,35 +345,35 @@ $(function () {
                 breakpoint: 1200,
                 settings: {
                     slidesToShow: 1,
-                }
+                },
             },
             {
                 breakpoint: 992,
                 settings: {
                     vertical: false,
-                }
+                },
             },
             {
                 breakpoint: 768,
                 settings: {
                     vertical: false,
-                }
+                },
             },
             {
                 breakpoint: 576,
                 settings: {
                     vertical: false,
-                }
-            }
-        ]
+                },
+            },
+        ],
     });
 
-    $('.team_slider_small').slick({
+    $(".team_slider_small").slick({
         slidesToShow: 5,
         slidesToScroll: 1,
         autoplay: true,
         autoplaySpeed: 4000,
-        asNavFor: '.team_slider_large',
+        asNavFor: ".team_slider_large",
         centerMode: true,
         centerPadding: "0",
         focusOnSelect: true,
@@ -402,15 +387,14 @@ $(function () {
                 breakpoint: 576,
                 settings: {
                     slidesToShow: 1,
-                    arrows: false
-                }
-            }
-        ]
+                    arrows: false,
+                },
+            },
+        ],
     });
 
-
     // Testimonial 3 Slider
-    $('.testimonial_3_slider').slick({
+    $(".testimonial_3_slider").slick({
         slidesToShow: 4,
         slidesToScroll: 1,
         autoplay: true,
@@ -423,48 +407,47 @@ $(function () {
                 breakpoint: 1600,
                 settings: {
                     slidesToShow: 3,
-                }
+                },
             },
             {
                 breakpoint: 1400,
                 settings: {
                     slidesToShow: 3,
-                }
+                },
             },
             {
                 breakpoint: 1200,
                 settings: {
                     slidesToShow: 2,
-                }
+                },
             },
             {
                 breakpoint: 992,
                 settings: {
                     slidesToShow: 2,
-                }
+                },
             },
             {
                 breakpoint: 768,
                 settings: {
                     slidesToShow: 1,
-                }
+                },
             },
             {
                 breakpoint: 576,
                 settings: {
                     slidesToShow: 1,
-                }
-            }
-        ]
+                },
+            },
+        ],
     });
 
-
-    // Cursore pointer
-    init_pointer({});
-
+    if (typeof init_pointer === "function") {
+        init_pointer();
+    }
 
     // Top courses slider
-    $('.top_courses_slider').slick({
+    $(".top_courses_slider").slick({
         slidesToShow: 3,
         slidesToScroll: 1,
         autoplay: false,
@@ -479,33 +462,32 @@ $(function () {
                 breakpoint: 1200,
                 settings: {
                     slidesToShow: 3,
-                }
+                },
             },
             {
                 breakpoint: 992,
                 settings: {
                     slidesToShow: 2,
-                }
+                },
             },
             {
                 breakpoint: 768,
                 settings: {
                     slidesToShow: 1,
-                }
+                },
             },
             {
                 breakpoint: 576,
                 settings: {
                     slidesToShow: 1,
                     arrows: false,
-                }
-            }
-        ]
+                },
+            },
+        ],
     });
 
-
     // quality course slider
-    $('.quality_course_slider').slick({
+    $(".quality_course_slider").slick({
         slidesToShow: 1,
         slidesToScroll: 1,
         autoplay: true,
@@ -515,7 +497,7 @@ $(function () {
     });
 
     // quality course slider
-    $('.quality_course_card_slider').slick({
+    $(".quality_course_card_slider").slick({
         slidesToShow: 1,
         slidesToScroll: 1,
         autoplay: true,
@@ -530,32 +512,31 @@ $(function () {
                 breakpoint: 1200,
                 settings: {
                     // arrows: false,
-                }
+                },
             },
             {
                 breakpoint: 992,
                 settings: {
                     arrows: false,
-                }
+                },
             },
             {
                 breakpoint: 768,
                 settings: {
                     arrows: false,
-                }
+                },
             },
             {
                 breakpoint: 576,
                 settings: {
                     arrows: false,
-                }
-            }
-        ]
+                },
+            },
+        ],
     });
 
-
     // instructor 4 Slider
-    $('.instructor_4_slider').slick({
+    $(".instructor_4_slider").slick({
         slidesToShow: 3,
         slidesToScroll: 1,
         autoplay: true,
@@ -568,32 +549,31 @@ $(function () {
                 breakpoint: 1200,
                 settings: {
                     slidesToShow: 3,
-                }
+                },
             },
             {
                 breakpoint: 992,
                 settings: {
                     slidesToShow: 2,
-                }
+                },
             },
             {
                 breakpoint: 768,
                 settings: {
                     slidesToShow: 1,
-                }
+                },
             },
             {
                 breakpoint: 576,
                 settings: {
                     slidesToShow: 1,
-                }
-            }
-        ]
+                },
+            },
+        ],
     });
 
-
     // testimonial 4 Slider
-    $('.testimonial_4_slider').slick({
+    $(".testimonial_4_slider").slick({
         slidesToShow: 1,
         slidesToScroll: 1,
         autoplay: true,
@@ -608,26 +588,25 @@ $(function () {
                 breakpoint: 992,
                 settings: {
                     arrows: false,
-                }
+                },
             },
             {
                 breakpoint: 768,
                 settings: {
                     arrows: false,
-                }
+                },
             },
             {
                 breakpoint: 576,
                 settings: {
                     arrows: false,
-                }
-            }
-        ]
+                },
+            },
+        ],
     });
 
-
     // blog 4 Slider
-    $('.blog_4_slider').slick({
+    $(".blog_4_slider").slick({
         slidesToShow: 3,
         slidesToScroll: 1,
         autoplay: true,
@@ -642,60 +621,61 @@ $(function () {
                 breakpoint: 1800,
                 settings: {
                     slidesToShow: 2,
-                }
+                },
             },
             {
                 breakpoint: 1600,
                 settings: {
                     slidesToShow: 2,
-                }
+                },
             },
             {
                 breakpoint: 1400,
                 settings: {
                     slidesToShow: 2,
-                }
+                },
             },
             {
                 breakpoint: 1200,
                 settings: {
                     slidesToShow: 2,
-                }
+                },
             },
             {
                 breakpoint: 992,
                 settings: {
                     slidesToShow: 1,
-                }
+                },
             },
             {
                 breakpoint: 768,
                 settings: {
                     slidesToShow: 1,
                     arrows: false,
-                }
+                },
             },
             {
                 breakpoint: 576,
                 settings: {
                     slidesToShow: 1,
                     arrows: false,
-                }
-            }
-        ]
+                },
+            },
+        ],
     });
 
-
     // sidebar category dropdown
-    $('.categoty_list li').on("click", function () {
+    $(".categoty_list li").on("click", function () {
         var isActive = $(this).hasClass("active");
-        var submenu = $(this).find('.wsus__sidebar_sub_category');
+        var submenu = $(this).find(".wsus__sidebar_sub_category");
 
         // get the height of the child of submenu
         var dynamicHeight = 0;
-        $(submenu).find('div').each(function () {
-            dynamicHeight += $(this).outerHeight(true);
-        });
+        $(submenu)
+            .find("div")
+            .each(function () {
+                dynamicHeight += $(this).outerHeight(true);
+            });
 
         $(".categoty_list li").removeClass("active");
 
@@ -714,9 +694,8 @@ $(function () {
         }
     });
 
-
     // Range Slider
-    $('.basic').alRangeSlider();
+    $(".basic").alRangeSlider();
     const options = {
         range: { min: 10, max: 1000, step: 1 },
         initialSelectedValues: { from: 200, to: 800 },
@@ -724,48 +703,57 @@ $(function () {
         theme: "dark",
     };
 
-    $('.range_slider').alRangeSlider(options);
+    $(".range_slider").alRangeSlider(options);
     const options2 = {
-        orientation: "vertical"
+        orientation: "vertical",
     };
-
 
     // Pregress Bar
     $(document).ready(function () {
-        $('#bar1').barfiller({});
-        $('#bar2').barfiller({});
-        $('#bar3').barfiller({});
-        $('#bar4').barfiller({});
-        $('#bar5').barfiller({});
+        $("#bar1").barfiller({});
+        $("#bar2").barfiller({});
+        $("#bar3").barfiller({});
+        $("#bar4").barfiller({});
+        $("#bar5").barfiller({});
     });
 
-
     // Select Rating
-    $('#starRating').starRating({})
-
+    $("#starRating").starRating({});
 
     // Calendar Js
     $(function () {
-        $('#calendar_js').calendar({
-            months: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-            days: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+        $("#calendar_js").calendar({
+            months: [
+                "Jan",
+                "Feb",
+                "Mar",
+                "Apr",
+                "May",
+                "Jun",
+                "Jul",
+                "Aug",
+                "Sep",
+                "Oct",
+                "Nov",
+                "Dec",
+            ],
+            days: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
         });
     });
 
-
     // Product Details Slider
-    $('.product_slider_large').slick({
+    $(".product_slider_large").slick({
         slidesToShow: 1,
         slidesToScroll: 1,
         arrows: false,
         fade: false,
-        asNavFor: '.product_slider_small',
+        asNavFor: ".product_slider_small",
     });
 
-    $('.product_slider_small').slick({
+    $(".product_slider_small").slick({
         slidesToShow: 6,
         slidesToScroll: 1,
-        asNavFor: '.product_slider_large',
+        asNavFor: ".product_slider_large",
         dots: false,
         arrows: false,
         centerMode: true,
@@ -778,29 +766,26 @@ $(function () {
                 breakpoint: 1200,
                 settings: {
                     slidesToShow: 5,
-                }
+                },
             },
             {
                 breakpoint: 992,
                 settings: {
                     slidesToShow: 6,
-                }
-            }
-        ]
+                },
+            },
+        ],
     });
-
 
     // Forum Topic Popup
     $(".popup .delete_popup").on("click", function () {
         $(".wsus__forum_single_topic_input .popup").addClass("hide_popup");
     });
 
-
     // Select2
     $(document).ready(function () {
-        $('.select_2').select2();
+        $(".select_2").select2();
     });
-
 
     // Sticky menu
     const mobile_menu = document.querySelectorAll(".mobile_dropdown");
@@ -824,9 +809,6 @@ $(function () {
         });
     });
 
-
     // WOW js
     new WOW().init();
-
-
 });
