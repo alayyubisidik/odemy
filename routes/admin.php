@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\CourseLanguageController;
 use App\Http\Controllers\Admin\CourseLevelController;
 use App\Http\Controllers\Admin\CourseSubCategoryController;
 use App\Http\Controllers\Admin\InstructorRequestController;
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\UserController;
 use App\Models\CourseCategory;
@@ -68,4 +69,7 @@ Route::middleware(['auth', 'role:admin'])
 
         Route::get('settings/commission', [SettingController::class, 'commissionSettingIndex'])->name('settings.commission.index');
         Route::post('settings/commission', [SettingController::class, 'commissionSettingStore'])->name('settings.commission.store');
+
+        Route::get('orders', [OrderController::class, 'index'])->name('orders.index');
+        Route::get('orders/{order}', [OrderController::class, 'show'])->name('orders.show');
     });

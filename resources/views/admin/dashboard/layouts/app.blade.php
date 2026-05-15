@@ -62,6 +62,8 @@
         });
     </script>
 
+    @stack('styles')
+
 </head>
 
 <body>
@@ -73,7 +75,7 @@
 
         <div class="page-wrapper">
             <!-- Page header -->
-            <div class="page-header d-print-none">
+            <div class="page-header">
                 <div class="page-body">
                     @yield('content')
                 </div>
