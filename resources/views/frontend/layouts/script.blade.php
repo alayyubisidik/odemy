@@ -1,4 +1,8 @@
 <script>
+    var notyf = new Notyf({
+        duration: 3000
+    });
+    
     document.addEventListener("DOMContentLoaded", function() {
         ezShare.execute();
     });

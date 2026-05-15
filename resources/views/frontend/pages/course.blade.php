@@ -1,16 +1,16 @@
 @extends('frontend.layouts.app')
 
 @section('content')
-        <x-breadcrumb title="Course" />
+    <x-breadcrumb title="Course" />
 
     <!--===========================
-                                    BREADCRUMB END
-                                ============================-->
+                                        BREADCRUMB END
+                                    ============================-->
 
 
     <!--===========================
-                                    COURSES PAGE START
-                                ============================-->
+                                        COURSES PAGE START
+                                    ============================-->
     <section class="wsus__courses mt_120 xs_mt_100 pb_120 xs_pb_100">
         <div class="container">
             <div class="row">
@@ -130,7 +130,8 @@
                 </div> --}}
                 <div class="col-xl-9 col-lg-8 order-lg-1">
                     <div class="wsus__page_courses_header wow fadeInUp">
-                        <p>Showing <span>1-{{ $courses->count() }}</span> Of <span>{{ $courses->total() }}</span> Results</p>
+                        <p>Showing <span>1-{{ $courses->count() }}</span> Of <span>{{ $courses->total() }}</span> Results
+                        </p>
                         <form action="{{ route('courses.index', request()->all()) }}">
                             <p>Sort-by:</p>
                             <select class="select_js" name="order" onchange="this.form.submit()">
@@ -225,7 +226,7 @@
 @endsection
 
 @push('script')
-    {{-- <script>
+    <script>
         function addToCart(courseId) {
             $.ajax({
                 url: "{{ route('cart.add', ':id') }}".replace(':id', courseId),
@@ -233,18 +234,22 @@
                 data: {
                     _token: '{{ csrf_token() }}',
                 },
+
                 success: function(data) {
                     notyf.success(data.message);
+
+                    // update cart count tanpa refresh
+                    $('#cart-count').text(data.cartCount);
                 },
+
                 error: function(xhr, status, error) {
                     console.log(xhr);
+
                     let errorMessage = xhr.responseJSON.message;
                     notyf.error(errorMessage);
                 }
             });
         }
-
-
         $(function() {
             /** add course into cart */
             $('.add_to_cart').on('click', function(e) {
@@ -254,5 +259,5 @@
                 addToCart(courseId);
             })
         });
-    </script> --}}
+    </script>
 @endpush
