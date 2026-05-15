@@ -115,15 +115,15 @@
                     <div
                         class="dropdown-menu {{ setActive(['admin.course-languages.*', 'admin.course-levels.*', 'admin.course-categories.*', 'admin.course-sub-categories.*', 'admin.courses.*', 'admin.reviews.*'], 'show') }}">
 
-                        {{-- <div class="dropdown-menu-columns">
+                        <div class="dropdown-menu-columns">
                             <div class="dropdown-menu-column">
                                 <a class="dropdown-item {{ setActive(['admin.courses.*']) }}"
                                     href="{{ route('admin.courses.index') }}">
                                     Courses
                                 </a>
                             </div>
-                        </div> --}}
-{{--
+                        </div>
+
                         <div class="dropdown-menu-columns">
                             <div class="dropdown-menu-column">
                                 <a class="dropdown-item {{ setActive(['admin.course-categories.*']) }}"
@@ -131,7 +131,7 @@
                                     Course Category
                                 </a>
                             </div>
-                        </div> --}}
+                        </div>
 
                         <div class="dropdown-menu-columns">
                             <div class="dropdown-menu-column">
@@ -147,15 +147,6 @@
                                 <a class="dropdown-item {{ setActive(['admin.course-levels.*']) }}"
                                     href="{{ route('admin.course-levels.index') }}">
                                     Course Level
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="dropdown-menu-columns">
-                            <div class="dropdown-menu-column">
-                                <a class="dropdown-item {{ setActive(['admin.course-categories.*']) }}"
-                                    href="{{ route('admin.course-categories.index') }}">
-                                    Course Category
                                 </a>
                             </div>
                         </div>

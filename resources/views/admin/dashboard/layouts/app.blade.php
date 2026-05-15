@@ -21,6 +21,47 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
     @include('admin.dashboard.layouts.style')
 
+    <script src="{{ asset('assets/backend/dist/js/tinymce/tinymce.min.js') }}"></script>
+
+    <script>
+        // Konfigurasi untuk textarea#editor (Tinggi 500)
+        tinymce.init({
+            selector: 'textarea#editor',
+            height: 500,
+            license_key: 'gpl',
+
+            // --- Bagian yang ditambahkan/diubah: ---
+            plugins: 'lists advlist autolink link image charmap preview anchor searchreplace visualblocks code fullscreen insertdatetime media table help wordcount',
+            toolbar: 'undo redo | formatselect | bold italic backcolor | \
+                              alignleft aligncenter alignright alignjustify | \
+                              bullist numlist | removeformat | help'
+            // -------------------------------------
+        });
+
+        // Konfigurasi untuk textarea#short-editor (Tinggi 300)
+        tinymce.init({
+            selector: 'textarea#short-editor',
+            height: 300,
+            license_key: 'gpl',
+
+            // --- Bagian yang ditambahkan/diubah: ---
+            plugins: 'lists advlist autolink link image charmap wordcount',
+            toolbar: 'undo redo | bold italic | bullist numlist'
+            // -------------------------------------
+        });
+
+        tinymce.init({
+            selector: 'textarea#big-editor',
+            height: 1000,
+            license_key: 'gpl',
+
+            // --- Bagian yang ditambahkan/diubah: ---
+            plugins: 'lists advlist autolink link image charmap wordcount',
+            toolbar: 'undo redo | bold italic | bullist numlist'
+            // -------------------------------------
+        });
+    </script>
+
 </head>
 
 <body>
@@ -53,6 +94,8 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="{{ asset('assets/backend/backend/dist/libs/litepicker/dist/litepicker.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="/vendor/laravel-filemanager/js/stand-alone-button.js"></script>
+
 
     @stack('script')
 
