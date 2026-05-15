@@ -1,4 +1,9 @@
 <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        ezShare.execute();
+    });
+
+
     function previewImage(inputSelector, previewSelector) {
         const input = document.querySelector(inputSelector);
         const preview = document.querySelector(previewSelector);
