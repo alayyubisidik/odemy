@@ -65,7 +65,7 @@ class RegisteredUserController extends Controller
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
                 'role' => 'student',
-                'approve_status' => 'approved'
+                'approve_status' => 'pending'
             ]);
         } elseif ($request->type === 'instructor') {
 

@@ -47,11 +47,11 @@
                                                 <td class="pro_tk">
                                                     @if ($item->course->discount > 0)
                                                         <del>
-                                                            <h6>${{ $item->course->price }}</h6>
+                                                            <h6>{{ rupiah($item->course->price) }}</h6>
                                                         </del>
-                                                        <h6>${{ $item->course->discount }}</h6>
+                                                        <h6>{{ rupiah($item->course->discount) }}</h6>
                                                     @else
-                                                        <h6>${{ $item->course->price }}</h6>
+                                                        <h6>{{ rupiah($item->course->price) }}</h6>
                                                     @endif
                                                 </td>
                                                 <td class="pro_icon">
@@ -83,12 +83,12 @@
                     </div>
                     <div class="col-xxl-4 col-md-7 col-lg-6 wow fadeInUp"
                         style="visibility: visible; animation-name: fadeInUp;">
-                        {{-- <div class="total_price">
+                        <div class="total_price">
                             <div class="subtotal_area">
-                                <h5>Total<span>${{ cartTotal() }}</span></h5>
+                                <h5>Total<span>{{ rupiah(cartTotal()) }}</span></h5>
                                 <a href="{{ route('checkout.index') }}" class="common_btn">proceed checkout</a>
                             </div>
-                        </div> --}}
+                        </div>
                     </div>
                 </div>
             </div>

@@ -45,3 +45,12 @@ if (!function_exists('cartCount')) {
         return Cart::where('user_id', user()?->id)->count();
     }
 }
+
+
+if (!function_exists('rupiah')) {
+
+    function rupiah($amount)
+    {
+        return 'Rp ' . number_format($amount, 0, ',', '.');
+    }
+}

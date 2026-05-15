@@ -125,6 +125,11 @@ class CourseController extends Controller
         /**
          * SIMPAN COURSE
          */
+
+        $price = str_replace('.', '', $request->price);
+
+        $discount = str_replace('.', '', $request->discount);
+
         Course::create([
             'instructor_id'      => user()->id,
             'category_id'        => $request->category_id,
@@ -143,8 +148,8 @@ class CourseController extends Controller
             'duration'           => $request->duration,
             'capacity'           => $request->capacity,
 
-            'price'              => $request->price,
-            'discount'           => $request->discount,
+            'price'              => $price,
+            'discount'           => $discount,
 
             'certificate'        => $request->has('certificate') ? 1 : 0,
             'qna'                => $request->has('qna') ? 1 : 0,
@@ -280,9 +285,7 @@ class CourseController extends Controller
             ->route('admin.courses.index');
     }
 
-    function destroy(Course $course) {
-
-    }
+    function destroy(Course $course) {}
 
     function chapterIndex(Course $course)
     {

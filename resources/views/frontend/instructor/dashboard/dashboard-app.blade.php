@@ -56,16 +56,20 @@
                                     Profile
                                 </a>
                             </li>
-                            <li>
-                                <a href="{{ route('instructor.courses.index') }}"
-                                    class="{{ setActive(['instructor.courses.*']) }}">
-                                    <div class="img">
-                                        <img src="{{ asset('assets/frontend/dist/images/dash_icon_8.png') }}" alt="icon"
-                                            class="img-fluid w-100">
-                                    </div>
-                                    Courses
-                                </a>
-                            </li>
+
+                            @if (user()->role == 'instructor' && user()->approve_status == 'approved')
+                                <li>
+                                    <a href="{{ route('instructor.courses.index') }}"
+                                        class="{{ setActive(['instructor.courses.*']) }}">
+                                        <div class="img">
+                                            <img src="{{ asset('assets/frontend/dist/images/dash_icon_8.png') }}"
+                                                alt="icon" class="img-fluid w-100">
+                                        </div>
+                                        Courses
+                                    </a>
+                                </li>
+                            @endif
+
                             {{-- <li>
                                 <a href="{{ route('instructor.withdraws.index') }}"
                                     class="{{ setActive(['instructor.withdraws.*']) }}">
@@ -95,16 +99,21 @@
                                     Switch to Student
                                 </a>
                             </li>
-                            <li style="cursor: pointer" onclick="event.preventDefault(); $('.form-logout').submit()">
-                                <a href="#" style="cursor: pointer">
-                                    <div class="img">
-                                        <img src="{{ asset('assets/frontend/dist/images/dash_icon_16.png') }}"
-                                            alt="icon" class="img-fluid w-100">
-                                    </div>
-                                    Sign Out
-                                </a>
-                                <form action="{{ route('logout') }}" class="form-logout" method="POST">
+                            <li>
+                                <form action="{{ route('logout') }}" method="POST">
+
                                     @csrf
+
+                                    <a href="#" style="cursor:pointer" onclick="confirmLogout(event)">
+
+                                        <div class="img">
+                                            <img src="{{ asset('assets/frontend/dist/images/dash_icon_16.png') }}"
+                                                alt="icon" class="img-fluid w-100">
+                                        </div>
+
+                                        Sign Out
+                                    </a>
+
                                 </form>
                             </li>
                         </ul>

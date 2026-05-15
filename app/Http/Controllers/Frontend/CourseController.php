@@ -110,6 +110,10 @@ class CourseController extends Controller
             $demoVideoSource = $request->url;
         }
 
+        $price = str_replace('.', '', $request->price);
+
+        $discount = str_replace('.', '', $request->discount);
+
         // ================= DATA =================
         $data = [
             'title' => $request->title,
@@ -119,8 +123,8 @@ class CourseController extends Controller
             'thumbnail' => $thumbnailPath,
             'demo_video_storage' => $request->demo_video_storage,
             'demo_video_source' => $demoVideoSource,
-            'price' => $request->price,
-            'discount' => $request->discount,
+            'price' => $price,
+            'discount' => $discount,
         ];
 
         if ($course) {
@@ -144,7 +148,7 @@ class CourseController extends Controller
         if (!session('course_id')) {
             return back();
         }
- 
+
         $course = Course::find(session('course_id'));
         $categories = CourseCategory::where('is_active', 1)->get();
         $levels = CourseLevel::all();

@@ -2,7 +2,6 @@
 
 @section('dashboard-content')
    
-
     <div class="row">
         <div class="col-xl-4 col-sm-6 wow fadeInUp">
             <div class="wsus__dash_earning">

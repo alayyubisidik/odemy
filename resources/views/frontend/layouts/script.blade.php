@@ -2,11 +2,28 @@
     var notyf = new Notyf({
         duration: 3000
     });
-    
+
     document.addEventListener("DOMContentLoaded", function() {
         ezShare.execute();
     });
 
+    // slug auto-generate
+    $('#name').on('input', function() {
+        $('#slug').val(slugify($(this).val()));
+    });
+
+    // slug auto-generate
+    $('#title').on('input', function() {
+        $('#slug').val(slugify($(this).val()));
+    });
+
+    function slugify(text) {
+        return text.toString().toLowerCase()
+            .replace(/\s+/g, '-') // Replace spaces with -
+            .replace(/[^a-z0-9\-\.]/g, '') // Remove all non-alphanumeric chars except hyphens and dots
+            .replace(/\-\-+/g, '-') // Replace multiple hyphens with a single one
+            .replace(/^\-+|\-$/g, ''); // Trim hyphens from start and end
+    }
 
     function previewImage(inputSelector, previewSelector) {
         const input = document.querySelector(inputSelector);
@@ -67,4 +84,22 @@
             }
         });
     });
+
+    function confirmLogout(event) {
+        event.preventDefault();
+
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You will be logged out!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, logout!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                event.target.closest('form').submit();
+            }
+        });
+    }
 </script>

@@ -37,7 +37,7 @@
 
                         <div class="col-6">
                             <div class="mb-4">
-                                <label class="form-label required" for="price">Price</label>
+                                <label class="form-label required" for="price">Price (RP)</label>
                                 <x-input-error :messages="$errors->get('price')" />
                                 <input type="number" name="price" class="form-control"
                                     value="{{ old('price', $course->price) }}">
@@ -47,7 +47,7 @@
 
                         <div class="col-6">
                             <div class="mb-4">
-                                <label class="form-label required" for="discount">Discount</label>
+                                <label class="form-label required" for="discount">Discount (RP)</label>
                                 <x-input-error :messages="$errors->get('discount')" />
                                 <input type="number" name="discount" class="form-control"
                                     value="{{ old('discount', $course->discount) }}">

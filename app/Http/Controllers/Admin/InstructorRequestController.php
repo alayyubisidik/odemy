@@ -13,7 +13,9 @@ class InstructorRequestController extends Controller
 {
     function index()
     {
-        $instructor_requests = User::where('role', 'instructor')->paginate(20);
+        $instructor_requests = User::
+            whereNotNull('document')
+            ->paginate(20);
         return view('admin.dashboard.instructor-request.index', compact('instructor_requests'));
     }
 
