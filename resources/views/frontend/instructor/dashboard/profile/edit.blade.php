@@ -127,7 +127,7 @@
         </form>
     </div>
 
-    {{-- <div class="wsus__dashboard_contant">
+    <div class="wsus__dashboard_contant">
         <div class="wsus__dashboard_contant_top d-flex flex-wrap justify-content-between">
             <div class="wsus__dashboard_heading">
                 <h5>Payout Setting</h5>
@@ -180,7 +180,7 @@
             </div>
         </form>
 
-    </div> --}}
+    </div>
 
     <div class="wsus__dashboard_contant">
         <div class="wsus__dashboard_contant_top d-flex flex-wrap justify-content-between">
@@ -247,7 +247,7 @@
         });
     </script>
 
-    {{-- <script>
+    <script>
         $(function() {
 
             function updatePlaceholder() {
@@ -268,5 +268,5 @@
             });
 
         });
-    </script> --}}
+    </script>
 @endpush

@@ -132,6 +132,8 @@ class MidtransController extends Controller
 
                 $orderItem->course_id = $item->course->id;
 
+                $orderItem->commission_rate = config('settings.commission_rate');
+
                 $orderItem->qty = 1;
 
                 $orderItem->price = $price;

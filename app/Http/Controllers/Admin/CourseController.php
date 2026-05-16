@@ -54,7 +54,7 @@ class CourseController extends Controller
             'title'               => 'required|string|max:255',
             'slug'                => 'required|string|max:255|unique:courses,slug',
             'price'               => 'nullable|numeric|min:0',
-            'discount'            => 'nullable|numeric|min:0|max:100',
+            'discount'            => 'nullable|numeric|min:0',
 
             'category_id'         => 'required|exists:course_categories,id',
             'course_level_id'     => 'required|exists:course_levels,id',
@@ -183,7 +183,7 @@ class CourseController extends Controller
             "slug"                  =>     ["required", "string", "max:255", "unique:courses,slug," . $course->id],
             // 'slug'                => 'required|string|max:255|unique:courses,slug,' . $course->id,
             'price'               => 'nullable|numeric|min:0',
-            'discount'            => 'nullable|numeric|min:0|max:100',
+            'discount'            => 'nullable|numeric|min:0',
 
             'category_id'         => 'required|exists:course_categories,id',
             'course_level_id'     => 'required|exists:course_levels,id',
@@ -248,6 +248,10 @@ class CourseController extends Controller
 
         // dd($request->all());
 
+        $price = str_replace('.', '', $request->price);
+
+        $discount = str_replace('.', '', $request->discount);
+
 
         /**
          * UPDATE COURSE
@@ -269,8 +273,8 @@ class CourseController extends Controller
             'duration'           => $request->duration,
             'capacity'           => $request->capacity,
 
-            'price'              => $request->price,
-            'discount'           => $request->discount,
+            'price'              => $price,
+            'discount'           => $discount,
 
             'certificate'        => $request->has('certificate') ? 1 : 0,
             'qna'                => $request->has('qna') ? 1 : 0,

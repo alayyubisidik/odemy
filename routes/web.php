@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\PayoutGatewayController;
 use App\Http\Controllers\Auth\SocialiteController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\CheckoutController;
@@ -30,6 +31,8 @@ Route::middleware('auth')->group(function () {
 
     Route::get("/payment/success", [PaymentController::class, "paymentSuccess"])->name("payment.success");
     Route::get("/payment/cancel", [PaymentController::class, "paymentCancel"])->name("payment.cancel");
+
+
 });
 
 Route::get('/auth/redirect', [SocialiteController::class, 'redirect'])->name('login.google');

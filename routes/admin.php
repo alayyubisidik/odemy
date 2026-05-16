@@ -8,8 +8,10 @@ use App\Http\Controllers\Admin\CourseLevelController;
 use App\Http\Controllers\Admin\CourseSubCategoryController;
 use App\Http\Controllers\Admin\InstructorRequestController;
 use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\Admin\PayoutGatewayController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\WithdrawRequestController;
 use App\Models\CourseCategory;
 use Illuminate\Support\Facades\Route;
 
@@ -72,4 +74,10 @@ Route::middleware(['auth', 'role:admin'])
 
         Route::get('orders', [OrderController::class, 'index'])->name('orders.index');
         Route::get('orders/{order}', [OrderController::class, 'show'])->name('orders.show');
+
+        Route::resource('payout-gateways', PayoutGatewayController::class);
+
+        Route::get('withdraw-requests', [WithdrawRequestController::class, 'index'])->name('withdraw-requests.index');
+        Route::get('withdraw-requests/{withdraw}/show', [WithdrawRequestController::class, 'withdrawShow'])->name('withdraw-requests.show');
+        Route::put('withdraw-requests/{withdraw}/update', [WithdrawRequestController::class, 'withdrawUpdate'])->name('withdraw-requests.update');
     });

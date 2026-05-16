@@ -59,4 +59,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Course::class, 'instructor_id', 'id');
     }
+
+    public function gatewayInformation()
+    {
+        return $this->hasOne(InstructorGatewayInformation::class, 'instructor_id');
+    }
 }

@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\InstructorGatewayInformation;
+use App\Models\OrderItem;
+use App\Models\PayoutGateway;
 use App\Services\AlertService;
 use App\Traits\FileUploadTrait;
 use Illuminate\Http\Request;
@@ -19,7 +22,9 @@ class InstructorDashboardController extends Controller
     function profile()
     {
         $user = user();
-        return view('frontend.instructor.dashboard.profile.index', compact('user'));
+        $gatewayInfo = user()->gatewayInformation()->first();
+        $gateways = PayoutGateway::all();
+        return view('frontend.instructor.dashboard.profile.edit', compact('user', 'gateways', 'gatewayInfo'));
     }
 
     function profileEdit()
@@ -97,5 +102,34 @@ class InstructorDashboardController extends Controller
         $user->save();
 
         return redirect()->route('student.dashboard.index');
+    }
+
+    function orderIndex()
+    {
+        $orderItems = OrderItem::whereHas('product', function ($query) {
+            $query->where('instructor_id', user()->id);
+        })->paginate(25);
+
+        return view('frontend.instructor.dashboard.order.index', compact('orderItems'));
+    }
+
+    function storeGatewayInformation(Request $request)
+    {
+        $validated = $request->validate([
+            'gateway' => ['required', 'string', 'max:255'],
+            'gateway_information' => ['required', 'string']
+        ]);
+
+        InstructorGatewayInformation::updateOrCreate(
+            [
+                'instructor_id' => user()->id
+            ],
+            [
+                'gateway' => $validated['gateway'],
+                'gateway_information' => $validated['gateway_information']
+            ]
+        );
+
+        return back()->with('success', 'Gateway information updated successfully');
     }
 }
