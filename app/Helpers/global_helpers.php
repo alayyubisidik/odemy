@@ -53,4 +53,13 @@ if (!function_exists('rupiah')) {
     {
         return 'Rp ' . number_format($amount, 0, ',', '.');
     }
+
+
+}
+
+
+if (!function_exists('calculateCommission')) {
+    function calculateCommission($amount, $commission) {
+        return $amount == 0 ? 0 : ($amount * $commission) / 100;
+    }
 }

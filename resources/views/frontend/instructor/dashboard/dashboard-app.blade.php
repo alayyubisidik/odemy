@@ -70,7 +70,7 @@
                                 </li>
                             @endif
 
-                            {{-- <li>
+                            <li>
                                 <a href="{{ route('instructor.withdraws.index') }}"
                                     class="{{ setActive(['instructor.withdraws.*']) }}">
                                     <div class="img">
@@ -80,6 +80,7 @@
                                     Withdraws
                                 </a>
                             </li>
+                            
                             <li>
                                 <a href="{{ route('instructor.orders.index') }}"
                                     class="{{ setActive(['instructor.orders.*']) }}">
@@ -89,7 +90,7 @@
                                     </div>
                                     Orders
                                 </a>
-                            </li> --}}
+                            </li>
                             <li>
                                 <a href="{{ route('instructor.switch-to-student.index') }}">
                                     <div class="img">

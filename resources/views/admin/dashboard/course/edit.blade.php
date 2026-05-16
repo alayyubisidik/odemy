@@ -39,8 +39,8 @@
                             <div class="mb-4">
                                 <label class="form-label required" for="price">Price (RP)</label>
                                 <x-input-error :messages="$errors->get('price')" />
-                                <input type="number" name="price" class="form-control"
-                                    value="{{ old('price', $course->price) }}">
+                                <input type="number" name="price" class="form-control rupiah-input"
+                                    value="{{ old('price', isset($course) ? number_format($course->price, 0, ',', '.') : '') }}">
 
                             </div>
                         </div>
@@ -49,8 +49,8 @@
                             <div class="mb-4">
                                 <label class="form-label required" for="discount">Discount (RP)</label>
                                 <x-input-error :messages="$errors->get('discount')" />
-                                <input type="number" name="discount" class="form-control"
-                                    value="{{ old('discount', $course->discount) }}">
+                                <input type="number" name="discount" class="form-control rupiah-input"
+                                    value="{{ old('discount', isset($course) ? number_format($course->discount, 0, ',', '.') : '') }}">
 
                             </div>
                         </div>
@@ -313,6 +313,17 @@
 
             // saat halaman pertama kali dibuka (edit page)
             toggleDemoSource($('#demo_video_storage').val());
+        });
+
+        $('.rupiah-input').on('input', function() {
+
+            let value = $(this).val();
+
+            value = value.replace(/[^0-9]/g, '');
+
+            value = new Intl.NumberFormat('id-ID').format(value);
+
+            $(this).val(value);
         });
     </script>
 @endpush

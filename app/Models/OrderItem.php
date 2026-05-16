@@ -13,6 +13,7 @@ class OrderItem extends Model
         'qty',
         'price',
         'item_type',
+        'commission_rate'
     ];
 
     public function product(): BelongsTo
