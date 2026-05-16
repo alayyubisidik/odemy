@@ -6,10 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
-    public function up(): void
+   public function up(): void
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
@@ -18,10 +15,6 @@ return new class extends Migration
             $table->enum('status', ['pending', 'approved'])->default('pending');
             $table->double('total_amount');
             $table->double('paid_amount');
-            $table->string('currency');
-            $table->boolean('has_coupon')->default(false);
-            $table->string('coupon_code')->nullable();
-            $table->double('coupon_amount')->nullable();
             $table->string('transaction_id');
             $table->string('payment_method');
             $table->timestamps();

@@ -8,5 +8,6 @@ class CheckoutController extends Controller
 {
     function index() {
         return view('frontend.pages.checkout');
+
     }
 }

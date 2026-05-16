@@ -6,12 +6,10 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('course_chapter_lessons', function (Blueprint $table) {
+
             // Primary
             $table->id();
 
@@ -27,19 +25,12 @@ return new class extends Migration
 
             // Media
             $table->text('file_path')->nullable();
-            $table->enum('storage', ['upload', 'youtube', 'vimeo', 'external_link']);
-            $table->enum('file_type', ['video', 'audio', 'doc', 'file', 'pdf']);
+            $table->enum('storage', ['upload', 'youtube']);
             $table->string('duration')->nullable();
-            $table->string('volume')->nullable();
 
             // Settings
-            $table->boolean('downloadable')->default(false);
             $table->boolean('is_preview')->default(false);
             $table->boolean('is_active')->default(true);
-            $table->enum('lesson_type', ['lesson', 'live']);
-
-            // Ordering
-            $table->integer('order');
 
             // Timestamp
             $table->timestamps();

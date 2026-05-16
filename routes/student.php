@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Frontend\MyLearningController;
 use App\Http\Controllers\Frontend\StudentDashboardController;
 use Illuminate\Support\Facades\Route;
 
@@ -16,6 +17,10 @@ Route::group(["prefix" => "student", "as" => "student.", "middleware" => ["auth"
     Route::post('become-instructor', [StudentDashboardController::class, 'becomeInstructorStore'])->name('become-instructor.store');
     Route::get('switch-to-instructor', [StudentDashboardController::class, 'switchToInstructor'])->name('switch-to-instructor.index');
 
-
-
+    Route::get('my-learning', [MyLearningController::class, 'index'])->name('my-learning.index');
+    Route::get('player/{slug}', [MyLearningController::class, 'playerIndex'])->name('player.index');
+    Route::get('get-lesson-content', [MyLearningController::class, 'getLessonContent'])->name('get-lesson-content');
+    Route::post('update-watch-history', [MyLearningController::class, 'updateWatchHistory'])->name('update-watch-history');
+    Route::post('update-lesson-completion', [MyLearningController::class, 'updateLessonCompletion'])->name('update-lesson-completion');
+    Route::get('get-certificate/{course}', [MyLearningController::class, 'getCertificate'])->name('get-certificate');
 });

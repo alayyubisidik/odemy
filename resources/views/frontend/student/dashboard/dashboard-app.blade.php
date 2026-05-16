@@ -56,7 +56,7 @@
                                     Profile
                                 </a>
                             </li>
-                            {{-- <li>
+                            <li>
                                 <a href="{{ route('student.my-learning.index') }}"
                                     class="{{ setActive(['student.my-learning.*']) }}">
                                     <div class="img">
@@ -66,7 +66,7 @@
                                     My Learning
                                 </a>
                             </li>
-                            <li>
+                            {{-- <li>
                                 <a href="{{ route('student.reviews.index') }}"
                                     class="{{ setActive(['student.reviews.*']) }}">
                                     <div class="img">

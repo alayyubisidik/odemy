@@ -6,15 +6,14 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
-        Schema::create('carts', function (Blueprint $table) {
+        Schema::create('course_chapters', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users');
+            $table->string('title');
+            $table->foreignId('instructor_id')->constrained('users');
             $table->foreignId('course_id')->constrained('courses')->onDelete('cascade');
+            $table->boolean('is_active')->default(1);
             $table->timestamps();
         });
     }
@@ -24,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('carts');
+        Schema::dropIfExists('course_chapters');
     }
 };

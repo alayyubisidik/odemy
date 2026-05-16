@@ -15,13 +15,8 @@ class CourseChapterLesson extends Model
         'chapter_id',
         'file_path',
         'storage',
-        'volume',
         'duration',
-        'file_type',
-        'downloadable',
-        'order',
         'is_preview',
         'is_active',
-        'lesson_type',
     ];
 }

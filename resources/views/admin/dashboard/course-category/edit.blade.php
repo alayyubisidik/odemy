@@ -21,9 +21,9 @@
                             <div class="mb-3">
                                 <label class="form-label">Icon</label>
                                 <div class="image-preview-box">
-                                    <input type="file" name="icon" id="category-icon-upload" accept="image/*"
+                                    <input type="file" name="icon" id="image-upload-one" accept="image/*"
                                         class="form-control" />
-                                    <img id="category-icon-preview" class="img-preview" alt="Logo Preview" src="{{ asset($course_category?->icon) }}"
+                                    <img id="image-preview-one" class="img-preview" alt="Logo Preview" src="{{ asset($course_category?->icon) }}"
                                         style="width: 170px; border-radius: 5px; margin-top: 20px; {{ $course_category?->icon ? '' : 'display: none;' }}" />
                                 </div>
                                 <x-input-error :messages="$errors->get('icon')" class="mt-2" />

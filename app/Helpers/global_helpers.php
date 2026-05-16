@@ -63,3 +63,15 @@ if (!function_exists('calculateCommission')) {
         return $amount == 0 ? 0 : ($amount * $commission) / 100;
     }
 }
+
+if (!function_exists('convertMinutesToHours')) {
+    function convertMinutesToHours($minutes): string
+    {
+        $minutes = (int) $minutes;
+
+        $hours = floor($minutes / 60);
+        $minutes = $minutes % 60;
+
+        return sprintf('%dh %02dm', $hours, $minutes);
+    }
+}

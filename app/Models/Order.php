@@ -14,10 +14,6 @@ class Order extends Model
         'status',
         'total_amount',
         'paid_amount',
-        'currency',
-        'has_coupon',
-        'coupon_code',
-        'coupon_amount',
         'transaction_id',
         'payment_method',
     ];

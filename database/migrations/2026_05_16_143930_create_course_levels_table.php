@@ -6,16 +6,12 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
-        Schema::create('payout_gateways', function (Blueprint $table) {
+        Schema::create('course_levels', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->boolean('status')->default(1);
-            $table->text('description')->nullable();
+            $table->string('slug');
             $table->timestamps();
         });
     }
@@ -25,8 +21,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('order_items', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('course_levels');
     }
 };

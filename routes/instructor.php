@@ -37,7 +37,6 @@ Route::group(["prefix" => "instructor", "as" => "instructor.", "middleware" => [
     Route::post('course-content/store-lesson', [CourseContentController::class, 'storeLesson'])->name('course-content.store-lesson');
     Route::put('course-content/update-lesson', [CourseContentController::class, 'updateLesson'])->name('course-content.update-lesson');
     Route::delete('course-content/{lesson}/destroy-lesson', [CourseContentController::class, 'destroyLesson'])->name('course-content.destroy-lesson');
-    Route::post('course-content/{chapter}/sort-lesson', [CourseContentController::class, 'sortLesson'])->name('course-content.sort-lesson');
 
     Route::get('courses/{course}/create-finish', [CourseController::class, 'createFinish'])->name('courses.create.finish');
     Route::post('courses/store-finish', [CourseController::class, 'storeFinish'])->name('courses.store.finish');

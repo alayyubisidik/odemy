@@ -11,12 +11,11 @@ class CourseChapter extends Model
         'title',
         'instructor_id',
         'course_id',
-        'order',
         'is_active'
     ];
 
     public function lessons(): HasMany
     {
-        return $this->hasMany(CourseChapterLesson::class, 'chapter_id', 'id')->orderBy('order');
+        return $this->hasMany(CourseChapterLesson::class, 'chapter_id', 'id');
     }
 }

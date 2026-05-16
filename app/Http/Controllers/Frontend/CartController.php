@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Cart;
 use App\Models\Course;
+use App\Models\Enrollment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -24,6 +25,19 @@ class CartController extends Controller
             ], 401);
         }
 
+        // Check if already purchased
+        if (Enrollment::where([
+            'course_id' => $id,
+            'user_id' => user()->id
+        ])->exists()) {
+
+            return response([
+                'message' => 'You have already purchased this course!',
+                'cartCount' => Cart::where('user_id', user()->id)->count()
+            ], 401);
+        }
+
+        // Check if already in cart
         if (Cart::where([
             'course_id' => $id,
             'user_id' => user()->id

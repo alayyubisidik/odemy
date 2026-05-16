@@ -66,7 +66,7 @@ class CourseController extends Controller
             'seo_description'     => 'nullable|string',
             'description'         => 'nullable|string',
 
-            'demo_video_storage'  => 'nullable|in:upload,youtube,vimeo,external_link',
+            'demo_video_storage'  => 'nullable|in:upload,youtube',
 
             'certificate'         => 'nullable|boolean',
             'qna'                 => 'nullable|boolean',
@@ -87,7 +87,7 @@ class CourseController extends Controller
             $request->validate([
                 'file' => 'required|string|max:255',
             ]);
-        } elseif (in_array($request->demo_video_storage, ['youtube', 'vimeo', 'external_link'])) {
+        } elseif (in_array($request->demo_video_storage, ['youtube'])) {
 
             // Wajib URL
             $request->validate([
@@ -195,7 +195,7 @@ class CourseController extends Controller
             'seo_description'     => 'nullable|string',
             'description'         => 'nullable|string',
 
-            'demo_video_storage'  => 'nullable|in:upload,youtube,vimeo,external_link',
+            'demo_video_storage'  => 'nullable|in:upload,youtube',
 
             'certificate'         => 'nullable|boolean',
             'qna'                 => 'nullable|boolean',
@@ -215,7 +215,7 @@ class CourseController extends Controller
             $request->validate([
                 'file' => 'required|string|max:255',
             ]);
-        } elseif (in_array($request->demo_video_storage, ['youtube', 'vimeo', 'external_link'])) {
+        } elseif (in_array($request->demo_video_storage, ['youtube'])) {
             $request->validate([
                 'url' => 'required|string|max:255',
             ]);
@@ -382,7 +382,7 @@ class CourseController extends Controller
         // ================= BASE VALIDATION =================
         $request->validate([
             'title'       => 'required|string|max:255',
-            'storage'     => 'required|in:upload,youtube,vimeo,external_link',
+            'storage'     => 'required|in:upload,youtube',
             'file_type'   => 'required|in:video,audio,doc,file,pdf',
             'duration'    => 'nullable|string|max:50',
             'description' => 'nullable|string',
@@ -465,7 +465,7 @@ class CourseController extends Controller
         // VALIDASI
         $request->validate([
             'title'       => ['required', 'string', 'max:255'],
-            'storage'     => ['required', 'in:upload,youtube,vimeo,external_link'],
+            'storage'     => ['required', 'in:upload,youtube'],
             'file_type'   => ['required', 'in:video,audio,doc,file,pdf'],
             'duration'    => ['required', 'string', 'max:50'],
             'description' => ['nullable', 'string'],

@@ -6,12 +6,9 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
-        Schema::create('instructor_gateway_information', function (Blueprint $table) {
+        Schema::create('instructor_gateway_informations', function (Blueprint $table) {
             $table->id();
             $table->foreignId('instructor_id')->constrained('users');
             $table->string('gateway');

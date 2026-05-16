@@ -14,7 +14,6 @@ class Course extends Model
         'course_level_id',
         'course_language_id',
 
-        'course_type',
         'title',
         'slug',
         'seo_description',
@@ -25,16 +24,10 @@ class Course extends Model
         'demo_video_source',
 
         'duration',
-        'time_zone',
-        'capacity',
 
         'price',
         'discount',
 
-        'certificate',
-        'qna',
-
-        'message_for_reviewer',
         'is_approved',
         'status',
     ];

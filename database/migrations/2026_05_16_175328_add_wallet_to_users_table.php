@@ -6,19 +6,14 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-
             $table->double('wallet')
                 ->default(0)
-                ->after('email');
+                ->after('password');
         });
     }
-
 
     /**
      * Reverse the migrations.
@@ -26,7 +21,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            //
+            $table->dropColumn('wallet');
         });
     }
 };

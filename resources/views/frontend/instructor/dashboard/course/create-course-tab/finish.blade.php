@@ -8,13 +8,13 @@
                 @csrf
                 <div class="row">
 
-                    <div class="col-xl-12">
+                    {{-- <div class="col-xl-12">
                         <div class="add_course_basic_info_imput mb-0">
                             <label>Message for Reviewer</label>
                             <x-input-error :messages="$errors->get('message_for_reviewer')" />
                             <textarea rows="8" name="message_for_reviewer" placeholder="Message for Reviewer">{{ old('message_for_reviewer', $course->message_for_reviewer ?? '') }}</textarea>
                         </div>
-                    </div>
+                    </div> --}}
 
                     @php
                         $status = old('status', $course->status ?? '');

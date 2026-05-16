@@ -7,41 +7,13 @@
             <form action="{{ route('instructor.courses.store.more-info') }}" method="post">
                 @csrf
                 <div class="row">
-                    <!-- Capacity -->
-                    <div class="col-xl-6">
-                        <div class="add_course_more_info_input">
-                            <label for="capacity">Capacity</label>
-                            <x-input-error :messages="$errors->get('capacity')" />
-                            <input name="capacity" type="number" placeholder="Capacity"
-                                value="{{ old('capacity', $course->capacity ?? '') }}">
-                            <p>leave blank for unlimited</p>
-                        </div>
-                    </div>
-
                     <!-- Duration -->
-                    <div class="col-xl-6">
+                    <div class="col-xl-12">
                         <div class="add_course_more_info_input">
-                            <label for="duration">Course Duration</label>
+                            <label for="duration">Course Duration (minute)</label>
                             <x-input-error :messages="$errors->get('duration')" />
-                            <input name="duration" type="text" placeholder="10h 30m"
+                            <input name="duration" type="text" placeholder="120"
                                 value="{{ old('duration', $course->duration ?? '') }}">
-                        </div>
-                    </div>
-                    <!-- Q&A & Certificate -->
-                    <div class="col-xl-6">
-                        <div class="add_course_more_info_checkbox">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" name="qna" id="flexCheckQna"
-                                    value="1" {{ old('qna', $course->qna ?? 1) ? 'checked' : '' }}>
-                                <label class="form-check-label" for="flexCheckQna">Q&A</label>
-                                <x-input-error :messages="$errors->get('qna')" />
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" name="certificate" id="flexCheckCertificate"
-                                    value="1" {{ old('certificate', $course->certificate ?? 1) ? 'checked' : '' }}>
-                                <label class="form-check-label" for="flexCheckCertificate">Completion Certificate</label>
-                                <x-input-error :messages="$errors->get('certificate')" />
-                            </div>
                         </div>
                     </div>
 

@@ -92,7 +92,7 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td class="text-center" colspan="8">No Data Available</td>
+                                    <td class="text-center" colspan="9">No Data Available</td>
                                 </tr>
                             @endforelse
                         </tbody>

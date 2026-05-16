@@ -12,7 +12,6 @@ class OrderItem extends Model
         'course_id',
         'qty',
         'price',
-        'item_type',
         'commission_rate'
     ];
 

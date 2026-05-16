@@ -6,12 +6,9 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
-         Schema::create('courses', function (Blueprint $table) {
+        Schema::create('courses', function (Blueprint $table) {
             $table->id();
 
             // Relasi utama
@@ -21,7 +18,6 @@ return new class extends Migration
             $table->foreignId('course_language_id')->nullable();
 
             // Informasi dasar course
-            $table->enum('course_type', ['course'])->default('course');
             $table->string('title');
             $table->string('slug');
             $table->string('seo_description')->nullable();
@@ -29,24 +25,17 @@ return new class extends Migration
 
             // Media & konten
             $table->string('thumbnail')->nullable();
-            $table->enum('demo_video_storage', ['upload', 'youtube', 'vimeo', 'external_link'])->nullable();
+            $table->enum('demo_video_storage', ['upload', 'youtube'])->nullable();
             $table->text('demo_video_source')->nullable();
 
             // Informasi kelas
-            $table->string('duration')->nullable();
-            $table->string('time_zone')->nullable();
-            $table->integer('capacity')->nullable();
+            $table->integer('duration')->nullable();
 
             // Harga
             $table->double('price')->nullable();
             $table->double('discount')->nullable();
 
-            // Fitur tambahan
-            $table->boolean('certificate')->default(0)->nullable();
-            $table->boolean('qna')->default(0)->nullable();
-
             // Review & moderasi
-            $table->text('message_for_reviewer')->nullable();
             $table->enum('is_approved', ['pending', 'approved', 'rejected'])->default('pending');
             $table->enum('status', ['active', 'inactive', 'draft'])->default('draft');
 

@@ -111,8 +111,6 @@ class MidtransController extends Controller
 
             $order->paid_amount = $request->gross_amount;
 
-            $order->currency = 'IDR';
-
             $order->payment_method = 'midtrans';
 
             $order->transaction_id = $request->transaction_id;
@@ -132,13 +130,11 @@ class MidtransController extends Controller
 
                 $orderItem->course_id = $item->course->id;
 
-                $orderItem->commission_rate = config('settings.commission_rate');
+                $orderItem->commission_rate = (int) config('settings.commission_rate');
 
                 $orderItem->qty = 1;
 
                 $orderItem->price = $price;
-
-                $orderItem->item_type = 'course';
 
                 $orderItem->save();
 
@@ -158,7 +154,7 @@ class MidtransController extends Controller
                 $instructor = $item->course->instructor;
 
                 $commission =
-                    ($price * 10) / 100;
+                    ($price * (int) config('settings.commission_rate')) / 100;
 
                 $instructor->wallet += ($price - $commission);
 

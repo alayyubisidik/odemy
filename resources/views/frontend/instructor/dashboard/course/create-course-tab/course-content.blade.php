@@ -241,25 +241,11 @@
 
                             </div>
 
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="mb-3">
-                                    <label for="file_type" class="form-label">File Type</label>
-                                    <select class=" form-select" name="file_type">
-                                        <option value="">Please Select</option>
-                                        @foreach (config('course.file_types') as $key => $name)
-                                            <option value="{{ $key }}">
-                                                {{ $name }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label for="duration" class="form-label">Duration</label>
+                                    <label for="duration" class="form-label">Duration (minute)</label>
                                     <input type="text" class="form-control" id="duration" name="duration"
-                                        placeholder="1h 30m">
+                                        placeholder="45">
                                 </div>
                             </div>
 
@@ -269,11 +255,6 @@
                                         <input class="form-check-input" type="checkbox" name="is_preview"
                                             id="flexCheckQna" value="1">
                                         <label class="form-check-label" for="flexCheckQna">Is Preview</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="downloadable"
-                                            id="flexCheckCertificate" value="1">
-                                        <label class="form-check-label" for="flexCheckCertificate">Downloadable</label>
                                     </div>
                                 </div>
                             </div>

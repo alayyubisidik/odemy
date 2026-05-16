@@ -30,7 +30,6 @@ class CourseContentController extends Controller
         $chapter->title = $request->chapter_title;
         $chapter->course_id = $course->id;
         $chapter->instructor_id = user()->id;
-        $chapter->order = CourseChapter::where('course_id', $course->id)->count() + 1;
         $chapter->save();
 
         AlertService::created();
@@ -77,7 +76,6 @@ class CourseContentController extends Controller
             'chapter_id'  => 'required|exists:course_chapters,id',
             'title'       => 'required|string|max:255',
             'storage'     => 'required|in:upload,youtube,vimeo,external_link',
-            'file_type'   => 'required|in:video,audio,doc,file,pdf',
             'duration'    => 'nullable|string|max:50',
             'description' => 'nullable|string',
         ]);
@@ -113,18 +111,10 @@ class CourseContentController extends Controller
 
             'file_path'     => $filePath,
             'storage'       => $request->storage,
-            'file_type'     => $request->file_type,
             'duration'      => $request->duration,
-            'volume'        => null,
 
-            'downloadable'  => $request->has('certificate') ? 1 : 0,
             'is_preview'    => $request->has('is_preview') ? 1 : 0,
             'is_active'     => true,
-            'lesson_type'   => 'lesson',
-
-            'order' => CourseChapterLesson::where('chapter_id', $request->chapter_id)
-                ->max('order') + 1,
-
         ]);
 
         AlertService::created();
@@ -139,11 +129,9 @@ class CourseContentController extends Controller
             'lesson_id'   => ['required', 'exists:course_chapter_lessons,id'],
             'title'       => ['required', 'string', 'max:255'],
             'storage'     => ['required', 'in:upload,youtube,vimeo,external_link'],
-            'file_type'   => ['required', 'in:video,audio,doc,file,pdf'],
             'duration'    => ['required', 'string', 'max:50'],
             'description' => ['nullable', 'string'],
             'is_preview' => ['nullable', 'boolean'],
-            'downloadable' => ['nullable', 'boolean'],
         ]);
 
         // ================= CONDITIONAL VALIDATION =================
@@ -176,10 +164,8 @@ class CourseContentController extends Controller
             'description'  => $request->description,
             'storage'      => $request->storage,
             'file_path'    => $filePath,
-            'file_type'    => $request->file_type,
             'duration'     => $request->duration,
             'is_preview'   => $request->has('is_preview') ? 1 : 0,
-            'downloadable' => $request->has('downloadable') ? 1 : 0,
         ]);
 
         AlertService::updated();
@@ -196,16 +182,5 @@ class CourseContentController extends Controller
     }
 
     /** Sort chapter lessons */
-    function sortLesson(Request $request, string $id)
-    {
-        $newOrders = $request->order_ids;
 
-        foreach ($newOrders as $key => $itemId) {
-            $lesson = CourseChapterLesson::where(['chapter_id' => $id, 'id' => $itemId])->first();
-            $lesson->order = $key + 1;
-            $lesson->save();
-        }
-
-        return response(['status' => 'success', 'message' => 'Updated Successfully!']);
-    }
 }

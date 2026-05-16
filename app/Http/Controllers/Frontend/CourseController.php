@@ -64,7 +64,7 @@ class CourseController extends Controller
                 ? 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048'
                 : 'required|image|mimes:jpg,jpeg,png,webp|max:2048',
 
-            'demo_video_storage' => 'nullable|in:upload,youtube,vimeo,external_link',
+            'demo_video_storage' => 'nullable|in:upload,youtube',
 
             'price' => 'required|numeric|min:0',
             'discount' => 'nullable|numeric|min:0',
@@ -89,7 +89,7 @@ class CourseController extends Controller
             $request->validate([
                 'file' => 'required|string|max:255',
             ]);
-        } elseif (in_array($request->demo_video_storage, ['youtube', 'vimeo', 'external_link'])) {
+        } elseif (in_array($request->demo_video_storage, ['youtube'])) {
 
             // Wajib URL
             $request->validate([
@@ -132,7 +132,6 @@ class CourseController extends Controller
         } else {
             $course = Course::create(array_merge($data, [
                 'instructor_id' => user()->id,
-                'course_type' => 'course',
             ]));
 
             Session::put('course_id', $course->id);
@@ -168,10 +167,7 @@ class CourseController extends Controller
 
         // Validasi input
         $validated = $request->validate([
-            'capacity'           => 'nullable|integer|min:1',
             'duration'           => 'required|string|min:1',
-            'qna'                => 'nullable|boolean',
-            'certificate'        => 'nullable|boolean',
             'category_id'        => 'required|exists:course_categories,id',
             'course_level_id'    => 'required|exists:course_levels,id',
             'course_language_id' => 'required|exists:course_languages,id',
@@ -179,10 +175,7 @@ class CourseController extends Controller
 
         // Update course
         $course->update([
-            'capacity'           => $validated['capacity'] ?? null,
             'duration'           => $validated['duration'],
-            'qna'                => $validated['qna'] ?? 0,
-            'certificate'        => $validated['certificate'] ?? 0,
             'category_id'        => $validated['category_id'],
             'course_level_id'    => $validated['course_level_id'],
             'course_language_id' => $validated['course_language_id'],
@@ -231,13 +224,11 @@ class CourseController extends Controller
 
         // Validasi input
         $validated = $request->validate([
-            'message_for_reviewer'    => 'nullable|string',
             'status' => 'required|in:active,inactive,draft',
         ]);
 
         // Update course
         $course->update([
-            'message_for_reviewer'    => $validated['message_for_reviewer'],
             'status' => $validated['status'],
         ]);
 

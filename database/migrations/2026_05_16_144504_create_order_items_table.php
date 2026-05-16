@@ -6,9 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('order_items', function (Blueprint $table) {
@@ -17,6 +14,7 @@ return new class extends Migration
             $table->foreignId('course_id')->constrained('courses');
             $table->integer('qty')->default(1);
             $table->double('price');
+            $table->double('commission_rate')->nullable();
             $table->enum('item_type', ['course'])->default('course');
             $table->timestamps();
         });
