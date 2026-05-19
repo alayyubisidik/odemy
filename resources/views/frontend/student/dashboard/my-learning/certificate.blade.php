@@ -74,7 +74,7 @@
     <div class="certificate">
 
         <div class="logo">
-            <img src="{{ public_path('assets/images/logo.png') }}">
+            <img src="{{ public_path('assets/images/logo-light.png') }}">
         </div>
 
 

@@ -49,46 +49,50 @@ class CoursePageController extends Controller
     function show(string $slug)
     {
         $course = Course::where('slug', $slug)->where('is_approved', 'approved')->where('status', 'active')->first();
-        // $reviews = Review::where('status', 1)->get();
-        return view('frontend.pages.course-detail', compact('course'));
+        $reviews = Review::where('status', 1)->get();
+        return view('frontend.pages.course-detail', compact('course', 'reviews'));
     }
 
-    // function storeReview(Request $request)
-    // {
+    function storeReview(Request $request)
+    {
 
-    //     $request->validate([
-    //         'course_id' => 'required|exists:courses,id',
-    //         'rating' => 'required|integer|min:1|max:5',
-    //         'review' => 'nullable|string',
-    //     ]);
+        if(!$request->rating) {
+            AlertService::error('Rating is required');
+        }
 
-    //     $checkPurchase = Enrollment::where('course_id', $request->course_id)
-    //         ->where('user_id', user()->id)
-    //         ->first();
+        $request->validate([
+            'course_id' => 'required|exists:courses,id',
+            'rating' => 'required|integer|min:1|max:5',
+            'review' => 'nullable|string',
+        ]);
 
-    //     if (!$checkPurchase) {
-    //         AlertService::error('You can only review courses that you have purchased.');
-    //         return redirect()->back();
-    //     }
+        $checkPurchase = Enrollment::where('course_id', $request->course_id)
+            ->where('user_id', user()->id)
+            ->first();
 
-    //     $alreadyReviewed = Review::where('course_id', $request->course_id)
-    //         ->where('user_id', user()->id)
-    //         ->where('status', 1)
-    //         ->first();
+        if (!$checkPurchase) {
+            AlertService::error('You can only review courses that you have purchased.');
+            return redirect()->back();
+        }
 
-    //     if ($alreadyReviewed) {
-    //         AlertService::error('You have already reviewed this course.');
-    //         return redirect()->back();
-    //     }
+        $alreadyReviewed = Review::where('course_id', $request->course_id)
+            ->where('user_id', user()->id)
+            ->where('status', 1)
+            ->first();
 
-    //     $review = new Review();
-    //     $review->course_id = $request->course_id;
-    //     $review->user_id = user()->id;
-    //     $review->rating = $request->rating;
-    //     $review->review = $request->review;
-    //     $review->save();
+        if ($alreadyReviewed) {
+            AlertService::error('You have already reviewed this course.');
+            return redirect()->back();
+        }
 
-    //     AlertService::created('Your review has been submitted and is pending approval.');
-    //     return redirect()->back();
-    // }
+        $review = new Review();
+        $review->course_id = $request->course_id;
+        $review->user_id = user()->id;
+        $review->rating = $request->rating;
+        $review->review = $request->review;
+        $review->save();
+
+        AlertService::created('Your review has been submitted and is pending approval.');
+        return redirect()->back();
+    }
 }

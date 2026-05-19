@@ -23,7 +23,7 @@ class SettingController extends Controller
             "site_name" => ["required", "string", "max:255"],
             "site_email" => ["nullable", "email", "max:255"],
             "site_phone" => ["nullable", "string", "max:255"],
-            "site_location" => ["required"],
+            "site_location" => ["nullable"],
         ]);
 
         foreach ($validatedData as $key => $value) {

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Frontend\CourseContentController;
 use App\Http\Controllers\Frontend\CourseController;
 use App\Http\Controllers\Frontend\InstructorDashboardController;
+use App\Http\Controllers\Frontend\ReviewController;
 use App\Http\Controllers\Frontend\WithdrawController;
 use Illuminate\Support\Facades\Route;
 
@@ -46,4 +47,8 @@ Route::group(["prefix" => "instructor", "as" => "instructor.", "middleware" => [
     Route::get('withdraws', [WithdrawController::class, 'index'])->name('withdraws.index');
     Route::get('withdraws/request', [WithdrawController::class, 'requestWithdraws'])->name('withdraws.request');
     Route::post('withdraws/request', [WithdrawController::class, 'storeRequestWithdraws'])->name('withdraws.request.store');
+
+    Route::get('reviews', [ReviewController::class, 'index'])->name('reviews.index');
+    Route::put('reviews/status/{review}', [ReviewController::class, 'changeStatus'])->name('reviews.status');
+
 });
