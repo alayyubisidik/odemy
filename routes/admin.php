@@ -3,6 +3,8 @@
 use App\Http\Controllers\Admin\AboutUsSectionController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\BecomeInstructorSectionController;
+use App\Http\Controllers\Admin\BlogCategoryController;
+use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\BrandSectionController;
 use App\Http\Controllers\Admin\ContactPageController;
 use App\Http\Controllers\Admin\CounterSectionController;
@@ -132,13 +134,11 @@ Route::middleware(['auth', 'role:admin'])
 
         Route::resource('custom-pages', CustomPageController::class);
 
+        Route::resource('blog-categories', BlogCategoryController::class);
 
+        Route::get('blogs/comment', [BlogController::class, 'blogCommentIndex'])->name('blogs-comment');
+        Route::delete('blogs/comment/{blogComment}', [BlogController::class, 'blogCommentDestroy'])->name('blogs-comment.destroy');
+        Route::put('blogs/comment/{blogComment}/changeStatus', [BlogController::class, 'changeStatus'])->name('blogs-comment.change-status');
 
-
-
-
-
-
-
+        Route::resource('blogs', BlogController::class);
     });
-
