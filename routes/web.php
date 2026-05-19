@@ -15,6 +15,15 @@ Route::get('/', [FrontendController::class, 'index'])->name('index');
 Route::get('courses', [CoursePageController::class, 'index'])->name('courses.index');
 Route::get('courses/{slug}', [CoursePageController::class, 'show'])->name('courses.show');
 
+Route::get('about-us', [FrontendController::class, 'aboutUs'])->name('about-us.index');
+
+Route::get('contact', [FrontendController::class, 'contact'])->name('contact.index');
+Route::post('contact', [FrontendController::class, 'contactStore'])->name('contact.store');
+
+Route::get('page/{slug}', [FrontendController::class, 'customPage'])->name('custom-pages');
+
+
+
 Route::middleware('auth')->group(function () {
 
     Route::get('cart', [CartController::class, 'index'])->name('cart.index');
@@ -22,6 +31,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('cart/{item}', [CartController::class, 'remove'])->name('cart.remove');
 
     Route::get('checkout', [CheckoutController::class, 'index'])->name('checkout.index');
+
+    Route::post('review', [CoursePageController::class, 'storeReview'])->name('review.store');
+
 
     Route::post('/midtrans/token', [MidtransController::class, 'generateToken'])
         ->name('midtrans.token');

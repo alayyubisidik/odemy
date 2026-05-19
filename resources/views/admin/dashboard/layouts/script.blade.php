@@ -1,4 +1,8 @@
 <script>
+    $(document).ready(function() {
+        $('.select2').select2();
+    });
+
     function confirmLogout(event) {
         event.preventDefault();
 
@@ -54,6 +58,7 @@
         previewImage("#image-upload-two", "#image-preview-two");
         previewImage("#image-upload-three", "#image-preview-three");
         previewImage("#image-upload-four", "#image-preview-four");
+        previewImage("#image-upload-five", "#image-preview-five");
     });
 
     $(function() {

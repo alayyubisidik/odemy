@@ -1,7 +1,6 @@
 @extends('frontend.layouts.app')
 
 @section('content')
-<p>tesy</p>
     @include('frontend.home.sections.hero-section')
 
     @include('frontend.home.sections.categories-section')

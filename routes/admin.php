@@ -1,18 +1,34 @@
 <?php
 
+use App\Http\Controllers\Admin\AboutUsSectionController;
 use App\Http\Controllers\Admin\AdminDashboardController;
+use App\Http\Controllers\Admin\BecomeInstructorSectionController;
+use App\Http\Controllers\Admin\BrandSectionController;
+use App\Http\Controllers\Admin\ContactPageController;
+use App\Http\Controllers\Admin\CounterSectionController;
 use App\Http\Controllers\Admin\CourseCategoryController;
 use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\CourseLanguageController;
 use App\Http\Controllers\Admin\CourseLevelController;
 use App\Http\Controllers\Admin\CourseSubCategoryController;
+use App\Http\Controllers\Admin\CustomPageController;
+use App\Http\Controllers\Admin\FeaturedInstructorSectionController;
+use App\Http\Controllers\Admin\FeatureSectionController;
+use App\Http\Controllers\Admin\FooterColumnOneController;
+use App\Http\Controllers\Admin\FooterColumnTwoController;
+use App\Http\Controllers\Admin\FooterController;
+use App\Http\Controllers\Admin\HeroSectionController;
 use App\Http\Controllers\Admin\InstructorRequestController;
+use App\Http\Controllers\Admin\LatestCourseSectionController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\PayoutGatewayController;
 use App\Http\Controllers\Admin\SettingController;
+use App\Http\Controllers\Admin\SocialLinkController;
+use App\Http\Controllers\Admin\TestimonialSectionController;
+use App\Http\Controllers\Admin\TopBarController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\VideoSectionController;
 use App\Http\Controllers\Admin\WithdrawRequestController;
-use App\Models\CourseCategory;
 use Illuminate\Support\Facades\Route;
 
 
@@ -80,4 +96,49 @@ Route::middleware(['auth', 'role:admin'])
         Route::get('withdraw-requests', [WithdrawRequestController::class, 'index'])->name('withdraw-requests.index');
         Route::get('withdraw-requests/{withdraw}/show', [WithdrawRequestController::class, 'withdrawShow'])->name('withdraw-requests.show');
         Route::put('withdraw-requests/{withdraw}/update', [WithdrawRequestController::class, 'withdrawUpdate'])->name('withdraw-requests.update');
+
+        Route::resource('hero-sections', HeroSectionController::class);
+
+        Route::resource('feature-sections', FeatureSectionController::class);
+
+        Route::resource('about-us-sections', AboutUsSectionController::class);
+
+        Route::resource('latest-course-sections', LatestCourseSectionController::class);
+
+        Route::resource('become-instructor-sections', BecomeInstructorSectionController::class);
+
+        Route::resource('video-sections', VideoSectionController::class);
+
+        Route::resource('brand-sections', BrandSectionController::class);
+
+        Route::get('get-instructor-courses/{instructor_id}', [FeaturedInstructorSectionController::class, 'getInstructorCourses'])->name('get-instructor-courses');
+        Route::resource('featured-instructor-sections', FeaturedInstructorSectionController::class);
+
+        Route::resource('testimonial-sections', TestimonialSectionController::class);
+
+        Route::resource('counter-sections', CounterSectionController::class);
+
+        Route::resource('contacts', ContactPageController::class);
+
+        Route::resource('top-bars', TopBarController::class);
+
+        Route::resource('footers', FooterController::class);
+
+        Route::resource('footer-column-one', FooterColumnOneController::class);
+
+        Route::resource('footer-column-two', FooterColumnTwoController::class);
+
+        Route::resource('social-links', SocialLinkController::class);
+
+        Route::resource('custom-pages', CustomPageController::class);
+
+
+
+
+
+
+
+
+
     });
+

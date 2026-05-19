@@ -14,7 +14,7 @@
     <section class="wsus__courses mt_120 xs_mt_100 pb_120 xs_pb_100">
         <div class="container">
             <div class="row">
-                {{-- <div class="col-xl-3 col-lg-4 col-md-8 order-2 order-lg-1 wow fadeInLeft">
+                <div class="col-xl-3 col-lg-4 col-md-8 order-2 order-lg-1 wow fadeInLeft">
                     <div class="wsus__sidebar">
                         <form action="{{ route('courses.index') }}">
                             <div class="wsus__sidebar_search">
@@ -61,7 +61,7 @@
                                     </div>
                                 @endforeach
                             </div>
-
+{{--
                             <div class="wsus__sidebar_course_lavel rating">
                                 <h3>Rating</h3>
                                 <div class="form-check">
@@ -99,7 +99,7 @@
                                         <i class="fas fa-star"></i> 1 star or above
                                     </label>
                                 </div>
-                            </div>
+                            </div> --}}
 
                             <div class="wsus__sidebar_course_lavel duration">
                                 <h3>Language</h3>
@@ -113,10 +113,6 @@
                                 @endforeach
                             </div>
 
-                            <div class="wsus__sidebar_rating">
-                                <h3>Price Range</h3>
-                                <div class="range_slider"></div>
-                            </div>
 
                             <br>
                             <br>
@@ -127,7 +123,7 @@
 
                         </form>
                     </div>
-                </div> --}}
+                </div>
                 <div class="col-xl-9 col-lg-8 order-lg-1">
                     <div class="wsus__page_courses_header wow fadeInUp">
                         <p>Showing <span>1-{{ $courses->count() }}</span> Of <span>{{ $courses->total() }}</span> Results

@@ -256,7 +256,7 @@
                                 aria-labelledby="pills-disabled-tab2" tabindex="0">
                                 <div class="wsus__courses_review box_area">
                                     <h3>Customer Reviews</h3>
-                                    {{-- <div class="row align-items-center mb_50">
+                                    <div class="row align-items-center mb_50">
                                         <div class="col-xl-4 col-md-6">
                                             <div class="total_review">
                                                 <h2>{{ number_format($course->reviews()->avg('rating'), 1) ?? 0 }}</h2>
@@ -323,12 +323,12 @@
 
                                             </div>
                                         </div>
-                                    </div> --}}
+                                    </div>
                                     <h3>Reviews</h3>
-                                    {{-- @foreach ($reviews as $review)
+                                    @foreach ($reviews as $review)
                                         <div class="wsus__course_single_reviews" >
                                             <div class="wsus__single_review_img">
-                                                <img src="{{ asset($review->user->avatar) }}" alt="user" class="img-fluid">
+                                                <img src="{{ asset($review->user->image) }}" alt="user" class="img-fluid">
                                             </div>
                                             <div class="wsus__single_review_text" style="width: 100%">
                                                 <h4>{{ $review->user->name }}</h4>
@@ -343,7 +343,7 @@
                                                 <p>{{ $review->review }}</p>
                                             </div>
                                         </div>
-                                    @endforeach --}}
+                                    @endforeach
                                 </div>
                                 @auth
                                     <div class="wsus__courses_review_input box_area mt_40">
@@ -353,7 +353,7 @@
                                         <div class="select_rating d-flex flex-wrap">Your Rating:
                                             <ul id="starRating" data-stars="5"></ul>
                                         </div>
-                                        {{-- <form action="{{ route('review.store') }}" method="POST">
+                                        <form action="{{ route('review.store') }}" method="POST">
                                             @csrf
                                             <input type="hidden" name="rating" value="" id="rating">
                                             <input type="hidden" name="course_id" value="{{ $course->id }}">
@@ -367,7 +367,7 @@
                                                     <button type="submit" class="common_btn">Post Review</button>
                                                 </div>
                                             </div>
-                                        </form> --}}
+                                        </form>
                                     </div>
                                 @endauth
                             </div>

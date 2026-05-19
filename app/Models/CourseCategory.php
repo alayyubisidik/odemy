@@ -20,4 +20,9 @@ class CourseCategory extends Model
     {
         return $this->hasMany(CourseCategory::class, 'parent_id');
     }
+
+    public function courses(): HasMany
+    {
+        return $this->hasMany(Course::class, 'category_id')->where(["is_approved" => "approved", 'status' => 1]);
+    }
 }

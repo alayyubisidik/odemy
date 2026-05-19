@@ -71,6 +71,17 @@
                             @endif
 
                             <li>
+                                <a href="{{ route('instructor.reviews.index') }}"
+                                    class="{{ setActive(['instructor.reviews.*']) }}">
+                                    <div class="img">
+                                        <img src="{{ asset('assets/frontend/dist/images/dash_icon_8.png') }}" alt="icon"
+                                            class="img-fluid w-100">
+                                    </div>
+                                    Reviews
+                                </a>
+                            </li>
+
+                            <li>
                                 <a href="{{ route('instructor.withdraws.index') }}"
                                     class="{{ setActive(['instructor.withdraws.*']) }}">
                                     <div class="img">
@@ -80,7 +91,7 @@
                                     Withdraws
                                 </a>
                             </li>
-                            
+
                             <li>
                                 <a href="{{ route('instructor.orders.index') }}"
                                     class="{{ setActive(['instructor.orders.*']) }}">
@@ -91,6 +102,8 @@
                                     Orders
                                 </a>
                             </li>
+
+
                             <li>
                                 <a href="{{ route('instructor.switch-to-student.index') }}">
                                     <div class="img">
