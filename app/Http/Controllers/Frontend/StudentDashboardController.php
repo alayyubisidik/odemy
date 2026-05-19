@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Review;
 use App\Services\AlertService;
 use App\Traits\FileUploadTrait;
 use Illuminate\Http\Request;
@@ -120,6 +121,22 @@ class StudentDashboardController extends Controller
 
         // Notifikasi sukses
         AlertService::updated("Password or Email Updated Successfully");
+
+        return back();
+    }
+
+     function reviews()
+    {
+        $reviews = Review::where('user_id', user()->id)->with('course')->latest()->get();
+        return view('frontend.student.dashboard.review.index', compact('reviews'));
+    }
+
+    function reviewDelete(int $id)
+    {
+        $review = Review::find($id);
+        $review->delete();
+
+        AlertService::deleted("Review Deleted Successfully");
 
         return back();
     }

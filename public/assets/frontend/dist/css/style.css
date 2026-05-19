@@ -15661,3 +15661,13 @@ footer {
     -ms-border-radius: 0px !important;
     -o-border-radius: 0px !important;
 }
+
+
+.ti.icon-fe {
+    font-size: 19px;
+    margin: 0 10px 0 0
+}
+
+.icon-wrapper {
+    padding-top: 1px
+}

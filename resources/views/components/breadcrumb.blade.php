@@ -1,5 +1,5 @@
 <section class="wsus__breadcrumb"
-    style="background: url('{{ asset(config('settings.site_breadcrumb')) }}');">
+    style="background: url('{{ asset('assets/frontend/dist/images/breadcrumb_bg.jpg') }}');">
 
     <div class="wsus__breadcrumb_overlay">
         <div class="container">

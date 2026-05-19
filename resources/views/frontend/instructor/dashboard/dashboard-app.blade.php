@@ -1,23 +1,8 @@
 @extends('frontend.layouts.app')
 
 @section('content')
-    <section class="wsus__breadcrumb" style="background: url(images/breadcrumb_bg.jpg);">
-        <div class="wsus__breadcrumb_overlay">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12 wow fadeInUp">
-                        <div class="wsus__breadcrumb_text">
-                            <h1>Instructor Dashboard</h1>
-                            <ul>
-                                <li><a href="/">Home</a></li>
-                                <li>Instructor Dashboard</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <x-breadcrumb title="Instructor Dashboard" />
+
 
     <section class="wsus__dashboard mt_90 xs_mt_70 pb_120 xs_pb_100">
         <div class="container">
@@ -39,9 +24,8 @@
                             <li>
                                 <a href="{{ route('instructor.dashboard.index') }}"
                                     class="{{ setActive(['instructor.dashboard.*']) }}">
-                                    <div class="img">
-                                        <img src="{{ asset('assets/frontend/dist/images/dash_icon_8.png') }}" alt="icon"
-                                            class="img-fluid w-100">
+                                    <div class="icon-wrapper">
+                                        <i class="ti ti-chart-pie-2 icon-fe"></i>
                                     </div>
                                     Dashboard
                                 </a>
@@ -49,9 +33,8 @@
                             <li>
                                 <a href="{{ route('instructor.profile.index') }}"
                                     class="{{ setActive(['instructor.profile.*']) }}">
-                                    <div class="img">
-                                        <img src="{{ asset('assets/frontend/dist/images/dash_icon_8.png') }}" alt="icon"
-                                            class="img-fluid w-100">
+                                    <div class="icon-wrapper">
+                                        <i class="ti ti-user icon-fe"></i>
                                     </div>
                                     Profile
                                 </a>
@@ -61,9 +44,8 @@
                                 <li>
                                     <a href="{{ route('instructor.courses.index') }}"
                                         class="{{ setActive(['instructor.courses.*']) }}">
-                                        <div class="img">
-                                            <img src="{{ asset('assets/frontend/dist/images/dash_icon_8.png') }}"
-                                                alt="icon" class="img-fluid w-100">
+                                        <div class="icon-wrapper">
+                                            <i class="ti ti-brand-parsinta icon-fe"></i>
                                         </div>
                                         Courses
                                     </a>
@@ -73,9 +55,8 @@
                             <li>
                                 <a href="{{ route('instructor.reviews.index') }}"
                                     class="{{ setActive(['instructor.reviews.*']) }}">
-                                    <div class="img">
-                                        <img src="{{ asset('assets/frontend/dist/images/dash_icon_8.png') }}" alt="icon"
-                                            class="img-fluid w-100">
+                                    <div class="icon-wrapper">
+                                        <i class="ti ti-message icon-fe"></i>
                                     </div>
                                     Reviews
                                 </a>
@@ -84,9 +65,8 @@
                             <li>
                                 <a href="{{ route('instructor.withdraws.index') }}"
                                     class="{{ setActive(['instructor.withdraws.*']) }}">
-                                    <div class="img">
-                                        <img src="{{ asset('assets/frontend/dist/images/dash_icon_8.png') }}" alt="icon"
-                                            class="img-fluid w-100">
+                                    <div class="icon-wrapper">
+                                        <i class="ti ti-currency-dollar icon-fe"></i>
                                     </div>
                                     Withdraws
                                 </a>
@@ -95,9 +75,8 @@
                             <li>
                                 <a href="{{ route('instructor.orders.index') }}"
                                     class="{{ setActive(['instructor.orders.*']) }}">
-                                    <div class="img">
-                                        <img src="{{ asset('assets/frontend/dist/images/dash_icon_8.png') }}" alt="icon"
-                                            class="img-fluid w-100">
+                                    <div class="icon-wrapper">
+                                        <i class="ti ti-clipboard-text icon-fe"></i>
                                     </div>
                                     Orders
                                 </a>
@@ -106,9 +85,8 @@
 
                             <li>
                                 <a href="{{ route('instructor.switch-to-student.index') }}">
-                                    <div class="img">
-                                        <img src="{{ asset('assets/frontend/dist/images/dash_icon_8.png') }}"
-                                            alt="icon" class="img-fluid w-100">
+                                    <div class="icon-wrapper">
+                                        <i class="ti ti-school "></i>
                                     </div>
                                     Switch to Student
                                 </a>
@@ -120,9 +98,8 @@
 
                                     <a href="#" style="cursor:pointer" onclick="confirmLogout(event)">
 
-                                        <div class="img">
-                                            <img src="{{ asset('assets/frontend/dist/images/dash_icon_16.png') }}"
-                                                alt="icon" class="img-fluid w-100">
+                                        <div class="icon-wrapper">
+                                            <i class="ti ti-arrow-bar-right icon-fe"></i>
                                         </div>
 
                                         Sign Out

@@ -23,4 +23,7 @@ Route::group(["prefix" => "student", "as" => "student.", "middleware" => ["auth"
     Route::post('update-watch-history', [MyLearningController::class, 'updateWatchHistory'])->name('update-watch-history');
     Route::post('update-lesson-completion', [MyLearningController::class, 'updateLessonCompletion'])->name('update-lesson-completion');
     Route::get('get-certificate/{course}', [MyLearningController::class, 'getCertificate'])->name('get-certificate');
+
+        Route::get('reviews', [StudentDashboardController::class, 'reviews'])->name('reviews.index');
+    Route::delete('reviews/delete/{id}', [StudentDashboardController::class, 'reviewDelete'])->name('reviews.delete');
 });

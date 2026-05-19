@@ -25813,9 +25813,12 @@ Antialiasing
 }
 
 .ti {
-    font-size: 22px;
+    font-size: 21px;
 }
 
+.ti.icon-fe {
+    font-size: 25px;
+}
 
 .icon-dashboard {
     font-size: 25px;

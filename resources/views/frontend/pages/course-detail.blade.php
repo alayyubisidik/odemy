@@ -17,12 +17,15 @@
                     <div class="col-12 wow fadeInUp">
                         <div class="wsus__breadcrumb_text">
                             <p class="rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <span>(4 Reviews)</span>
+                                @for ($i = 1; $i <= 5; $i++)
+                                    @if ($i <= $course->reviews()->avg('rating'))
+                                        <i class="fas fa-star"></i>
+                                    @else
+                                        <i class="far fa-star"></i>
+                                    @endif
+                                @endfor
+                                <span>({{ number_format($course->reviews()->avg('rating'), 0) }}
+                                    Rating)</span>
                             </p>
                             <h1>{{ $course->title }}</h1>
                             <ul class="list">
@@ -53,13 +56,13 @@
         </div>
     </section>
     <!--===========================
-                                BREADCRUMB END
-                            ============================-->
+                                            BREADCRUMB END
+                                        ============================-->
 
 
     <!--===========================
-                                COURSES DETAILS START
-                            ============================-->
+                                            COURSES DETAILS START
+                                        ============================-->
     <section class="wsus__courses_details pb_120 xs_pb_100">
         <div class="container">
             <div class="row">
@@ -130,7 +133,7 @@
                                                                             data-vbtype="video">Preview</a>
                                                                     @else
                                                                         <span
-                                                                            class="right_text">{{ $lesson->duration }}</span>
+                                                                            class="right_text">{{ convertMinutesToHours($lesson->duration) }}</span>
                                                                     @endif
                                                                 </li>
                                                             @endforeach
@@ -158,8 +161,25 @@
                                                 <h4>{{ $course->instructor->name }}</h4>
                                                 <p class="designation">{{ $course->instructor->headline }}</p>
                                                 <ul class="list">
-                                                    <li><i class="fas fa-star"></i> <b>74,537 Reviews</b></li>
-                                                    <li><strong>4.7 Rating</strong></li>
+                                                    @php
+                                                        $courseId = $course->instructor
+                                                            ->courses()
+                                                            ->pluck('id')
+                                                            ->toArray();
+
+                                                        $reviewsQuery = \App\Models\Review::whereIn(
+                                                            'course_id',
+                                                            $courseId,
+                                                        );
+
+                                                        $reviewsCount = $reviewsQuery->count();
+
+                                                        $averageRating = round($reviewsQuery->avg('rating'), 1);
+                                                    @endphp
+
+                                                    <li><i class="fas fa-star"></i> <b>{{ $reviewsCount }} Reviews</b>
+                                                    </li>
+                                                    <li><strong>{{ $averageRating ?? '' }} Rating</strong></li>
                                                     <li>
                                                         <span><img
                                                                 src="{{ asset('assets/frontend/dist/images/book_icon.png') }}"
@@ -170,34 +190,10 @@
                                                         <span><img
                                                                 src="{{ asset('assets/frontend/dist/images/user_icon_gray.png') }}"
                                                                 alt="user" class="img-fluid"></span>
-                                                        32 Students
+                                                        {{ $course->instructor->students()->count() }} Students
                                                     </li>
                                                 </ul>
-                                                <ul class="badge d-flex flex-wrap">
-                                                    <li data-bs-toggle="tooltip" data-bs-placement="top"
-                                                        data-bs-title="Exclusive Author">
-                                                        <img src="{{ asset('assets/frontend/dist/images/badge_1.png') }}"
-                                                            alt="Badge" class="img-fluid">
-                                                    </li>
-                                                    <li data-bs-toggle="tooltip" data-bs-placement="top"
-                                                        data-bs-title="Top Earning"><img
-                                                            src="{{ asset('assets/frontend/dist/images/badge_2.png') }}"
-                                                            alt="Badge" class="img-fluid"></li>
-                                                    <li data-bs-toggle="tooltip" data-bs-placement="top"
-                                                        data-bs-title="Trending"><img
-                                                            src="{{ asset('assets/frontend/dist/images/badge_3.png') }}"
-                                                            alt="Badge" class="img-fluid"></li>
-                                                    <li data-bs-toggle="tooltip" data-bs-placement="top"
-                                                        data-bs-title="2 Years of Membership"><img
-                                                            src="{{ asset('assets/frontend/dist/images/badge_4.png') }}"
-                                                            alt="Badge" class="img-fluid">
-                                                    </li>
-                                                    <li data-bs-toggle="tooltip" data-bs-placement="top"
-                                                        data-bs-title="Collector Lavel 1">
-                                                        <img src="{{ asset('assets/frontend/dist/images/badge_5.png') }}"
-                                                            alt="Badge" class="img-fluid">
-                                                    </li>
-                                                </ul>
+
                                                 <p class="description">
                                                     {{ $course->instructor->bio }}
                                                 </p>
@@ -261,7 +257,7 @@
                                             <div class="total_review">
                                                 <h2>{{ number_format($course->reviews()->avg('rating'), 1) ?? 0 }}</h2>
                                                 <p>
-                                                    @for ($i = 1; $i <= number_format($course->reviews()->avg('rating'), 1) ?? 0 ; $i++)
+                                                    @for ($i = 1; $i <= number_format($course->reviews()->avg('rating'), 1) ?? 0; $i++)
                                                         <i class="fas fa-star"></i>
                                                     @endfor
                                                 </p>
@@ -278,7 +274,8 @@
                                                         </div>
                                                         <span class="fill" data-percentage="85"></span>
                                                     </div>
-                                                    <span class="qnty">{{ $course->reviews()->where('rating', 5)->count()}}</span>
+                                                    <span
+                                                        class="qnty">{{ $course->reviews()->where('rating', 5)->count() }}</span>
                                                 </div>
                                                 <div class="review_bar_single">
                                                     <p>4 <i class="fas fa-star"></i></p>
@@ -288,7 +285,8 @@
                                                         </div>
                                                         <span class="fill" data-percentage="70"></span>
                                                     </div>
-                                                    <span class="qnty">{{ $course->reviews()->where('rating', 4)->count()}}</span>
+                                                    <span
+                                                        class="qnty">{{ $course->reviews()->where('rating', 4)->count() }}</span>
                                                 </div>
                                                 <div class="review_bar_single">
                                                     <p>3 <i class="fas fa-star"></i></p>
@@ -298,7 +296,8 @@
                                                         </div>
                                                         <span class="fill" data-percentage="50"></span>
                                                     </div>
-                                                    <span class="qnty">{{ $course->reviews()->where('rating', 3)->count()}}</span>
+                                                    <span
+                                                        class="qnty">{{ $course->reviews()->where('rating', 3)->count() }}</span>
                                                 </div>
                                                 <div class="review_bar_single">
                                                     <p>2 <i class="fas fa-star"></i></p>
@@ -308,7 +307,8 @@
                                                         </div>
                                                         <span class="fill" data-percentage="30"></span>
                                                     </div>
-                                                    <span class="qnty">{{ $course->reviews()->where('rating', 2)->count()}}</span>
+                                                    <span
+                                                        class="qnty">{{ $course->reviews()->where('rating', 2)->count() }}</span>
                                                 </div>
                                                 <div class="review_bar_single">
                                                     <p>1 <i class="fas fa-star"></i></p>
@@ -318,7 +318,8 @@
                                                         </div>
                                                         <span class="fill" data-percentage="10"></span>
                                                     </div>
-                                                    <span class="qnty">{{ $course->reviews()->where('rating', 1)->count()}}</span>
+                                                    <span
+                                                        class="qnty">{{ $course->reviews()->where('rating', 1)->count() }}</span>
                                                 </div>
 
                                             </div>
@@ -326,13 +327,15 @@
                                     </div>
                                     <h3>Reviews</h3>
                                     @foreach ($reviews as $review)
-                                        <div class="wsus__course_single_reviews" >
+                                        <div class="wsus__course_single_reviews">
                                             <div class="wsus__single_review_img">
-                                                <img src="{{ asset($review->user->image) }}" alt="user" class="img-fluid">
+                                                <img src="{{ asset($review->user->image) }}" alt="user"
+                                                    class="img-fluid">
                                             </div>
                                             <div class="wsus__single_review_text" style="width: 100%">
                                                 <h4>{{ $review->user->name }}</h4>
-                                                <div class="" style="width: 100%;display: flex; justify-content: space-between;">
+                                                <div class=""
+                                                    style="width: 100%;display: flex; justify-content: space-between;">
                                                     <h6> {{ $review->created_at->format('F j, Y \a\t g:i A') }}</h6>
                                                     <span>
                                                         @for ($i = 1; $i <= $review->rating; $i++)
@@ -403,15 +406,15 @@
                                                 alt="clock" class="img-fluid"></span>
                                         Course Duration
                                     </p>
-                                    {{ $course->duration }}
+                                    {{ convertMinutesToHours($course->duration) }}
                                 </li>
                                 <li>
                                     <p>
                                         <span><img src="{{ asset('assets/frontend/dist/images/network_icon_black.png') }}"
                                                 alt="network" class="img-fluid"></span>
-                                        {{ $course->level->name }}
+                                        Level
                                     </p>
-                                    Medium
+                                    {{ $course->level->name }}
                                 </li>
                                 <li>
                                     <p>
@@ -419,7 +422,7 @@
                                                 alt="User" class="img-fluid"></span>
                                         Student Enrolled
                                     </p>
-                                    47
+                                    {{ $course->enrollments()->count() }}
                                 </li>
                                 <li>
                                     <p>
@@ -431,11 +434,10 @@
                                     {{ $course->language->name }}
                                 </li>
                             </ul>
-                            <a class="common_btn" href="#">Enroll The Course <i class="far fa-arrow-right"></i></a>
+                            <a class="common_btn add_to_cart" href="#" data-course-id="{{ $course->id }}">Add to
+                                Cart<i class="far fa-arrow-right"></i></a>
                         </div>
-                        <div class="wsus__courses_sidebar_share_btn d-flex flex-wrap justify-content-between">
-                            <a href="#" class="common_btn"><i class="far fa-heart"></i> Add to Wishlist</a>
-                        </div>
+
                         <div class="wsus__courses_sidebar_share_area">
                             <span>Share:</span>
                             <ul>
@@ -449,22 +451,24 @@
                             <h3>This Course Includes</h3>
                             <ul>
                                 <li>
-                                    <span><img src="{{ asset('assets/frontend/dist/images/video_icon_black.png') }}" alt="video" class="img-fluid"></span>
+                                    <span><img src="{{ asset('assets/frontend/dist/images/video_icon_black.png') }}"
+                                            alt="video" class="img-fluid"></span>
                                     54 min 24 sec Video Lectures
                                 </li>
                                 <li>
-                                    <span><img src="{{ asset('assets/frontend/dist/images/file_download_icon_black.png') }}" alt="download"
-                                            class="img-fluid"></span>
+                                    <span><img
+                                            src="{{ asset('assets/frontend/dist/images/file_download_icon_black.png') }}"
+                                            alt="download" class="img-fluid"></span>
                                     3 Downloadable Resources File
                                 </li>
                                 <li>
-                                    <span><img src="{{ asset('assets/frontend/dist/images/certificate_icon_black.png') }}" alt="Certificate"
-                                            class="img-fluid"></span>
+                                    <span><img src="{{ asset('assets/frontend/dist/images/certificate_icon_black.png') }}"
+                                            alt="Certificate" class="img-fluid"></span>
                                     Certificate of Completion
                                 </li>
                                 <li>
-                                    <span><img src="{{ asset('assets/frontend/dist/images/life_time_icon.png') }}" alt="Certificate"
-                                            class="img-fluid"></span>
+                                    <span><img src="{{ asset('assets/frontend/dist/images/life_time_icon.png') }}"
+                                            alt="Certificate" class="img-fluid"></span>
                                     Course Lifetime Access
                                 </li>
                             </ul>
@@ -478,29 +482,10 @@
                                 </div>
                                 <div class="text">
                                     <h3>{{ $course->instructor->name }}</h3>
-                                    <p><span>Instructor</span> Level 2</p>
+                                    <p>Instructor </p>
                                 </div>
                             </div>
-                            <ul class="d-flex flex-wrap">
-                                <li data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Exclusive Author">
-                                    <img src="{{ asset('assets/frontend/dist/images/badge_1.png') }}" alt="Badge"
-                                        class="img-fluid">
-                                </li>
-                                <li data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Top Earning"><img
-                                        src="{{ asset('assets/frontend/dist/images/badge_2.png') }}" alt="Badge"
-                                        class="img-fluid"></li>
-                                <li data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Trending"><img
-                                        src="{{ asset('assets/frontend/dist/images/badge_3.png') }}" alt="Badge"
-                                        class="img-fluid"></li>
-                                <li data-bs-toggle="tooltip" data-bs-placement="top"
-                                    data-bs-title="2 Years of Membership"><img
-                                        src="{{ asset('assets/frontend/dist/images/badge_4.png') }}" alt="Badge"
-                                        class="img-fluid"></li>
-                                <li data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Collector Lavel 1">
-                                    <img src="{{ asset('assets/frontend/dist/images/badge_5.png') }}" alt="Badge"
-                                        class="img-fluid">
-                                </li>
-                            </ul>
+
                         </div>
                     </div>
                 </div>
@@ -510,7 +495,6 @@
 @endsection
 
 @push('script')
-
     <script>
         $(function() {
             $('#starRating li').on('click', function() {
@@ -518,6 +502,43 @@
 
                 $('#rating').val(starRating);
             });
+        });
+    </script>
+@endpush
+
+@push('script')
+    <script>
+        function addToCart(courseId) {
+            $.ajax({
+                url: "{{ route('cart.add', ':id') }}".replace(':id', courseId),
+                method: 'POST',
+                data: {
+                    _token: '{{ csrf_token() }}',
+                },
+
+                success: function(data) {
+                    notyf.success(data.message);
+
+                    // update cart count tanpa refresh
+                    $('#cart-count').text(data.cartCount);
+                },
+
+                error: function(xhr, status, error) {
+                    console.log(xhr);
+
+                    let errorMessage = xhr.responseJSON.message;
+                    notyf.error(errorMessage);
+                }
+            });
+        }
+        $(function() {
+            /** add course into cart */
+            $('.add_to_cart').on('click', function(e) {
+                e.preventDefault();
+
+                let courseId = $(this).data('course-id');
+                addToCart(courseId);
+            })
         });
     </script>
 @endpush

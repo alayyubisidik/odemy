@@ -106,32 +106,58 @@
          </ul>
 
          <div class="right_menu">
-             <div class="menu_search_btn">
+             <div class="menu_search_btn" style="margin-right: 10px">
                  <img src="{{ asset('assets/frontend/dist/images/search_icon.png') }}" alt="Search"
                      class="img-fluid">
              </div>
              <ul>
-                 <li>
-                     <a class="menu_signin" href="{{ route('cart.index') }}">
-                         <span>
-                             <img src="{{ asset('assets/frontend/dist/images/cart_icon_black.png') }}" alt="user"
-                                 class="img-fluid">
-                         </span>
-                         <b>06</b>
-                     </a>
-                 </li>
-                 <li>
-                     <a class="admin" href="#">
-                         <span>
-                             <img src="{{ asset('assets/frontend/dist/images/user_icon_black.png') }}" alt="user"
-                                 class="img-fluid">
-                         </span>
-                         admin
-                     </a>
-                 </li>
-                 <li>
-                     <a class="common_btn" href="{{ route('login') }}">Sign In</a>
-                 </li>
+                 @auth
+                     <li>
+                         <a class="menu_signin" href="{{ route('cart.index') }}">
+                             <span>
+                                 <img src="{{ asset('assets/frontend/dist/images/cart_icon_black.png') }}" alt="user"
+                                     class="img-fluid">
+                             </span>
+                             <b id="cart-count">{{ cartCount() }}</b>
+                         </a>
+                     </li>
+                     @if (user()->role == 'student')
+                         <li>
+                             <a class="admin" href="{{ route('student.dashboard.index') }}">
+                                 <span>
+                                     <img src="{{ asset('assets/frontend/dist/images/user_icon_black.png') }}"
+                                         alt="user" class="img-fluid">
+                                 </span>
+                                 {{ user()->name }}
+                             </a>
+                         </li>
+                     @elseif (user()->role == 'instructor')
+                         <li>
+                             <a class="admin" href="{{ route('instructor.dashboard.index') }}">
+                                 <span>
+                                     <img src="{{ asset('assets/frontend/dist/images/user_icon_black.png') }}"
+                                         alt="user" class="img-fluid">
+                                 </span>
+                                 {{ user()->name }}
+                             </a>
+                         </li>
+                     @else
+                         <li>
+                             <a class="admin" href="{{ route('admin.dashboard.index') }}">
+                                 <span>
+                                     <img src="{{ asset('assets/frontend/dist/images/user_icon_black.png') }}"
+                                         alt="user" class="img-fluid">
+                                 </span>
+                                 {{ user()->name }}
+                             </a>
+                         </li>
+                     @endif
+                 @else
+                     <li>
+                         <a class="common_btn" href="{{ route('login') }}">Sign In</a>
+                     </li>
+
+                 @endauth
              </ul>
          </div>
 
@@ -156,7 +182,7 @@
  <div class="mobile_menu_area">
      <div class="mobile_menu_area_top">
          <a class="mobile_menu_logo" href="index.html">
-             <img src="{{ asset('assets/frontend/dist/images/logo.png') }}" alt="EduCore">
+             <img src="{{ asset(config('settings.site_logo')) }}" style="width: 125px !important" alt="EduCore">
          </a>
          <div class="mobile_menu_icon d-block d-lg-none" data-bs-toggle="offcanvas"
              data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">
@@ -169,199 +195,114 @@
                  class="fal fa-times"></i></button>
          <div class="offcanvas-body">
 
-             <ul class="mobile_menu_header d-flex flex-wrap">
-                 <li><a href="cart_view.html"><i class="far fa-shopping-basket"></i> <span>2</span></a>
-                 </li>
-                 <li><a href="dashboard.html"><i class="far fa-user"></i></a></li>
-             </ul>
+             @auth
+                 <ul class="mobile_menu_header d-flex flex-wrap">
+                     <li><a href="{{ route('cart.index') }}"><i class="far fa-shopping-basket"></i>
+                             <span id="cart-count">{{ cartCount() }}</span></a>
+                     </li>
 
-             <form class="mobile_menu_search">
-                 <input type="text" placeholder="Search">
+                     @if (user()->role == 'student')
+                         <li><a href="{{ route('student.dashboard.index') }}"><i class="far fa-user"></i></a></li>
+                     @elseif (user()->role == 'instructor')
+                         <li><a href="{{ route('instructor.dashboard.index') }}"><i class="far fa-user"></i></a></li>
+                     @else
+                         <li><a href="{{ route('admin.dashboard.index') }}"><i class="far fa-user"></i></a></li>
+                     @endif
+
+                 </ul>
+             @else
+                 <a href="{{ route('login') }}" class="common_btn">Sign In</a>
+
+             @endauth
+
+
+             <form class="mobile_menu_search" action="{{ route('courses.index') }}">
+                 <input type="text" placeholder="Search" name="search">
                  <button type="submit"><i class="far fa-search"></i></button>
              </form>
 
-             {{-- <div class="mobile_menu_item_area">
-                    <nav>
-                        <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                            <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab"
-                                data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home"
-                                aria-selected="true">menu</button>
-                            <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab"
-                                data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile"
-                                aria-selected="false">Categories</button>
-                        </div>
-                    </nav>
-                    <div class="tab-content" id="nav-tabContent">
-                        <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
-                            aria-labelledby="nav-home-tab" tabindex="0">
-                            <ul class="main_mobile_menu">
-                                <li class="mobile_dropdown">
-                                    <a href="#">home</a>
-                                    <ul class="inner_menu">
-                                        <li><a class="active" href="index.html">Home style 01</a></li>
-                                        <li><a href="index_2.html">Home style 02</a></li>
-                                        <li><a href="index_3.html">Home style 03</a></li>
-                                        <li><a href="index_4.html">Home style 04</a></li>
-                                        <li><a href="index_5_dark.html">Home Dark</a></li>
-                                    </ul>
-                                </li>
-                                <li class="mobile_dropdown">
-                                    <a href="#">courses</a>
-                                    <ul class="inner_menu">
-                                        <li><a href="courses.html">Courses</a></li>
-                                        <li><a href="courses_details.html">Course details</a></li>
-                                        <li><a href="course_video.html">Course video</a></li>
-                                    </ul>
-                                </li>
-                                <li class="mobile_dropdown">
-                                    <a href="#">shop</a>
-                                    <ul class="inner_menu">
-                                        <li><a href="products.html">product</a></li>
-                                        <li><a href="products_2.html">product 2</a></li>
-                                        <li><a href="product_details.html">product details</a></li>
-                                    </ul>
-                                </li>
-                                <li class="mobile_dropdown">
-                                    <a href="#">pages</a>
-                                    <ul class="inner_menu">
-                                        <li><a href="about.html">about us</a></li>
-                                        <li><a href="category.html">Categories</a></li>
-                                        <li><a href="cart_view.html">cart view</a></li>
-                                        <li><a href="checkout.html">checkout</a></li>
-                                        <li><a href="contact.html">contact</a></li>
-                                        <li><a href="payment.html">payment</a></li>
-                                        <li><a href="pricing.html">pricing</a></li>
-                                        <li><a href="student_reviews.html">student review</a></li>
-                                        <li><a href="instructor.html">Instructor</a></li>
-                                        <li><a href="instructor_details.html">Instructor details</a></li>
-                                        <li><a href="instructor_finder.html">Instructor finder</a></li>
-                                        <li><a href="error.html">error</a></li>
-                                        <li><a href="faq.html">faq</a></li>
-                                        <li><a href="sign_in.html">sign in</a></li>
-                                        <li><a href="sign_up.html">sign up</a></li>
-                                        <li><a href="forum.html">forum</a></li>
-                                        <li><a href="forum_categories.html">forum Categories</a></li>
-                                        <li><a href="forum_create_topic.html">forum create topic</a></li>
-                                        <li><a href="forum_single_topic.html">forum single topic</a></li>
-                                        <li><a href="dashboard.html">Dashboard</a></li>
-                                    </ul>
-                                </li>
-                                <li class="mobile_dropdown">
-                                    <a href="#">blog</a>
-                                    <ul class="inner_menu">
-                                        <li><a href="blogs.html">blog grid view</a></li>
-                                        <li><a href="blog_list.html">blog list view</a></li>
-                                        <li><a href="blog_details.html">blog details</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab"
-                            tabindex="0">
-                            <ul class="main_mobile_menu">
-                                <li class="mobile_dropdown">
-                                    <a href="#">
-                                        <span>
-                                            <img src="images/menu_category_icon_1.png" alt="Category" class="img-fluid">
-                                        </span>
-                                        Development
-                                    </a>
-                                    <ul class="inner_menu">
-                                        <li><a href="courses_details.html">Web Design</a></li>
-                                        <li><a href="courses_details.html">Web Development</a></li>
-                                        <li><a href="courses_details.html">UI/UX Design</a></li>
-                                        <li><a href="courses_details.html">Graphic Design</a></li>
-                                    </ul>
-                                </li>
-                                <li class="mobile_dropdown">
-                                    <a href="#">
-                                        <span>
-                                            <img src="images/menu_category_icon_2.png" alt="Category" class="img-fluid">
-                                        </span>
-                                        Business
-                                    </a>
-                                    <ul class="inner_menu">
-                                        <li><a href="courses_details.html">Web Design</a></li>
-                                        <li><a href="courses_details.html">Web Development</a></li>
-                                        <li><a href="courses_details.html">UI/UX Design</a></li>
-                                        <li><a href="courses_details.html">Graphic Design</a></li>
-                                    </ul>
-                                </li>
-                                <li class="mobile_dropdown">
-                                    <a href="#">
-                                        <span>
-                                            <img src="images/menu_category_icon_3.png" alt="Category" class="img-fluid">
-                                        </span>
-                                        Marketing
-                                    </a>
-                                    <ul class="inner_menu">
-                                        <li><a href="courses_details.html">Web Design</a></li>
-                                        <li><a href="courses_details.html">Web Development</a></li>
-                                        <li><a href="courses_details.html">UI/UX Design</a></li>
-                                        <li><a href="courses_details.html">Graphic Design</a></li>
-                                    </ul>
-                                </li>
-                                <li class="mobile_dropdown">
-                                    <a href="#">
-                                        <span>
-                                            <img src="images/menu_category_icon_4.png" alt="Category" class="img-fluid">
-                                        </span>
-                                        Lifestyle
-                                    </a>
-                                    <ul class="inner_menu">
-                                        <li><a href="courses_details.html">Web Design</a></li>
-                                        <li><a href="courses_details.html">Web Development</a></li>
-                                        <li><a href="courses_details.html">UI/UX Design</a></li>
-                                        <li><a href="courses_details.html">Graphic Design</a></li>
-                                    </ul>
-                                </li>
-                                <li class="mobile_dropdown">
-                                    <a href="#">
-                                        <span>
-                                            <img src="images/menu_category_icon_5.png" alt="Category" class="img-fluid">
-                                        </span>
-                                        Health & Fitness
-                                    </a>
-                                    <ul class="inner_menu">
-                                        <li><a href="courses_details.html">Web Design</a></li>
-                                        <li><a href="courses_details.html">Web Development</a></li>
-                                        <li><a href="courses_details.html">UI/UX Design</a></li>
-                                        <li><a href="courses_details.html">Graphic Design</a></li>
-                                    </ul>
-                                </li>
-                                <li class="mobile_dropdown">
-                                    <a href="#">
-                                        <span>
-                                            <img src="images/menu_category_icon_6.png" alt="Category" class="img-fluid">
-                                        </span>
-                                        Design
-                                    </a>
-                                    <ul class="inner_menu">
-                                        <li><a href="courses_details.html">Web Design</a></li>
-                                        <li><a href="courses_details.html">Web Development</a></li>
-                                        <li><a href="courses_details.html">UI/UX Design</a></li>
-                                        <li><a href="courses_details.html">Graphic Design</a></li>
-                                    </ul>
-                                </li>
-                                <li class="mobile_dropdown">
-                                    <a href="#">
-                                        <span>
-                                            <img src="images/menu_category_icon_7.png" alt="Category" class="img-fluid">
-                                        </span>
-                                        Academics
-                                    </a>
-                                    <ul class="inner_menu">
-                                        <li><a href="courses_details.html">Web Design</a></li>
-                                        <li><a href="courses_details.html">Web Development</a></li>
-                                        <li><a href="courses_details.html">UI/UX Design</a></li>
-                                        <li><a href="courses_details.html">Graphic Design</a></li>
-                                    </ul>
-                                </li>
+             <div class="mobile_menu_item_area">
+                 <nav>
+                     <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                         <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab"
+                             data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home"
+                             aria-selected="true">menu</button>
+                         <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab"
+                             data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile"
+                             aria-selected="false">Categories</button>
+                     </div>
+                 </nav>
+                 <div class="tab-content" id="nav-tabContent">
+                     <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
+                         aria-labelledby="nav-home-tab" tabindex="0">
+                         <ul class="main_mobile_menu">
+                             <li class="">
+                                 <a href="{{ route('index') }}">Home</a>
+                             </li>
+                             <li class="">
+                                 <a href="{{ route('about-us.index') }}">About Us</a>
+                             </li>
+                             <li class="">
+                                 <a href="{{ route('contact.index') }}">Contact Us</a>
+                             </li>
+                             <li class="">
+                                 <a href="{{ route('blogs.index') }}">Blog</a>
+                             </li>
+                             <li class="mobile_dropdown">
+                                 <a href="#">pages</a>
+                                 <ul class="inner_menu">
+                                     @foreach ($custom_pages as $page)
+                                         <li>
+                                             <a class="" href="{{ route('custom-pages', $page->slug) }}">
+                                                 {{ $page->title }}
+                                             </a>
+                                         </li>
+                                     @endforeach
+                                 </ul>
+                             </li>
 
-                            </ul>
-                        </div>
-                    </div>
-                </div> --}}
+                         </ul>
+                     </div>
+                     <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab"
+                         tabindex="0">
+                         <ul class="main_mobile_menu">
+
+                             @foreach ($categories as $category)
+                                 <li class="mobile_dropdown">
+
+                                     <a href="javascript:void(0)">
+
+                                         <span>
+                                             <img src="{{ asset($category->icon) }}" alt="Category"
+                                                 class="img-fluid">
+                                         </span>
+
+                                         {{ $category->name }}
+
+                                     </a>
+
+                                     @if ($category->subCategories->count() > 0)
+                                         <ul class="inner_menu">
+
+                                             @foreach ($category->subCategories as $subCategory)
+                                                 <li>
+                                                     <a
+                                                         href="{{ route('courses.index', ['category' => $subCategory->id]) }}">
+                                                         {{ $subCategory->name }}
+                                                     </a>
+                                                 </li>
+                                             @endforeach
+
+                                         </ul>
+                                     @endif
+
+                                 </li>
+                             @endforeach
+
+                         </ul>
+                     </div>
+                 </div>
+             </div>
          </div>
      </div>
  </div>

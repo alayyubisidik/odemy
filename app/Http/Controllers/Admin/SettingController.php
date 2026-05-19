@@ -24,7 +24,18 @@ class SettingController extends Controller
             "site_email" => ["nullable", "email", "max:255"],
             "site_phone" => ["nullable", "string", "max:255"],
             "site_location" => ["nullable"],
+            "site_logo" => ["nullable", "image", "max:2000"],
         ]);
+
+        if ($request->hasFile('site_logo')) {
+            $oldPath = config('settings.site_logo') ?? null;
+
+            $validatedData['site_logo'] = $this->uploadFile(
+                $request->file('site_logo'),
+                $oldPath,
+                'site-logo'
+            );
+        }
 
         foreach ($validatedData as $key => $value) {
             Setting::updateOrCreate(

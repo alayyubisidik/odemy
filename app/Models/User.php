@@ -64,4 +64,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(InstructorGatewayInformation::class, 'instructor_id');
     }
+
+    public function students(): HasMany
+    {
+        return $this->hasMany(Enrollment::class, 'instructor_id', 'id');
+    }
 }

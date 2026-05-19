@@ -6,10 +6,10 @@
         <h2 class="mb-4">General Settings</h2>
 
 
-        <form action="{{ route('admin.settings.store') }}" method="post">
+        <form action="{{ route('admin.settings.store') }}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="row g-3">
-                <div class="col-md-12">
+                <div class="col-md-6">
                     <div class="form-label">Site Name</div>
                     <input type="text" class="form-control" name="site_name" value="{{ config('settings.site_name') }}">
                     <x-input-error :messages="$errors->get('site_name')" class="mt-2" />
@@ -26,11 +26,24 @@
                         value="{{ config('settings.site_phone') }}">
                     <x-input-error :messages="$errors->get('site_phone')" class="mt-2" />
                 </div>
-                <div class="col-md-12">
+                <div class="col-md-6">
                     <div class="form-label">Site Location</div>
                     <input type="text" class="form-control" name="site_location"
                         value="{{ config('settings.site_location') }}">
                     <x-input-error :messages="$errors->get('site_location')" class="mt-2" />
+                </div>
+                <div class="col-md-12 mb-2">
+                    <div class="mb-3">
+                        <label class="form-label">Site Logo </label>
+                        <x-input-error :messages="$errors->get('site_logo')" />
+                        <div class="image-preview-box">
+                            <input type="file" name="site_logo" id="image-upload-one" accept="image/*"
+                                class="form-control" />
+                            <img id="image-preview-one" class="img-preview" alt="Logo Preview"
+                                src="{{ config('settings.site_logo') ? asset(config('settings.site_logo')) : '' }}"
+                                style="width: 200px; border-radius: 5px; margin-top: 20px; display: none; {{ config('settings.site_logo') ? 'display: block;' : '' }}" />
+                        </div>
+                    </div>
                 </div>
 
             </div>

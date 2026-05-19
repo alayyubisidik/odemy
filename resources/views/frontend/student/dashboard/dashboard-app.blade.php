@@ -1,23 +1,8 @@
 @extends('frontend.layouts.app')
 
 @section('content')
-    <section class="wsus__breadcrumb" style="background: url(images/breadcrumb_bg.jpg);">
-        <div class="wsus__breadcrumb_overlay">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12 wow fadeInUp">
-                        <div class="wsus__breadcrumb_text">
-                            <h1>Student Dashboard</h1>
-                            <ul>
-                                <li><a href="/">Home</a></li>
-                                <li>Student Dashboard</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+       <x-breadcrumb title="Student Dashboard" />
+
 
     <section class="wsus__dashboard mt_90 xs_mt_70 pb_120 xs_pb_100">
         <div class="container">
@@ -39,9 +24,8 @@
                             <li>
                                 <a href="{{ route('student.dashboard.index') }}"
                                     class="{{ setActive(['student.dashboard.*']) }}">
-                                    <div class="img">
-                                        <img src="{{ asset('assets/frontend/dist/images/dash_icon_8.png') }}" alt="icon"
-                                            class="img-fluid w-100">
+                                    <div class="icon-wrapper">
+                                        <i class="ti ti-chart-pie-2 icon-fe"></i>
                                     </div>
                                     Dashboard
                                 </a>
@@ -49,33 +33,30 @@
                             <li>
                                 <a href="{{ route('student.profile.index') }}"
                                     class="{{ setActive(['student.profile.*']) }}">
-                                    <div class="img">
-                                        <img src="{{ asset('assets/frontend/dist/images/dash_icon_8.png') }}" alt="icon"
-                                            class="img-fluid w-100">
+                                    <div class="icon-wrapper">
+                                        <i class="ti ti-user icon-fe"></i>
                                     </div>
                                     Profile
                                 </a>
-                            </li>
+                            </li> 
                             <li>
                                 <a href="{{ route('student.my-learning.index') }}"
                                     class="{{ setActive(['student.my-learning.*']) }}">
-                                    <div class="img">
-                                        <img src="{{ asset('assets/frontend/dist/images/dash_icon_8.png') }}" alt="icon"
-                                            class="img-fluid w-100">
+                                    <div class="icon-wrapper">
+                                      <i class="ti ti-brand-parsinta icon-fe"></i>
                                     </div>
                                     My Learning
                                 </a>
                             </li>
-                            {{-- <li>
+                            <li>
                                 <a href="{{ route('student.reviews.index') }}"
                                     class="{{ setActive(['student.reviews.*']) }}">
-                                    <div class="img">
-                                        <img src="{{ asset('assets/frontend/dist/images/dash_icon_8.png') }}" alt="icon"
-                                            class="img-fluid w-100">
+                                    <div class="icon-wrapper">
+                                      <i class="ti ti-message icon-fe"></i>
                                     </div>
                                     My Reviews
                                 </a>
-                            </li> --}}
+                            </li>
                             @if (user()->approve_status == 'approved')
                             @endif
                             @if (user()->document)
@@ -92,9 +73,8 @@
                                 <li>
                                     <a href="{{ route('student.become-instructor.index') }}"
                                         class="{{ setActive(['student.become-instructor.*']) }}">
-                                        <div class="img">
-                                            <img src="{{ asset('assets/frontend/dist/images/dash_icon_8.png') }}"
-                                                alt="icon" class="img-fluid w-100">
+                                        <div class="icon-wrapper">
+                                           <i class="ti ti-chalkboard-teacher icon-fe"></i>
                                         </div>
                                         Become Instructor
                                     </a>
@@ -107,9 +87,8 @@
 
                                     <a href="#" style="cursor:pointer" onclick="confirmLogout(event)">
 
-                                        <div class="img">
-                                            <img src="{{ asset('assets/frontend/dist/images/dash_icon_16.png') }}"
-                                                alt="icon" class="img-fluid w-100">
+                                        <div class="icon-wrapper">
+                                            <i class="ti ti-arrow-bar-right icon-fe"></i>
                                         </div>
 
                                         Sign Out

@@ -45,6 +45,12 @@ class UserController extends Controller
             $query->where('gender', $request->gender);
         }
 
+        // Filter role
+        if ($request->filled('role')) {
+
+            $query->where('role', $request->role);
+        }
+
         $users = $query
             ->latest()
             ->paginate(10)
@@ -52,7 +58,6 @@ class UserController extends Controller
 
         return view('admin.dashboard.user.index', compact('users'));
     }
-
     /**
      * Show the form for creating a new resource.
      */
@@ -117,9 +122,7 @@ class UserController extends Controller
         return view('admin.dashboard.user.edit', compact('user'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */ public function update(Request $request, User $user)
+    public function update(Request $request, User $user)
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
@@ -129,6 +132,22 @@ class UserController extends Controller
             'role' => 'required|in:admin,student,instructor',
             'is_blocked' => 'required|boolean',
         ]);
+
+        // Cegah jika admin terakhir ingin diubah role
+        if (
+            $user->role === 'admin' &&
+            $validated['role'] !== 'admin'
+        ) {
+
+            $adminCount = User::where('role', 'admin')->count();
+
+            if ($adminCount <= 1) {
+
+                AlertService::error('At least one admin account must remain.');
+                return redirect()
+                    ->back();
+            }
+        }
 
         // Upload image
         if ($request->hasFile('image')) {
@@ -167,9 +186,6 @@ class UserController extends Controller
 
         return redirect()->route('admin.users.index');
     }
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(User $user)
     {
         // Prevent self delete
