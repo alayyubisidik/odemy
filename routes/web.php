@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Frontend\BlogController;
 use App\Http\Controllers\Admin\PayoutGatewayController;
 use App\Http\Controllers\Auth\SocialiteController;
 use App\Http\Controllers\Frontend\CartController;
@@ -21,6 +22,16 @@ Route::get('contact', [FrontendController::class, 'contact'])->name('contact.ind
 Route::post('contact', [FrontendController::class, 'contactStore'])->name('contact.store');
 
 Route::get('page/{slug}', [FrontendController::class, 'customPage'])->name('custom-pages');
+
+Route::get('blogs', [BlogController::class, 'index'])->name('blogs.index');
+
+Route::get('blogs/{slug}', [BlogController::class, 'show'])->name('blogs.show');
+
+Route::post('blogs/comment/{id}', [BlogController::class, 'storeComment'])->name('blogs.comment.store');
+
+
+
+
 
 
 

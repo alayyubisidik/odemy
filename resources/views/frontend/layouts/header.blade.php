@@ -88,11 +88,11 @@
              <li class="nav-item">
                  <a class="nav-link" href="#">pages <i class="far fa-angle-down"></i></a>
                  <ul class="droap_menu">
-                     {{-- <li>
+                     <li>
                          <a class="" href="{{ route('blogs.index') }}">
                              Blog
                          </a>
-                     </li> --}}
+                     </li>
                      @foreach ($custom_pages as $page)
                          <li>
                              <a class="" href="{{ route('custom-pages', $page->slug) }}">
@@ -366,5 +366,5 @@
      </div>
  </div>
  <!--============================
-        STICKY MENU END
+b        STICKY MENU END
     ==============================-->
