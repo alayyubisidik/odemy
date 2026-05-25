@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Notification;
+use App\Models\User;
 use App\Models\Withdraw;
 use App\Services\AlertService;
 use Illuminate\Http\Request;
@@ -42,13 +44,30 @@ class WithdrawController extends Controller
         $amount = str_replace('.', '', $request->amount);
 
         $withdraw = new Withdraw();
+
         $withdraw->instructor_id = user()->id;
+
         $withdraw->amount = $amount;
+
         $withdraw->save();
+
+        $admins = User::where('role', 'admin')->get();
+
+        foreach ($admins as $admin) {
+
+            Notification::create([
+                'user_id' => $admin->id,
+                'type' => 'admin_instructor_payout_request',
+                'title' => 'New Payout Request',
+                'message' => user()->name . ' submitted a payout request.',
+                'url' => route('admin.withdraw-requests.index'),
+                'icon' => 'ti ti-wallet',
+                'color' => 'warning',
+            ]);
+        }
 
         AlertService::created('Withdraw reqeuest created');
 
         return to_route('instructor.withdraws.index');
     }
 }
-

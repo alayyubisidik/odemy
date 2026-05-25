@@ -22,6 +22,7 @@ use App\Http\Controllers\Admin\FooterController;
 use App\Http\Controllers\Admin\HeroSectionController;
 use App\Http\Controllers\Admin\InstructorRequestController;
 use App\Http\Controllers\Admin\LatestCourseSectionController;
+use App\Http\Controllers\Admin\NotificationController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\PayoutGatewayController;
 use App\Http\Controllers\Admin\SettingController;
@@ -141,4 +142,14 @@ Route::middleware(['auth', 'role:admin'])
         Route::put('blogs/comment/{blogComment}/changeStatus', [BlogController::class, 'changeStatus'])->name('blogs-comment.change-status');
 
         Route::resource('blogs', BlogController::class);
+
+        Route::get(
+            'admin/notifications/{id}/read',
+            [NotificationController::class, 'read']
+        )->name('notifications.read');
+
+        Route::delete(
+            'admin/notifications/delete-all',
+            [NotificationController::class, 'deleteAll']
+        )->name('notifications.delete-all');
     });

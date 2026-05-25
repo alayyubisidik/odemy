@@ -37,7 +37,7 @@
                                 <li>
                                     <span><img src="{{ asset('assets/frontend/dist/images/globe_icon_blue.png') }}"
                                             alt="Globe" class="img-fluid"></span>
-                                    {{ $course->category->name }}
+                                    {{ $course->category->name ?? '-' }}
                                 </li>
                                 <li>
                                     <span>
@@ -414,7 +414,7 @@
                                                 alt="network" class="img-fluid"></span>
                                         Level
                                     </p>
-                                    {{ $course->level->name }}
+                                    {{ $course->level->name ?? '-' }}
                                 </li>
                                 <li>
                                     <p>
@@ -431,7 +431,7 @@
                                                 alt="Language" class="img-fluid"></span>
                                         Language
                                     </p>
-                                    {{ $course->language->name }}
+                                    {{ $course->language->name ?? '-' }}
                                 </li>
                             </ul>
                             <a class="common_btn add_to_cart" href="#" data-course-id="{{ $course->id }}">Add to

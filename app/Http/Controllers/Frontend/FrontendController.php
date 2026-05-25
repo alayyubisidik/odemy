@@ -16,6 +16,7 @@ use App\Models\FeaturedInstructorSection;
 use App\Models\FeatureSection;
 use App\Models\HeroSection;
 use App\Models\LatestCourseSection;
+use App\Models\Newsletter;
 use App\Models\TestimonialSection;
 use App\Models\VideoSection;
 use App\Services\AlertService;
@@ -86,4 +87,22 @@ class FrontendController extends Controller
         $page = CustomPage::where('slug', $slug)->first();
         return view('frontend.pages.custom-page', compact('page'));
     }
+
+    function newsletter(Request $request) {
+        $request->validate([
+            'email' => 'required|email|unique:newsletters,email'
+        ], [
+            'email.required' => 'Email is required.',
+            'email.email' => 'Please enter a valid email address.',
+            'email.unique' => 'This email is already subscribed to the newsletter.'
+        ]);
+
+        // Store the email in the database
+        Newsletter::create([
+            'email' => $request->email
+        ]);
+
+        return response()->json(['message' => 'Thank you for subscribing to our newsletter!']);
+    }
+
 }

@@ -25,6 +25,7 @@ class SettingController extends Controller
             "site_phone" => ["nullable", "string", "max:255"],
             "site_location" => ["nullable"],
             "site_logo" => ["nullable", "image", "max:2000"],
+            "site_favicon" => ["nullable", "image", "max:2000"],
         ]);
 
         if ($request->hasFile('site_logo')) {
@@ -34,6 +35,16 @@ class SettingController extends Controller
                 $request->file('site_logo'),
                 $oldPath,
                 'site-logo'
+            );
+        }
+
+        if ($request->hasFile('site_favicon')) {
+            $oldPath = config('settings.site_favicon') ?? null;
+
+            $validatedData['site_favicon'] = $this->uploadFile(
+                $request->file('site_favicon'),
+                $oldPath,
+                'site-favicon'
             );
         }
 

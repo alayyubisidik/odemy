@@ -258,6 +258,7 @@
 
                                     </td>
 
+
                                     <td>
 
                                         @if ($user->is_blocked)

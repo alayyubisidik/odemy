@@ -14,13 +14,27 @@
                         <div class="col-md-12 mb-2">
                             <div class="mb-3">
                                 <label class="form-label">Image One</label>
+
                                 <x-input-error :messages="$errors->get('image_one')" />
-                                <div class="image-preview-box">
-                                    <input type="file" name="image_one" id="image-upload-one" accept="image/*"
-                                        class="form-control" />
-                                    <img id="image-preview-one" class="img-preview" alt="Logo Preview"
-                                        src="{{ asset($feature?->image_one) }}"
-                                        style="width: 200px; border-radius: 5px; margin-top: 20px; display: none {{ $feature?->image_one ? 'display: none;' : '' }}" />
+
+                                <div class="image-upload-wrapper">
+
+                                    <!-- Preview -->
+                                    <div class="image-preview-container">
+                                        <img id="image-preview-one"
+                                            src="{{ $feature->image_one ? asset($feature->image_one) : asset('assets/images/img-placeholder.png') }}"
+                                            alt="Preview" style="background: gray">
+                                    </div>
+
+                                    <!-- Input -->
+                                    <div class="image-input-container">
+                                        <input type="file" name="image_one" id="image-upload-one" accept="image/*">
+
+                                        <p class="text-muted" style="margin-top: 3px">
+                                            Click to upload image
+                                        </p>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -46,18 +60,31 @@
                         <div class="col-md-12 mb-2">
                             <div class="mb-3">
                                 <label class="form-label">Image Two</label>
+
                                 <x-input-error :messages="$errors->get('image_two')" />
-                                <div class="image-preview-box">
-                                    <input type="file" name="image_two" id="image-upload-two" accept="image/*"
-                                        class="form-control" />
-                                    <img id="image-preview-two" class="img-preview" alt="Logo Preview"
-                                        src="{{ asset($feature?->image_two) }}"
-                                        style="width: 200px; border-radius: 5px; margin-top: 20px; display: none {{ $feature?->image_two ? 'display: none;' : '' }}" />
+
+                                <div class="image-upload-wrapper">
+
+                                    <!-- Preview -->
+                                    <div class="image-preview-container">
+                                        <img id="image-preview-two"
+                                            src="{{ $feature->image_two ? asset($feature->image_two) : asset('assets/images/img-placeholder.png') }}"
+                                            alt="Preview" style="background: gray">
+                                    </div>
+
+                                    <!-- Input -->
+                                    <div class="image-input-container">
+                                        <input type="file" name="image_two" id="image-upload-two" accept="image/*">
+
+                                        <p class="text-muted" style="margin-top: 3px">
+                                            Click to upload image
+                                        </p>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
-
-                           <div class="col-6">
+                        <div class="col-6">
                             <div class="mb-3">
                                 <label class="form-label required" for="title_two">Title Two</label>
                                 <input type="text" class="form-control" name="title_two" id="title_two"
@@ -78,18 +105,31 @@
                         <div class="col-md-12 mb-2">
                             <div class="mb-3">
                                 <label class="form-label">Image Three</label>
+
                                 <x-input-error :messages="$errors->get('image_three')" />
-                                <div class="image-preview-box">
-                                    <input type="file" name="image_three" id="image-upload-three" accept="image/*"
-                                        class="form-control" />
-                                    <img id="image-preview-three" class="img-preview" alt="Logo Preview"
-                                        src="{{ asset($feature?->image_three) }}"
-                                        style="width: 200px; border-radius: 5px; margin-top: 20px; display: none {{ $feature?->image_three ? 'display: none;' : '' }}" />
+
+                                <div class="image-upload-wrapper">
+
+                                    <!-- Preview -->
+                                    <div class="image-preview-container">
+                                        <img id="image-preview-three"
+                                            src="{{ $feature->image_three ? asset($feature->image_three) : asset('assets/images/img-placeholder.png') }}"
+                                            alt="Preview" style="background: gray">
+                                    </div>
+
+                                    <!-- Input -->
+                                    <div class="image-input-container">
+                                        <input type="file" name="image_three" id="image-upload-three" accept="image/*">
+
+                                        <p class="text-muted" style="margin-top: 3px">
+                                            Click to upload image
+                                        </p>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
-
-                           <div class="col-6">
+                        <div class="col-6">
                             <div class="mb-3">
                                 <label class="form-label required" for="title_three">Title Three</label>
                                 <input type="text" class="form-control" name="title_three" id="title_three"

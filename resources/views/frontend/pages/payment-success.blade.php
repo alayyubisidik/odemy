@@ -44,9 +44,9 @@
 
                         <div class="d-flex justify-content-center gap-3 flex-wrap">
 
-                            <a href="" class="common_btn">
+                            <a href="{{ route('student.my-learning.index') }}" class="common_btn">
 
-                                View Orders
+                                View Courses
                             </a>
 
                             <a href="{{ route('courses.index') }}" class="common_btn bg-dark">

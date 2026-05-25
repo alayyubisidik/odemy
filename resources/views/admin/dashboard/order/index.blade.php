@@ -15,7 +15,6 @@
                                 <th>Name</th>
                                 <th>Amount</th>
                                 <th>Paid Amount</th>
-                                <th>Currency</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
@@ -30,10 +29,9 @@
                                     </td>
                                     <td>{{ $order->total_amount }}</td>
                                     <td>{{ $order->paid_amount }}</td>
-                                    <td>{{ $order->currency }}</td>
                                     <td>
                                         @if ($order->status == 'approved')
-                                            <span class="badge bg-success-lt">Approved</span>
+                                            <span class="badge bg-success-lt">Paid</span>
                                         @elseif ($order->status == 'pending')
                                             <span class="badge bg-warning-lt">Pending</span>
                                         @endif

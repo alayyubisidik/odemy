@@ -75,14 +75,28 @@
 
                         <div class="col-md-12 mb-2">
                             <div class="mb-3">
-                                <label class="form-label">Instructor Image </label>
+                                <label class="form-label">Instructor Image</label>
+
                                 <x-input-error :messages="$errors->get('instructor_image')" />
-                                <div class="image-preview-box">
-                                    <input type="file" name="instructor_image" id="image-upload-one" accept="image/*"
-                                        class="form-control" />
-                                    <img id="image-preview-one" class="img-preview" alt="Logo Preview"
-                                        src="{{ asset($featuredInstructorSection?->instructor_image) }}"
-                                        style="width: 200px; border-radius: 5px; margin-top: 20px; display: none {{ $featuredInstructorSection?->instructor_image ? 'display: none;' : '' }}" />
+
+                                <div class="image-upload-wrapper">
+
+                                    <!-- Preview -->
+                                    <div class="image-preview-container">
+                                        <img id="image-preview-one"
+                                            src="{{ $featuredInstructorSection->instructor_image ? asset($featuredInstructorSection->instructor_image) : asset('assets/images/img-placeholder.png') }}"
+                                            alt="Preview">
+                                    </div>
+
+                                    <!-- Input -->
+                                    <div class="image-input-container">
+                                        <input type="file" name="instructor_image" id="image-upload-one" accept="image/*">
+
+                                        <p class="text-muted" style="margin-top: 3px">
+                                            Click to upload image
+                                        </p>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>

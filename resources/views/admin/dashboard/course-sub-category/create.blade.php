@@ -6,24 +6,36 @@
             <div class="card-header">
                 <h3 class="card-title">Create Course Sub Category of ({{ $courseCategory->name }})</h3>
                 <div class="card-actions">
-                    <a href="{{ route('admin.course-sub-categories.index', $courseCategory) }}" class="btn btn-primary">Back</a>
+                    <a href="{{ route('admin.course-sub-categories.index', $courseCategory) }}"
+                        class="btn btn-primary">Back</a>
                 </div>
             </div>
             <div class="card-body">
-                <form action="{{ route('admin.course-sub-categories.store', $courseCategory) }}" method="post" enctype="multipart/form-data">
+                <form action="{{ route('admin.course-sub-categories.store', $courseCategory) }}" method="post"
+                    enctype="multipart/form-data">
                     @csrf
                     <div class="row">
 
                         <div class="col-md-12 mb-2">
                             <div class="mb-3">
                                 <label class="form-label">Icon</label>
-                                <div class="image-preview-box">
-                                    <input type="file" name="icon" id="image-upload-one" accept="image/*"
-                                        class="form-control" />
-                                    <img id="image-preview-one" class="img-preview" alt="Logo Preview" src=""
-                                        style="width: 170px; border-radius: 5px; margin-top: 20px; display: none" />
+                                <x-input-error :messages="$errors->get('icon')" />
+
+                                <div class="image-upload-wrapper">
+
+                                    <!-- Kiri: Preview -->
+                                    <div class="image-preview-container">
+                                        <img id="image-preview-two" src="{{ asset('assets/images/img-placeholder.png') }}"
+                                            alt="Preview">
+                                    </div>
+
+                                    <!-- Kanan: Input -->
+                                    <div class="image-input-container">
+                                        <input type="file" name="icon" id="image-upload-two" accept="image/*">
+                                        <p class="text-muted" style="margin-top: 3px">Click to upload image</p>
+                                    </div>
+
                                 </div>
-                                <x-input-error :messages="$errors->get('icon')" class="mt-2" />
                             </div>
                         </div>
 
@@ -57,8 +69,7 @@
                             </div>
                             <div class="mb-2">
                                 <label for="" class="form-check form-switch form-switch-3">
-                                    <input type="checkbox" class="form-check-input" value="1"
-                                        name="is_trending">
+                                    <input type="checkbox" class="form-check-input" value="1" name="is_trending">
                                     <span class="form-check-label">Is Trending</span>
                                     <x-input-error :messages="$errors->get('is_trending')" class="mt-2" />
 

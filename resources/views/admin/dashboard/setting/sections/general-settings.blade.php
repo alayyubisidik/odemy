@@ -34,18 +34,58 @@
                 </div>
                 <div class="col-md-12 mb-2">
                     <div class="mb-3">
-                        <label class="form-label">Site Logo </label>
+                        <label class="form-label">Site Logo</label>
+
                         <x-input-error :messages="$errors->get('site_logo')" />
-                        <div class="image-preview-box">
-                            <input type="file" name="site_logo" id="image-upload-one" accept="image/*"
-                                class="form-control" />
-                            <img id="image-preview-one" class="img-preview" alt="Logo Preview"
-                                src="{{ config('settings.site_logo') ? asset(config('settings.site_logo')) : '' }}"
-                                style="width: 200px; border-radius: 5px; margin-top: 20px; display: none; {{ config('settings.site_logo') ? 'display: block;' : '' }}" />
+
+                        <div class="image-upload-wrapper">
+
+                            <!-- Preview -->
+                            <div class="image-preview-container">
+                                <img id="image-preview-one"
+                                    src="{{ config('settings.site_logo') ? asset(config('settings.site_logo')) : asset('assets/images/img-placeholder.png') }}"
+                                    alt="Preview">
+                            </div>
+
+                            <!-- Input -->
+                            <div class="image-input-container">
+                                <input type="file" name="site_logo" id="image-upload-one" accept="image/*">
+
+                                <p class="text-muted" style="margin-top: 3px">
+                                    Click to upload image
+                                </p>
+                            </div>
+
                         </div>
                     </div>
                 </div>
+                <div class="col-md-12 mb-2">
+                    <div class="mb-3">
+                        <label class="form-label">Site Favicon</label>
 
+                        <x-input-error :messages="$errors->get('site_favicon')" />
+
+                        <div class="image-upload-wrapper">
+
+                            <!-- Preview -->
+                            <div class="image-preview-container">
+                                <img id="image-preview-one"
+                                    src="{{ config('settings.site_favicon') ? asset(config('settings.site_favicon')) : asset('assets/images/img-placeholder.png') }}"
+                                    alt="Preview">
+                            </div>
+
+                            <!-- Input -->
+                            <div class="image-input-container">
+                                <input type="file" name="site_favicon" id="image-upload-one" accept="image/*">
+
+                                <p class="text-muted" style="margin-top: 3px">
+                                    Click to upload image
+                                </p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="btn-list justify-content-end">
                 <button type="submit" class="btn btn-primary btn-2 mt-5"> Submit </button>

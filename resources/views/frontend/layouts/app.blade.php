@@ -10,7 +10,7 @@
     @stack('meta')
     <title>EduCore - Online Courses & Education HTML Template</title>
     <link rel="icon" type="image/png" href="{{ asset(config('settings.site_favicon')) }}">
-
+    <link rel="shortcut icon" href="{{ asset(config('settings.site_icon')) }}" type="image/x-icon">
 
     <link rel="stylesheet" href="{{ asset('assets/frontend/dist/css/all.min.css') }}">
 

@@ -7,23 +7,37 @@
                 <h3 class="card-title">Video Section Management</h3>
             </div>
             <div class="card-body">
-                <form action="{{ route('admin.video-sections.store') }}" method="post"
-                    enctype="multipart/form-data">
+                <form action="{{ route('admin.video-sections.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
                         <div class="col-md-12 mb-2">
                             <div class="mb-3">
-                                <label class="form-label">Background </label>
+                                <label class="form-label">Background</label>
+
                                 <x-input-error :messages="$errors->get('background')" />
-                                <div class="image-preview-box">
-                                    <input type="file" name="background" id="image-upload-one" accept="image/*"
-                                        class="form-control" />
-                                    <img id="image-preview-one" class="img-preview" alt="Logo Preview"
-                                        src="{{ asset($videoSection?->background) }}"
-                                        style="width: 200px; border-radius: 5px; margin-top: 20px; display: none {{ $videoSection?->background ? 'display: none;' : '' }}" />
+
+                                <div class="image-upload-wrapper">
+
+                                    <!-- Preview -->
+                                    <div class="image-preview-container">
+                                        <img id="image-preview-three"
+                                            src="{{ $videoSection->background ? asset($videoSection->background) : asset('assets/images/img-placeholder.png') }}"
+                                            alt="Preview" style="background: gray">
+                                    </div>
+
+                                    <!-- Input -->
+                                    <div class="image-input-container">
+                                        <input type="file" name="background" id="image-upload-three" accept="image/*">
+
+                                        <p class="text-muted" style="margin-top: 3px">
+                                            Click to upload image
+                                        </p>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
+
 
                         <div class="col-6">
                             <div class="mb-3">

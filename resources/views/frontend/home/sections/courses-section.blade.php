@@ -1,9 +1,9 @@
 @php
-    $category_one = \App\Models\CourseCategory::where('id', $latestCourses->category_one)->first();
-    $category_two = \App\Models\CourseCategory::where('id', $latestCourses->category_two)->first();
-    $category_three = \App\Models\CourseCategory::where('id', $latestCourses->category_three)->first();
-    $category_four = \App\Models\CourseCategory::where('id', $latestCourses->category_four)->first();
-    $category_five = \App\Models\CourseCategory::where('id', $latestCourses->category_five)->first();
+    $category_one = \App\Models\CourseCategory::find($latestCourses?->category_one);
+    $category_two = \App\Models\CourseCategory::find($latestCourses?->category_two);
+    $category_three = \App\Models\CourseCategory::find($latestCourses?->category_three);
+    $category_four = \App\Models\CourseCategory::find($latestCourses?->category_four);
+    $category_five = \App\Models\CourseCategory::find($latestCourses?->category_five);
 @endphp
 
 <section class="wsus__courses_3 pt_120 xs_pt_100 mt_120 xs_mt_90 pb_120 xs_pb_100">

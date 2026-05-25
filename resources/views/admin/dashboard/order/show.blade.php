@@ -224,10 +224,9 @@
                     <h3>Company</h3>
 
                     <p>
-                        Street Address <br>
-                        State, City <br>
-                        Region, Postal Code <br>
-                        company@example.com
+                        {{ config('settings.site_location') ?? 'Jl Jendral Sudirman, Jakarta' }}
+                         <br>
+                        {{ config('settings.site_email') ?? 'odemy@gmail.com'}}
                     </p>
                 </div>
 
@@ -285,7 +284,7 @@
                             </td>
 
                             <td class="text-end">
-                                ${{ number_format($item->price, 2) }}
+                                {{ rupiah($item->price) }}
                             </td>
 
                         </tr>
@@ -297,7 +296,7 @@
                         </td>
 
                         <td class="text-end">
-                            ${{ number_format($order->total_amount, 2) }}
+                            {{ rupiah($order->total_amount) }}
                         </td>
                     </tr>
 
@@ -307,7 +306,7 @@
                         </td>
 
                         <td class="text-end paid">
-                            ${{ number_format($order->paid_amount, 2) }}
+                            {{ rupiah($order->paid_amount) }}
                         </td>
                     </tr>
 

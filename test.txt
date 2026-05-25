@@ -1,0 +1,38 @@
+New course submitted xxxxxxxxxxxxxxxxx
+pending Instructor request xxxxxxxxxxxxxxx
+New enrollment xxxxxxxxxxxxx
+New review received  xxxxxxxxxxxx
+Course approved xxxxxxxxxx
+Course rejected xxxxxxxxxxxx
+Payout approved xxxxxxxxxxxxxxx
+Payout rejected xxxxxxxxxxxxx
+Enrollment successful xxxxxxxxxxxx
+
+
+
+Schema::create('notifications', function (Blueprint $table) {
+    $table->id();
+
+    // penerima notif
+    $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+
+    // jenis notif
+    $table->string('type');
+
+    // judul notif
+    $table->string('title');
+
+    // isi notif
+    $table->text('message');
+
+    // status baca
+    $table->timestamp('read_at')->nullable();
+
+    // icon opsional
+    $table->string('icon')->nullable();
+
+    // warna notif
+    $table->string('color')->nullable();
+
+    $table->timestamps();
+});

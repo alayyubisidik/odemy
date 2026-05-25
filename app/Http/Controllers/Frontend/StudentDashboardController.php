@@ -3,20 +3,151 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Course;
+use App\Models\CourseChapterLesson;
+use App\Models\Enrollment;
+use App\Models\OrderItem;
 use App\Models\Review;
+use App\Models\WatchHistory;
 use App\Services\AlertService;
 use App\Traits\FileUploadTrait;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class StudentDashboardController extends Controller
 {
     use FileUploadTrait;
-    function index()
-    {
-        return view('frontend.student.dashboard.main.index');
-    }
 
+    public function index()
+    {
+        $userId = user()->id;
+
+        $enrolledCourses = Enrollment::where('user_id', $userId)
+            ->count();
+
+        $courseProgress = Course::join('enrollments', 'courses.id', '=', 'enrollments.course_id')
+
+            ->leftJoin('course_chapter_lessons', function ($join) {
+
+                $join->on('courses.id', '=', 'course_chapter_lessons.course_id')
+                    ->where('course_chapter_lessons.is_active', 1);
+            })
+
+            ->leftJoin('watch_histories', function ($join) use ($userId) {
+
+                $join->on('course_chapter_lessons.id', '=', 'watch_histories.lesson_id')
+                    ->where('watch_histories.user_id', $userId)
+                    ->where('watch_histories.is_completed', 1);
+            })
+
+            ->where('enrollments.user_id', $userId)
+
+            ->select(
+                'courses.id',
+                DB::raw('COUNT(DISTINCT course_chapter_lessons.id) as total_lessons'),
+                DB::raw('COUNT(DISTINCT watch_histories.lesson_id) as completed_lessons')
+            )
+
+            ->groupBy('courses.id')
+
+            ->get();
+
+        $completedCourses = $courseProgress
+            ->filter(function ($course) {
+
+                return $course->total_lessons > 0
+                    && $course->completed_lessons >= $course->total_lessons;
+            })
+            ->count();
+
+        $inProgressCourses = $courseProgress
+            ->filter(function ($course) {
+
+                return $course->completed_lessons > 0
+                    && $course->completed_lessons < $course->total_lessons;
+            })
+            ->count();
+
+        $totalLearningHours = CourseChapterLesson::join(
+            'watch_histories',
+            'course_chapter_lessons.id',
+            '=',
+            'watch_histories.lesson_id'
+        )
+
+            ->where('watch_histories.user_id', $userId)
+            ->where('watch_histories.is_completed', 1)
+
+            ->get()
+
+            ->sum(function ($lesson) {
+
+                return (int) $lesson->duration;
+            });
+
+        $completedCourseProgress = Course::join('course_chapter_lessons', 'courses.id', '=', 'course_chapter_lessons.course_id')
+
+            ->leftJoin('watch_histories', function ($join) use ($userId) {
+
+                $join->on('course_chapter_lessons.id', '=', 'watch_histories.lesson_id')
+                    ->where('watch_histories.user_id', $userId);
+            })
+
+            ->join('enrollments', 'courses.id', '=', 'enrollments.course_id')
+
+            ->where('enrollments.user_id', $userId)
+
+            ->select(
+                'courses.id',
+                'courses.title',
+                DB::raw('COUNT(DISTINCT course_chapter_lessons.id) as total_lessons'),
+                DB::raw('COUNT(DISTINCT CASE WHEN watch_histories.is_completed = 1 THEN watch_histories.lesson_id END) as completed_lessons')
+            )
+
+            ->groupBy(
+                'courses.id',
+                'courses.title'
+            )
+
+            ->get()
+
+            ->map(function ($course) {
+
+                $course->progress = $course->total_lessons > 0
+                    ? round(($course->completed_lessons / $course->total_lessons) * 100)
+                    : 0;
+
+                return $course;
+            })
+
+            ->take(4);
+
+        $recentPurchases = OrderItem::with([
+            'course',
+            'order'
+        ])
+
+            ->whereHas('order', function ($query) use ($userId) {
+
+                $query->where('buyer_id', $userId);
+            })
+
+            ->latest()
+
+            ->take(5)
+
+            ->get();
+
+        return view('frontend.student.dashboard.main.index', compact(
+            'enrolledCourses',
+            'completedCourses',
+            'inProgressCourses',
+            'totalLearningHours',
+            'completedCourseProgress',
+            'recentPurchases'
+        ));
+    }
     function becomeInstructor()
     {
         return view('frontend.student.dashboard.become-instructor.index');
@@ -125,7 +256,7 @@ class StudentDashboardController extends Controller
         return back();
     }
 
-     function reviews()
+    function reviews()
     {
         $reviews = Review::where('user_id', user()->id)->with('course')->latest()->get();
         return view('frontend.student.dashboard.review.index', compact('reviews'));

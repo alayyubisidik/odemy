@@ -19,13 +19,28 @@
 
                         <div class="col-md-12 mb-2">
                             <div class="mb-3">
-                                <label class="form-label">Image </label>
+                                <label class="form-label">Image</label>
+
                                 <x-input-error :messages="$errors->get('image')" />
-                                <div class="image-preview-box">
-                                    <input type="file" name="image" id="image-upload-one" accept="image/*"
-                                        class="form-control" />
-                                    <img id="image-preview-one" class="img-preview" alt="Logo Preview" src="{{ asset($brand_section?->image) }}"
-                                        style="width: 200px; border-radius: 5px; margin-top: 20px;  {{ $brand_section?->image ? '' : 'display: none' }}" />
+
+                                <div class="image-upload-wrapper">
+
+                                    <!-- Preview -->
+                                    <div class="image-preview-container">
+                                        <img id="image-preview-one"
+                                            src="{{ $brand_section->image ? asset($brand_section->image) : asset('assets/images/img-placeholder.png') }}"
+                                            alt="Preview">
+                                    </div>
+
+                                    <!-- Input -->
+                                    <div class="image-input-container">
+                                        <input type="file" name="image" id="image-upload-one" accept="image/*">
+
+                                        <p class="text-muted" style="margin-top: 3px">
+                                            Click to upload image
+                                        </p>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -42,8 +57,8 @@
                         <div class="col-3">
                             <div class="mb-4">
                                 <label for="" class="form-check form-switch form-switch-3">
-                                    <input type="checkbox" class="form-check-input" value="1"
-                                        name="status" @checked($brand_section->status)>
+                                    <input type="checkbox" class="form-check-input" value="1" name="status"
+                                        @checked($brand_section->status)>
                                     <span class="form-check-label">Active</span>
                                     <x-input-error :messages="$errors->get('status')" class="mt-2" />
                                 </label>

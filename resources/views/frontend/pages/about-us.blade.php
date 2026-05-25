@@ -10,11 +10,11 @@
                 <div class="col-lg-6 wow fadeInLeft">
                     <div class="wsus__about_3_img">
 
-                        <img src="{{ $about->image }}" alt="About us" class="about_3_large img-fluid w-100">
+                        <img src="{{ $about?->image }}" alt="About us" class="about_3_large img-fluid w-100">
 
                         <div class="text">
-                            <h4> <span>{{ $about->lerner_count }}K+</span> {{ $about->lerner_count_text }}</h4>
-                            <img src="{{ asset($about->lerner_image) }}" alt="Photo" class="img-fluid">
+                            <h4> <span>{{ $about?->lerner_count }}K+</span> {{ $about?->lerner_count_text }}</h4>
+                            <img src="{{ asset($about?->lerner_image) }}" alt="Photo" class="img-fluid">
                         </div>
 
                         <div class="circle_box">
@@ -39,16 +39,16 @@
                     <div class="wsus__about_3_text">
                         <div class="wsus__section_heading heading_left mb_15">
                             <h5>Learn More About Us</h5>
-                            <h2>{{ $about->title }}</h2>
+                            <h2>{{ $about?->title }}</h2>
                         </div>
-                        <p>{!! $about->description !!}</p>
+                        <p>{!! $about?->description !!}</p>
                         <a class="common_btn" style="margin-top: 50px"
-                            href="{{ $about->button_url }}">{{ $about->button_text }}</a>
+                            href="{{ $about?->button_url }}">{{ $about?->button_text }}</a>
                         <div class="about_video" style="top: 250px">
-                            <img src="{{ $about->video_image }}" alt="Video" class="img-fluid w-100">
+                            <img src="{{ $about?->video_image }}" alt="Video" class="img-fluid w-100">
                             <span>live</span>
                             <a class="play_btn venobox" data-autoplay="true" data-vbtype="video"
-                                href="{{ $about->video_url }}">
+                                href="{{ $about?->video_url }}">
                                 <img src="{{ asset('assets/frontend/dist/images/play_icon.png') }}" alt="Play"
                                     class="img-fluid">
                             </a>
@@ -70,26 +70,26 @@
                 <div class="row">
                     <div class="col-lg-3 col-md-6 wow fadeInUp">
                         <div class="wsus__single_counter">
-                            <h2><span class="counter">{{ $counter->counter_one }}</span></h2>
-                            <p>{{ $counter->title_one }}</p>
+                            <h2><span class="counter">{{ $counter?->counter_one }}</span></h2>
+                            <p>{{ $counter?->title_one }}</p>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6 wow fadeInUp">
                         <div class="wsus__single_counter">
-                            <h2><span class="counter">{{ $counter->counter_two }}</span></h2>
-                            <p>{{ $counter->title_two }}</p>
+                            <h2><span class="counter">{{ $counter?->counter_two }}</span></h2>
+                            <p>{{ $counter?->title_two }}</p>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6 wow fadeInUp">
                         <div class="wsus__single_counter">
-                            <h2><span class="counter">{{ $counter->counter_three }}</span></h2>
-                            <p>{{ $counter->title_three }}</p>
+                            <h2><span class="counter">{{ $counter?->counter_three }}</span></h2>
+                            <p>{{ $counter?->title_three }}</p>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6 wow fadeInUp">
                         <div class="wsus__single_counter">
-                            <h2><span class="counter">{{ $counter->counter_four }}</span></h2>
-                            <p>{{ $counter->title_four }}</p>
+                            <h2><span class="counter">{{ $counter?->counter_four }}</span></h2>
+                            <p>{{ $counter?->title_four }}</p>
                         </div>
                     </div>
                 </div>

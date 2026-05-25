@@ -8,8 +8,8 @@
                             <ul class="d-flex flex-wrap">
                                 @foreach ($brands as $brand)
                                     <li>
-                                        <a href="{{ $brand->url }}" target="_blank">
-                                            <img src="{{ asset($brand->image) }}" alt="brand" class="img-fluid w-100">
+                                        <a href="{{ $brand?->url }}" target="_blank">
+                                            <img src="{{ asset($brand?->image) }}" alt="brand" class="img-fluid w-100">
                                         </a>
                                     </li>
                                 @endforeach

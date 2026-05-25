@@ -1,25 +1,48 @@
  <!--===========================
         HEADER START
     ============================-->
+ @if (auth()->check())
+     @php
+         $notificationPrefix = user()->role;
+     @endphp
+ @endif
 
  @php
+
      $topBar = \App\Models\TopBar::first();
+
      $categories = \App\Models\CourseCategory::where('is_active', 1)->where('parent_id', null)->get();
+
      $custom_pages = \App\Models\CustomPage::where('status', 1)->get();
+
+     $notifications = collect();
+
+     $unreadNotifications = 0;
+
+     if (auth()->check()) {
+         $notifications = \App\Models\Notification::where('user_id', user()->id)
+             ->orderByRaw('read_at IS NULL DESC')
+             ->latest()
+             ->take(10)
+             ->get();
+
+         $unreadNotifications = \App\Models\Notification::where('user_id', user()->id)->whereNull('read_at')->count();
+     }
+
  @endphp
 
  <header class="header_3">
      <div class="row">
          <div class="col-xxl-4 col-lg-7 col-md-8 d-none d-md-block">
              <ul class="wsus__header_left d-flex flex-wrap">
-                 <li><a href="mailto:{{ $topBar->email }}"><i class="fab fa-envelope"></i>{{ $topBar->email }}</a></li>
-                 <li><a href="callto:{{ $topBar->phone }}"><i class="fas fa-phone-alt"></i> {{ $topBar->phone }}</a></li>
+                 <li><a href="mailto:{{ $topBar?->email }}"><i class="fab fa-envelope"></i>{{ $topBar?->email }}</a></li>
+                 <li><a href="callto:{{ $topBar?->phone }}"><i class="fas fa-phone-alt"></i> {{ $topBar?->phone }}</a></li>
              </ul>
          </div>
          <div class="col-xxl-5 col-lg-7 d-none d-xxl-block">
              <div class="wsus__header_center">
-                 <p> <span>{{ $topBar->offer_name }}</span> {{ $topBar->offer_short_description }} <a
-                         href="{{ $topBar->offer_button_url }}">{{ $topBar->offer_button_text }}</a></p>
+                 <p> <span>{{ $topBar?->offer_name }}</span> {{ $topBar?->offer_short_description }} <a
+                         href="{{ $topBar?->offer_button_url }}">{{ $topBar?->offer_button_text }}</a></p>
              </div>
          </div>
 
@@ -112,13 +135,158 @@
              </div>
              <ul>
                  @auth
+                     <style>
+                         .notification-link:hover .notification-title {
+                             text-decoration: underline;
+                         }
+
+                         .notification-badge {
+                             position: absolute;
+                             top: -5px;
+                             right: -10px;
+                             min-width: 18px;
+                             height: 18px;
+                             border-radius: 50%;
+                             font-size: 11px;
+                             display: flex;
+                             align-items: center;
+                             justify-content: center;
+                             padding: 2px;
+                         }
+
+                         .notification-dot {
+                             width: 10px;
+                             height: 10px;
+                             border-radius: 50%;
+                             display: inline-block;
+                         }
+                     </style>
+
+                     <li class="nav-item dropdown d-none d-md-flex me-2">
+
+                         <a href="#" class="menu_signin nav-link px-0 position-relative" data-bs-toggle="dropdown"
+                             tabindex="-1" aria-label="Show notifications">
+
+                             <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
+                                 viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                 stroke-linecap="round" stroke-linejoin="round">
+
+                                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+
+                                 <path
+                                     d="M10 5a2 2 0 1 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3h-16a4 4 0 0 0 2 -3v-3a7 7 0 0 1 4 -6" />
+
+                                 <path d="M9 17v1a3 3 0 0 0 6 0v-1" />
+
+                             </svg>
+
+
+                             @if ($unreadNotifications > 0)
+                                 <b style="left: 13px">{{ $unreadNotifications }}</b>
+                             @endif
+
+                         </a>
+
+                         <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-end dropdown-menu-card"
+                             style="width: 350px;">
+
+                             <div class="card">
+
+                                 <div class="card-header d-flex justify-content-between align-items-center">
+
+                                     <h3 class="card-title mb-0" style="font-size: 20px !important">
+                                         Notifications
+                                     </h3>
+
+                                     @if ($notifications->count() > 0)
+                                         <form action="{{ route($notificationPrefix . '.notifications.delete-all') }}"
+                                             method="POST">
+
+                                             @csrf
+                                             @method('DELETE')
+
+                                             <a href="#" class="text-danger delete-btn">
+
+                                                 <i class="ti ti-trash"></i>
+
+                                             </a>
+
+                                         </form>
+                                     @endif
+
+                                 </div>
+
+                                 <div class="list-group list-group-flush list-group-hoverable">
+
+                                     @forelse ($notifications as $notification)
+                                         <a href="{{ route($notificationPrefix . '.notifications.read', $notification->id) }}"
+                                             class="list-group-item notification-link">
+
+                                             <div class="row align-items-center">
+
+                                                 <div class="col-auto">
+
+                                                     @if (!$notification->read_at)
+                                                         <span
+                                                             class="notification-dot bg-{{ $notification->color ?? 'primary' }}">
+                                                         </span>
+                                                     @endif
+
+                                                 </div>
+
+                                                 <div class="col text-truncate">
+
+                                                     <div class="text-body d-block notification-title">
+
+                                                         {{ $notification->title }}
+
+                                                     </div>
+
+                                                     <div class="d-block text-secondary text-truncate mt-n1">
+
+                                                         {{ $notification->message }}
+
+                                                     </div>
+
+                                                     <small class="text-muted">
+
+                                                         {{ $notification->created_at->diffForHumans() }}
+
+                                                     </small>
+
+                                                 </div>
+
+                                             </div>
+
+                                         </a>
+
+                                     @empty
+
+                                         <div class="list-group-item text-center text-muted py-4">
+
+                                             No notifications found
+
+                                         </div>
+                                     @endforelse
+
+                                 </div>
+
+                             </div>
+
+                         </div>
+
+                     </li>
+
                      <li>
                          <a class="menu_signin" href="{{ route('cart.index') }}">
+
                              <span>
                                  <img src="{{ asset('assets/frontend/dist/images/cart_icon_black.png') }}" alt="user"
                                      class="img-fluid">
                              </span>
+
                              <b id="cart-count">{{ cartCount() }}</b>
+
                          </a>
                      </li>
                      @if (user()->role == 'student')

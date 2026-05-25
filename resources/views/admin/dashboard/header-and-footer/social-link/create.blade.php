@@ -16,16 +16,27 @@
 
                         <div class="col-md-12 mb-2">
                             <div class="mb-3">
-                                <label class="form-label">Icon </label>
+                                <label class="form-label">Icon</label>
                                 <x-input-error :messages="$errors->get('icon')" />
-                                <div class="image-preview-box">
-                                    <input type="file" name="icon" id="image-upload-one" accept="image/*"
-                                        class="form-control" />
-                                    <img id="image-preview-one" class="img-preview" alt="Icon Preview" src=""
-                                        style="width: 200px; border-radius: 5px; margin-top: 20px; display: none " />
+
+                                <div class="image-upload-wrapper">
+
+                                    <!-- Kiri: Preview -->
+                                    <div class="image-preview-container">
+                                        <img id="image-preview-two" style="background: gray" src="{{ asset('assets/images/img-placeholder.png') }}"
+                                            alt="Preview">
+                                    </div>
+
+                                    <!-- Kanan: Input -->
+                                    <div class="image-input-container">
+                                        <input type="file" name="icon" id="image-upload-two" accept="image/*">
+                                        <p class="text-muted" style="margin-top: 3px">Click to upload image</p>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
+
 
                         <div class="col-12">
                             <div class="mb-3">

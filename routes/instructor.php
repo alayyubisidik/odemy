@@ -5,6 +5,7 @@ use App\Http\Controllers\Frontend\CourseController;
 use App\Http\Controllers\Frontend\InstructorDashboardController;
 use App\Http\Controllers\Frontend\ReviewController;
 use App\Http\Controllers\Frontend\WithdrawController;
+use App\Http\Controllers\Instructor\NotificationController;
 use Illuminate\Support\Facades\Route;
 
 Route::group(["prefix" => "instructor", "as" => "instructor.", "middleware" => ["auth", "verified", "role:instructor"]], function () {
@@ -43,6 +44,7 @@ Route::group(["prefix" => "instructor", "as" => "instructor.", "middleware" => [
     Route::post('courses/store-finish', [CourseController::class, 'storeFinish'])->name('courses.store.finish');
 
     Route::get('orders', [InstructorDashboardController::class, 'orderIndex'])->name('orders.index');
+    Route::get('orders/detail/{id}', [InstructorDashboardController::class, 'orderShow'])->name('orders.show');
 
     Route::get('withdraws', [WithdrawController::class, 'index'])->name('withdraws.index');
     Route::get('withdraws/request', [WithdrawController::class, 'requestWithdraws'])->name('withdraws.request');
@@ -51,4 +53,13 @@ Route::group(["prefix" => "instructor", "as" => "instructor.", "middleware" => [
     Route::get('reviews', [ReviewController::class, 'index'])->name('reviews.index');
     Route::put('reviews/status/{review}', [ReviewController::class, 'changeStatus'])->name('reviews.status');
 
+    Route::get(
+        'notifications/{id}/read',
+        [NotificationController::class, 'read']
+    )->name('notifications.read');
+
+    Route::delete(
+        'notifications/delete-all',
+        [NotificationController::class, 'deleteAll']
+    )->name('notifications.delete-all');
 });

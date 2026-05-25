@@ -33,7 +33,7 @@
                                         <img width="100" src="{{ asset($course->thumbnail) }}" alt="">
                                     </td>
                                     <td>{{ $course->title }}</td>
-                                    <td>{{ $course->category->name }}</td>
+                                    <td>{{ $course->category->name ?? '-' }}</td>
                                     <td>{{ $course->Instructor->name }}</td>
                                     <td>{{ rupiah($course->price) }}</td>
                                     <td>
@@ -79,14 +79,6 @@
                                             <a href="{{ route('admin.courses.chapters.index', $course) }}">
                                                 <i class="ti ti-list-check"></i>
                                             </a>
-                                            <form action="{{ route('admin.courses.destroy', $course) }}"
-                                                method="POST">
-                                                @csrf
-                                                @method('delete')
-                                                <a type="submit" class="text-danger delete-btn">
-                                                    <i class="ti ti-trash"></i>
-                                                </a>
-                                            </form>
                                         </div>
                                     </td>
                                 </tr>

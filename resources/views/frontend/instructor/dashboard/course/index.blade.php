@@ -56,7 +56,7 @@
                                             <a class="title m-0 p-0" href="">{{ $course->title }}</a>
                                         </td>
                                         <td class="sale">
-                                            <p class="title">{{ $course->category->name }}</p>
+                                            <p class="title">{{ $course->category->name ?? '-' }}</p>
                                         </td>
                                         <td>
                                             @if ($course->is_approved == 'pending')

@@ -29,6 +29,7 @@ Route::get('blogs/{slug}', [BlogController::class, 'show'])->name('blogs.show');
 
 Route::post('blogs/comment/{id}', [BlogController::class, 'storeComment'])->name('blogs.comment.store');
 
+Route::post('newsletters', [FrontendController::class, 'newsletter'])->name('newsletters');
 
 
 

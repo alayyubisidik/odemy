@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Cart;
 use App\Models\Enrollment;
+use App\Models\Notification;
 use App\Models\Order;
 use App\Models\OrderItem;
 use Illuminate\Http\Request;
@@ -146,9 +147,29 @@ class MidtransController extends Controller
                 $enrollment->course_id = $item->course->id;
 
                 $enrollment->instructor_id =
-                $item->course->instructor_id;
+                    $item->course->instructor_id;
 
                 $enrollment->save();
+
+                Notification::create([
+                    'user_id' => $user->id,
+                    'type' => 'student_enrollment_successful',
+                    'title' => 'Enrollment Successful',
+                    'message' => 'You have successfully enrolled in ' . $item->course->title,
+                    'url' => route('student.my-learning.index'),
+                    'icon' => 'ti ti-book',
+                    'color' => 'success',
+                ]);
+
+                Notification::create([
+                    'user_id' => $item->course->instructor_id,
+                    'type' => 'instructor_new_enrollment',
+                    'title' => 'New Enrollment',
+                    'message' => $user->name . ' enrolled in your course ' . $item->course->title,
+                    'url' => route('instructor.dashboard.index'),
+                    'icon' => 'ti ti-user-plus',
+                    'color' => 'primary',
+                ]);
 
                 /** INSTRUCTOR WALLET */
                 $instructor = $item->course->instructor;
@@ -169,7 +190,6 @@ class MidtransController extends Controller
             return response()->json([
                 'status' => true
             ]);
-
         } catch (\Throwable $th) {
 
             DB::rollBack();

@@ -13,17 +13,32 @@
 
                         <div class="col-md-12 mb-2">
                             <div class="mb-3">
-                                <label class="form-label">Image </label>
+                                <label class="form-label">Image</label>
+
                                 <x-input-error :messages="$errors->get('image')" />
-                                <div class="image-preview-box">
-                                    <input type="file" name="image" id="image-upload-one" accept="image/*"
-                                        class="form-control" />
-                                    <img id="image-preview-one" class="img-preview" alt="Logo Preview"
-                                        src="{{ asset($about?->image) }}"
-                                        style="width: 200px; border-radius: 5px; margin-top: 20px; display: none {{ $about?->image ? 'display: none;' : '' }}" />
+
+                                <div class="image-upload-wrapper">
+
+                                    <!-- Preview -->
+                                    <div class="image-preview-container">
+                                        <img id="image-preview-one"
+                                            src="{{ $about->image ? asset($about->image) : asset('assets/images/img-placeholder.png') }}"
+                                            alt="Preview" style="background: gray">
+                                    </div>
+
+                                    <!-- Input -->
+                                    <div class="image-input-container">
+                                        <input type="file" name="image" id="image-upload-one" accept="image/*">
+
+                                        <p class="text-muted" style="margin-top: 3px">
+                                            Click to upload image
+                                        </p>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
+
 
                         <div class="col-6">
                             <div class="mb-3">
@@ -45,18 +60,31 @@
 
                         <div class="col-md-12 mb-2">
                             <div class="mb-3">
-                                <label class="form-label">Lerner Image </label>
+                                <label class="form-label">Lerner Image</label>
+
                                 <x-input-error :messages="$errors->get('lerner_image')" />
-                                <div class="image-preview-box">
-                                    <input type="file" name="lerner_image" id="image-upload-two" accept="image/*"
-                                        class="form-control" />
-                                    <img id="image-preview-two" class="img-preview" alt="Logo Preview"
-                                        src="{{ asset($about?->lerner_image) }}"
-                                        style="width: 200px; border-radius: 5px; margin-top: 20px; display: none {{ $about?->lerner_image ? 'display: none;' : '' }}" />
+
+                                <div class="image-upload-wrapper">
+
+                                    <!-- Preview -->
+                                    <div class="image-preview-container">
+                                        <img id="image-preview-two"
+                                            src="{{ $about->lerner_image ? asset($about->lerner_image) : asset('assets/images/img-placeholder.png') }}"
+                                            alt="Preview" style="background: gray">
+                                    </div>
+
+                                    <!-- Input -->
+                                    <div class="image-input-container">
+                                        <input type="file" name="lerner_image" id="image-upload-two" accept="image/*">
+
+                                        <p class="text-muted" style="margin-top: 3px">
+                                            Click to upload image
+                                        </p>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
-
                         <div class="col-12">
                             <div class="mb-3">
                                 <label class="form-label required" for="title">Title</label>
@@ -94,14 +122,29 @@
 
                         <div class="col-md-12 mb-2">
                             <div class="mb-3">
-                                <label class="form-label">Video Image </label>
+                                <label class="form-label">Video Image</label>
+
                                 <x-input-error :messages="$errors->get('video_image')" />
-                                <div class="image-preview-box">
-                                    <input type="file" name="video_image" id="image-upload-three" accept="image/*"
-                                        class="form-control" />
-                                    <img id="image-preview-three" class="img-preview" alt="Logo Preview"
-                                        src="{{ asset($about?->video_image) }}"
-                                        style="width: 200px; border-radius: 5px; margin-top: 20px; display: none {{ $about?->lerner_image ? 'display: none;' : '' }}" />
+
+                                <div class="image-upload-wrapper">
+
+                                    <!-- Preview -->
+                                    <div class="image-preview-container">
+                                        <img id="image-preview-three"
+                                            src="{{ $about->video_image ? asset($about->video_image) : asset('assets/images/img-placeholder.png') }}"
+                                            alt="Preview" style="background: gray">
+                                    </div>
+
+                                    <!-- Input -->
+                                    <div class="image-input-container">
+                                        <input type="file" name="video_image" id="image-upload-three"
+                                            accept="image/*">
+
+                                        <p class="text-muted" style="margin-top: 3px">
+                                            Click to upload image
+                                        </p>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>

@@ -13,14 +13,28 @@
 
                         <div class="col-md-12 mb-2">
                             <div class="mb-3">
-                                <label class="form-label">Icon One </label>
+                                <label class="form-label">Icon One</label>
+
                                 <x-input-error :messages="$errors->get('icon_one')" />
-                                <div class="image-preview-box">
-                                    <input type="file" name="icon_one" id="image-upload-one" accept="image/*"
-                                        class="form-control" />
-                                    <img id="image-preview-one" class="img-preview" alt="Icon One Preview"
-                                        src="{{ asset($contact?->icon_one) }}"
-                                        style="width: 200px; border-radius: 5px; margin-top: 20px; display: none {{ $contact?->icon_one ? 'display: none;' : '' }}" />
+
+                                <div class="image-upload-wrapper">
+
+                                    <!-- Preview -->
+                                    <div class="image-preview-container">
+                                        <img id="image-preview-one"
+                                            src="{{ $contact->icon_one ? asset($contact->icon_one) : asset('assets/images/img-placeholder.png') }}"
+                                            alt="Preview">
+                                    </div>
+
+                                    <!-- Input -->
+                                    <div class="image-input-container">
+                                        <input type="file" name="icon_one" id="image-upload-one" accept="image/*">
+
+                                        <p class="text-muted" style="margin-top: 3px">
+                                            Click to upload image
+                                        </p>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -44,14 +58,28 @@
                         </div>
                         <div class="col-md-12 mb-2">
                             <div class="mb-3">
-                                <label class="form-label">Icon Two </label>
+                                <label class="form-label">Icon Two</label>
+
                                 <x-input-error :messages="$errors->get('icon_two')" />
-                                <div class="image-preview-box">
-                                    <input type="file" name="icon_two" id="image-upload-two" accept="image/*"
-                                        class="form-control" />
-                                    <img id="image-preview-two" class="img-preview" alt="Icon Two Preview"
-                                        src="{{ asset($contact?->icon_two) }}"
-                                        style="width: 200px; border-radius: 5px; margin-top: 20px; display: none {{ $contact?->icon_two ? 'display: none;' : '' }}" />
+
+                                <div class="image-upload-wrapper">
+
+                                    <!-- Preview -->
+                                    <div class="image-preview-container">
+                                        <img id="image-preview-two"
+                                            src="{{ $contact->icon_two ? asset($contact->icon_two) : asset('assets/images/img-placeholder.png') }}"
+                                            alt="Preview">
+                                    </div>
+
+                                    <!-- Input -->
+                                    <div class="image-input-container">
+                                        <input type="file" name="icon_two" id="image-upload-two" accept="image/*">
+
+                                        <p class="text-muted" style="margin-top: 3px">
+                                            Click to upload image
+                                        </p>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -75,14 +103,28 @@
                         </div>
                         <div class="col-md-12 mb-2">
                             <div class="mb-3">
-                                <label class="form-label">Icon Three </label>
+                                <label class="form-label">Icon Three</label>
+
                                 <x-input-error :messages="$errors->get('icon_three')" />
-                                <div class="image-preview-box">
-                                    <input type="file" name="icon_three" id="image-upload-three" accept="image/*"
-                                        class="form-control" />
-                                    <img id="image-preview-three" class="img-preview" alt="Icon Three Preview"
-                                        src="{{ asset($contact?->icon_three) }}"
-                                        style="width: 200px; border-radius: 5px; margin-top: 20px; display: none {{ $contact?->icon_three ? 'display: none;' : '' }}" />
+
+                                <div class="image-upload-wrapper">
+
+                                    <!-- Preview -->
+                                    <div class="image-preview-container">
+                                        <img id="image-preview-three"
+                                            src="{{ $contact->icon_three ? asset($contact->icon_three) : asset('assets/images/img-placeholder.png') }}"
+                                            alt="Preview">
+                                    </div>
+
+                                    <!-- Input -->
+                                    <div class="image-input-container">
+                                        <input type="file" name="icon_three" id="image-upload-three" accept="image/*">
+
+                                        <p class="text-muted" style="margin-top: 3px">
+                                            Click to upload image
+                                        </p>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -106,17 +148,32 @@
                         </div>
                         <div class="col-md-12 mb-2">
                             <div class="mb-3">
-                                <label class="form-label">Icon Four </label>
+                                <label class="form-label">Icon Four</label>
+
                                 <x-input-error :messages="$errors->get('icon_four')" />
-                                <div class="image-preview-box">
-                                    <input type="file" name="icon_four" id="image-upload-four"
-                                        accept="image/*" class="form-control" />
-                                    <img id="image-preview-four" class="img-preview" alt="Icon Four Preview"
-                                        src="{{ asset($contact?->icon_four) }}"
-                                        style="width: 200px; border-radius: 5px; margin-top: 20px; display: none {{ $contact?->icon_four ? 'display: none;' : '' }}" />
+
+                                <div class="image-upload-wrapper">
+
+                                    <!-- Preview -->
+                                    <div class="image-preview-container">
+                                        <img id="image-preview-four"
+                                            src="{{ $contact->icon_four ? asset($contact->icon_four) : asset('assets/images/img-placeholder.png') }}"
+                                            alt="Preview">
+                                    </div>
+
+                                    <!-- Input -->
+                                    <div class="image-input-container">
+                                        <input type="file" name="icon_four" id="image-upload-four" accept="image/*">
+
+                                        <p class="text-muted" style="margin-top: 3px">
+                                            Click to upload image
+                                        </p>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
+
 
                         <div class="col-6">
                             <div class="mb-3">
@@ -135,17 +192,30 @@
                                 <x-input-error :messages="$errors->get('subtitle_four')" class="mt-2" />
                             </div>
                         </div>
-
                         <div class="col-md-12 mb-2">
                             <div class="mb-3">
-                                <label class="form-label">Image </label>
+                                <label class="form-label">Image</label>
+
                                 <x-input-error :messages="$errors->get('image')" />
-                                <div class="image-preview-box">
-                                    <input type="file" name="image" id="image-upload-five" accept="image/*"
-                                        class="form-control" />
-                                    <img id="image-preview-five" class="img-preview" alt="Image Preview"
-                                        src="{{ asset($contact?->image) }}"
-                                        style="width: 200px; border-radius: 5px; margin-top: 20px; display: none {{ $contact?->image ? 'display: none;' : '' }}" />
+
+                                <div class="image-upload-wrapper">
+
+                                    <!-- Preview -->
+                                    <div class="image-preview-container">
+                                        <img id="image-preview-five"
+                                            src="{{ $contact->image ? asset($contact->image) : asset('assets/images/img-placeholder.png') }}"
+                                            alt="Preview">
+                                    </div>
+
+                                    <!-- Input -->
+                                    <div class="image-input-container">
+                                        <input type="file" name="image" id="image-upload-five" accept="image/*">
+
+                                        <p class="text-muted" style="margin-top: 3px">
+                                            Click to upload image
+                                        </p>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>

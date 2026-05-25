@@ -50,43 +50,42 @@
                                         Courses
                                     </a>
                                 </li>
+
+                                <li>
+                                    <a href="{{ route('instructor.reviews.index') }}"
+                                        class="{{ setActive(['instructor.reviews.*']) }}">
+                                        <div class="icon-wrapper">
+                                            <i class="ti ti-message icon-fe"></i>
+                                        </div>
+                                        Reviews
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="{{ route('instructor.withdraws.index') }}"
+                                        class="{{ setActive(['instructor.withdraws.*']) }}">
+                                        <div class="icon-wrapper">
+                                            <i class="ti ti-currency-dollar icon-fe"></i>
+                                        </div>
+                                        Withdraws
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="{{ route('instructor.orders.index') }}"
+                                        class="{{ setActive(['instructor.orders.*']) }}">
+                                        <div class="icon-wrapper">
+                                            <i class="ti ti-clipboard-text icon-fe"></i>
+                                        </div>
+                                        Orders
+                                    </a>
+                                </li>
                             @endif
-
-                            <li>
-                                <a href="{{ route('instructor.reviews.index') }}"
-                                    class="{{ setActive(['instructor.reviews.*']) }}">
-                                    <div class="icon-wrapper">
-                                        <i class="ti ti-message icon-fe"></i>
-                                    </div>
-                                    Reviews
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="{{ route('instructor.withdraws.index') }}"
-                                    class="{{ setActive(['instructor.withdraws.*']) }}">
-                                    <div class="icon-wrapper">
-                                        <i class="ti ti-currency-dollar icon-fe"></i>
-                                    </div>
-                                    Withdraws
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="{{ route('instructor.orders.index') }}"
-                                    class="{{ setActive(['instructor.orders.*']) }}">
-                                    <div class="icon-wrapper">
-                                        <i class="ti ti-clipboard-text icon-fe"></i>
-                                    </div>
-                                    Orders
-                                </a>
-                            </li>
-
 
                             <li>
                                 <a href="{{ route('instructor.switch-to-student.index') }}">
                                     <div class="icon-wrapper">
-                                        <i class="ti ti-school "></i>
+                                        <i class="ti ti-school icon-fe"></i>
                                     </div>
                                     Switch to Student
                                 </a>

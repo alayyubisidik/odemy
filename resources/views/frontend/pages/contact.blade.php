@@ -11,37 +11,37 @@
                 <div class="col-xl-3 col-md-6 col-lg-4 wow fadeInUp">
                     <div class="wsus__contact_info">
                         <div class="icon">
-                            <img src="{{ asset($contact->icon_one) }}" alt="contact" class="img-fluid">
+                            <img src="{{ asset($contact?->icon_one) }}" alt="contact" class="img-fluid">
                         </div>
-                        <h4>{{ $contact->title_one }}</h4>
-                        <p>{{ $contact->subtitle_one }}</p>
+                        <h4>{{ $contact?->title_one }}</h4>
+                        <p>{{ $contact?->subtitle_one }}</p>
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-6 col-lg-4 wow fadeInUp">
                     <div class="wsus__contact_info">
                         <div class="icon">
-                            <img src="{{ asset($contact->icon_two) }}" alt="contact" class="img-fluid">
+                            <img src="{{ asset($contact?->icon_two) }}" alt="contact" class="img-fluid">
                         </div>
-                        <h4>{{ $contact->title_two }}</h4>
-                        <p>{{ $contact->subtitle_two }}</p>
+                        <h4>{{ $contact?->title_two }}</h4>
+                        <p>{{ $contact?->subtitle_two }}</p>
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-6 col-lg-4 wow fadeInUp">
                     <div class="wsus__contact_info">
                         <div class="icon">
-                            <img src="{{ asset($contact->icon_three) }}" alt="contact" class="img-fluid">
+                            <img src="{{ asset($contact?->icon_three) }}" alt="contact" class="img-fluid">
                         </div>
-                        <h4>{{ $contact->title_three }}</h4>
-                        <p>{{ $contact->subtitle_three }}</p>
+                        <h4>{{ $contact?->title_three }}</h4>
+                        <p>{{ $contact?->subtitle_three }}</p>
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-6 col-lg-4 wow fadeInUp">
                     <div class="wsus__contact_info">
                         <div class="icon">
-                            <img src="{{ asset($contact->icon_four) }}" alt="contact" class="img-fluid">
+                            <img src="{{ asset($contact?->icon_four) }}" alt="contact" class="img-fluid">
                         </div>
-                        <h4>{{ $contact->title_four }}</h4>
-                        <p>{{ $contact->subtitle_four }}</p>
+                        <h4>{{ $contact?->title_four }}</h4>
+                        <p>{{ $contact?->subtitle_four }}</p>
                     </div>
                 </div>
 
@@ -50,7 +50,7 @@
                 <div class="row align-items-center">
                     <div class="col-xl-4 col-lg-5 d-md-none d-lg-block">
                         <div class="wsus__contact_form_img">
-                            <img src="{{ asset($contact->image) }}" alt="contact" class="img-fluid">
+                            <img src="{{ asset($contact?->image) }}" alt="contact" class="img-fluid">
                         </div>
                     </div>
                     <div class="col-xl-8 col-lg-7">
@@ -85,7 +85,7 @@
             </div>
         </div>
         <div class="wsus__contact_map mt_120 xs_mt_100 wow fadeInUp">
-            <iframe src="{{ $contact->map_link }}" width="600" height="450" style="border:0;" allowfullscreen=""
+            <iframe src="{{ $contact?->map_link }}" width="600" height="450" style="border:0;" allowfullscreen=""
                 loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
     </section>

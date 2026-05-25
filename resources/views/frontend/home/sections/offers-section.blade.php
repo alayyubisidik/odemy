@@ -22,7 +22,7 @@
     </section>
 
 
-    {{-- @push('scripts')
+    @push('script')
         <script>
             $('.newsletter-form').on('submit', function(e) {
                 e.preventDefault();
@@ -46,4 +46,4 @@
 
             })
         </script>
-    @endpush --}}
+    @endpush

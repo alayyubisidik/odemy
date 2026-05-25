@@ -8,6 +8,7 @@ use App\Models\CourseCategory;
 use App\Models\CourseLanguage;
 use App\Models\CourseLevel;
 use App\Models\Enrollment;
+use App\Models\Notification;
 use App\Models\Review;
 use App\Services\AlertService;
 use Illuminate\Http\Request;
@@ -24,7 +25,7 @@ class CoursePageController extends Controller
             })
             ->when($request->has('category') && $request->filled('category'), function ($query) use ($request) {
                 if (is_array($request->category)) {
-                     $query->whereIn('category_id', $request->category);
+                    $query->whereIn('category_id', $request->category);
                 } else {
                     $query->where('category_id', $request->category);
                 }
@@ -49,14 +50,13 @@ class CoursePageController extends Controller
     function show(string $slug)
     {
         $course = Course::where('slug', $slug)->where('is_approved', 'approved')->where('status', 'active')->first();
-        $reviews = Review::where('status', 1)->get();
+        $reviews = Review::where('status', 1)->where('course_id', $course->id)->get();
         return view('frontend.pages.course-detail', compact('course', 'reviews'));
     }
 
-    function storeReview(Request $request)
+    public function storeReview(Request $request)
     {
-
-        if(!$request->rating) {
+        if (!$request->rating) {
             AlertService::error('Rating is required');
         }
 
@@ -92,7 +92,20 @@ class CoursePageController extends Controller
         $review->review = $request->review;
         $review->save();
 
+        $course = Course::with('instructor')->find($request->course_id);
+
+        Notification::create([
+            'user_id' => $course->instructor_id,
+            'type' => 'instructor_new_review_received',
+            'title' => 'New Review Received',
+            'message' => user()->name . ' submitted a review for your course ' . $course->title,
+            'url' => route('instructor.reviews.index'),
+            'icon' => 'ti ti-message-circle',
+            'color' => 'info',
+        ]);
+
         AlertService::created('Your review has been submitted and is pending approval.');
+
         return redirect()->back();
     }
 }

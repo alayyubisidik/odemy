@@ -16,7 +16,7 @@
                             <tr>
                                 <th>No.</th>
                                 <th>Text</th>
-                                <th>URK</th>
+                                <th>URL</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>

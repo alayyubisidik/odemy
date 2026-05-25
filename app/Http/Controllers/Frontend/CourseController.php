@@ -8,6 +8,8 @@ use App\Models\CourseCategory;
 use App\Models\CourseChapter;
 use App\Models\CourseLanguage;
 use App\Models\CourseLevel;
+use App\Models\Notification;
+use App\Models\User;
 use App\Services\AlertService;
 use App\Traits\FileUploadTrait;
 use Illuminate\Http\Request;
@@ -209,8 +211,36 @@ class CourseController extends Controller
         }
 
         $course = Course::find(session('course_id'));
-        return view('frontend.instructor.dashboard.course.create-course-tab.finish', compact('course'));
+
+        $admins = User::where('role', 'admin')->get();
+
+        foreach ($admins as $admin) {
+
+            $alreadyExists = Notification::where('user_id', $admin->id)
+                ->where('type', 'admin_new_course_submitted')
+                ->where('url', route('admin.courses.edit', $course->id))
+                ->exists();
+
+            if (!$alreadyExists) {
+
+                Notification::create([
+                    'user_id' => $admin->id,
+                    'type' => 'admin_new_course_submitted',
+                    'title' => 'New Course Submitted',
+                    'message' => user()->name . ' submitted a new course: ' . $course->title,
+                    'url' => route('admin.courses.edit', $course->id),
+                    'icon' => 'ti ti-book-upload',
+                    'color' => 'primary',
+                ]);
+            }
+        }
+
+        return view(
+            'frontend.instructor.dashboard.course.create-course-tab.finish',
+            compact('course')
+        );
     }
+
 
     public function storeFinish(Request $request)
     {

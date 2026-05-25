@@ -1,4 +1,4 @@
-<section class="wsus__testimonial pt_120 xs_pt_80">
+<section class="wsus__testimonial pt_120 xs_pt_80" style="margin-bottom: 150px">
     <div class="container">
         <div class="row">
             <div class="col-xl-6 m-auto wow fadeInUp">

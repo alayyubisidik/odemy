@@ -9,6 +9,7 @@ use App\Models\CourseChapter;
 use App\Models\CourseChapterLesson;
 use App\Models\CourseLanguage;
 use App\Models\CourseLevel;
+use App\Models\Notification;
 use App\Services\AlertService;
 use App\Traits\FileUploadTrait;
 use Illuminate\Http\Request;
@@ -34,10 +35,37 @@ class CourseController extends Controller
             'is_approved' => $request->status
         ]);
 
+        if ($request->status === 'approved') {
+
+            Notification::create([
+                'user_id' => $course->instructor_id,
+                'type' => 'instructor_course_approved',
+                'title' => 'Course Approved',
+                'message' => 'Your course "' . $course->title . '" has been approved.',
+                'url' => route('instructor.courses.index'),
+                'icon' => 'ti ti-circle-check',
+                'color' => 'success',
+            ]);
+        }
+
+        if ($request->status === 'rejected') {
+
+            Notification::create([
+                'user_id' => $course->instructor_id,
+                'type' => 'instructor_course_rejected',
+                'title' => 'Course Rejected',
+                'message' => 'Your course "' . $course->title . '" has been rejected.',
+                'url' => route('instructor.courses.index'),
+                'icon' => 'ti ti-circle-x',
+                'color' => 'danger',
+            ]);
+        }
+
         AlertService::updated();
 
         return back();
     }
+
 
     function create()
     {

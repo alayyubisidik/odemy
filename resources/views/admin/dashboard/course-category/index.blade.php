@@ -28,7 +28,7 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>
-                                        <img width="70" src="{{ asset($course_category->icon) }}" alt="">
+                                        <img width="25" src="{{ asset($course_category->icon) }}" alt="">
                                     </td>
                                     <td>{{ $course_category->name }}</td>
                                     <td>{{ $course_category->slug }}</td>

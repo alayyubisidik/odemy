@@ -38,43 +38,55 @@
                         <div class="col-md-12 mb-2">
                             <div class="mb-3">
                                 <label class="form-label">Client Image</label>
+
                                 <x-input-error :messages="$errors->get('user_image')" />
-                                <div class="image-preview-box">
-                                    <input type="file" name="user_image" id="image-upload-one"
-                                        accept="image/*" class="form-control" />
-                                    <img id="image-preview-one" class="img-preview" alt="Client Image Preview"
-                                        src="{{ asset($testimonial_section->user_image) }}"
-                                        style="width: 200px; border-radius: 5px; margin-top: 20px;  {{ $testimonial_section->user_image ? '' : 'display: none' }}" />
+
+                                <div class="image-upload-wrapper">
+
+                                    <!-- Preview -->
+                                    <div class="image-preview-container">
+                                        <img id="image-preview-one"
+                                            src="{{ $testimonial_section->user_image ? asset($testimonial_section->user_image) : asset('assets/images/img-placeholder.png') }}"
+                                            alt="Preview">
+                                    </div>
+
+                                    <!-- Input -->
+                                    <div class="image-input-container">
+                                        <input type="file" name="user_image" id="image-upload-one" accept="image/*">
+
+                                        <p class="text-muted" style="margin-top: 3px">
+                                            Click to upload image
+                                        </p>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
-
-                        <div class="col-12">
-                            <div class="mb-3">
-                                <label class="form-label required" for="user_name">Name</label>
-                                <input type="text" class="form-control" name="user_name" id="user_name"
-                                    value="{{ old('user_name', $testimonial_section->user_name) }}">
-                                <x-input-error :messages="$errors->get('user_name')" class="mt-2" />
-                            </div>
+                        <div class="mb-3">
+                            <label class="form-label required" for="user_name">Name</label>
+                            <input type="text" class="form-control" name="user_name" id="user_name"
+                                value="{{ old('user_name', $testimonial_section->user_name) }}">
+                            <x-input-error :messages="$errors->get('user_name')" class="mt-2" />
                         </div>
+                    </div>
 
-                        <div class="col-12">
-                            <div class="mb-3">
-                                <label class="form-label required" for="user_title">Title</label>
-                                <input type="text" class="form-control" name="user_title" id="user_title"
-                                    value="{{ old('user_title', $testimonial_section->user_title) }}">
-                                <x-input-error :messages="$errors->get('user_title')" class="mt-2" />
-                            </div>
+                    <div class="col-12">
+                        <div class="mb-3">
+                            <label class="form-label required" for="user_title">Title</label>
+                            <input type="text" class="form-control" name="user_title" id="user_title"
+                                value="{{ old('user_title', $testimonial_section->user_title) }}">
+                            <x-input-error :messages="$errors->get('user_title')" class="mt-2" />
                         </div>
-
-
-
                     </div>
-                    <div class="card-footer text-end">
-                        <button class="btn btn-primary" type="submit">Update</button>
-                    </div>
-                </form>
+
+
+
             </div>
+            <div class="card-footer text-end">
+                <button class="btn btn-primary" type="submit">Update</button>
+            </div>
+            </form>
         </div>
+    </div>
     </div>
 @endsection

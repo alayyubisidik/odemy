@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Frontend\MyLearningController;
 use App\Http\Controllers\Frontend\StudentDashboardController;
+use App\Http\Controllers\Student\NotificationController;
 use Illuminate\Support\Facades\Route;
 
 Route::group(["prefix" => "student", "as" => "student.", "middleware" => ["auth", "verified", "role:student"]], function () {
@@ -26,4 +27,14 @@ Route::group(["prefix" => "student", "as" => "student.", "middleware" => ["auth"
 
         Route::get('reviews', [StudentDashboardController::class, 'reviews'])->name('reviews.index');
     Route::delete('reviews/delete/{id}', [StudentDashboardController::class, 'reviewDelete'])->name('reviews.delete');
+
+     Route::get(
+        'notifications/{id}/read',
+        [NotificationController::class, 'read']
+    )->name('notifications.read');
+
+    Route::delete(
+        'notifications/delete-all',
+        [NotificationController::class, 'deleteAll']
+    )->name('notifications.delete-all');
 });

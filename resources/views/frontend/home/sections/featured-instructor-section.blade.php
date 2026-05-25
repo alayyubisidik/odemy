@@ -8,17 +8,17 @@
                             <div class="wsus__quality_courses_text">
                                 <div class="wsus__section_heading heading_left mb_30">
                                     <h5>100% QUALITY COURSES</h5>
-                                    <h2>{{ $featuredInstructorSection->title ?? 'Featured Instructor Courses' }}</h2>
+                                    <h2>{{ $featuredInstructorSection?->title ?? 'Featured Instructor Courses' }}</h2>
                                 </div>
-                                <p>{{ $featuredInstructorSection->subtitle }}</p>
+                                <p>{{ $featuredInstructorSection?->subtitle }}</p>
                                 <a class="common_btn"
-                                    href="{{ $featuredInstructorSection->button_url ?? '#' }}">{{ $featuredInstructorSection->button_text ?? 'all Featured Courses' }}
+                                    href="{{ $featuredInstructorSection?->button_url ?? '#' }}">{{ $featuredInstructorSection?->button_text ?? 'all Featured Courses' }}
                                     <i class="far fa-arrow-right"></i></a>
                             </div>
                         </div>
                         <div class="col-xxl-4 col-xl-4 col-md-6 col-lg-6 d-none d-xl-block wow fadeInUp">
                             <div class="wsus__quality_courses_img">
-                                <img src="{{ asset($featuredInstructorSection->instructor_image) }}"
+                                <img src="{{ asset($featuredInstructorSection?->instructor_image) }}"
                                     alt="Quality Courses" class="img-fluid w-100">
                             </div>
                         </div>
